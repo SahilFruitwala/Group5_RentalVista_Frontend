@@ -11,7 +11,6 @@ import { createBrowserHistory } from 'history';
 
 import ScrollToTop from "./components/scrollToTop";
 import NavigationBar from "./components/navigation/navbar/Navbar";
-// import NavigationBarLogin from "./components/navigation/navbarlogin";
 import Footer from "./components/navigation/footer/Footer";
 import LandingPage from "./components/landing/index";
 import EditProfile from "./components/profile/index";
