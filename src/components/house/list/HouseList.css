@@ -1,0 +1,6 @@
+.justify-data {
+  content: "";
+  text-align: justify !important;
+  display: inline-block !important;
+  width: 100% !important;
+}

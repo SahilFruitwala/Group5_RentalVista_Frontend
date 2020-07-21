@@ -1,0 +1,28 @@
+.footer-root {
+  background-color: #1d8ba6;
+  color: #f0f8f0;
+  padding: 20px 0px 20px 0px;
+  margin: 0px auto;
+  width: 100%;
+  position: static;
+  bottom:0;
+  left:0;
+}
+address {
+  font-size: 80%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #F7A231;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+hr {
+  background-color: #c1c1c1;
+}

@@ -1,0 +1,102 @@
+/* .container-fluid {
+    padding: 0 5vw 0px 5vw;
+    margin: 2vh 0px 2vh 0px;
+} */
+
+@media only screen and (max-width: 450px) {
+  .information {
+    background-color: #f5f5f5;
+    border-radius: 0px 0px 15px 15px;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    border-bottom: 5px solid #f7a231;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    background-color: #f5f5f5;
+    text-align: justify;
+    padding-right: 7vw;
+    padding-left: 7vw;
+  }
+
+  .information h3 {
+    text-align: center;
+    margin-bottom: 3vh;
+  }
+
+  .illustration {
+    border-radius: 15px;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    margin-top: 0.5vh;
+    border-bottom: 5px solid #f7a231;
+  }
+
+  .illustration img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 450px) {
+  .information {
+    position: relative;
+    border-radius: 15px;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    background-color: #f5f5f5;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    text-align: justify;
+    padding-right: 7vw;
+    padding-left: 7vw;
+  }
+
+  .information h3 {
+    padding: 25px;
+  }
+
+  .information:hover {
+    box-shadow: 12px 12px 12px 10px rgba(0, 0, 0, 0.2),
+      -12px -12px 12px 0px rgba(255, 255, 255, 0.5);
+    /* border-radius: 15px; */
+    border-bottom: 5px solid #f7a231;
+  }
+
+  .information h3 {
+      text-align: center;
+  }
+
+  .information h3, span {
+    margin: 0;
+    top: 3vh;
+    position: relative;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .illustration {
+    border-radius: 15px;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+  }
+  /* .illustration:hover {
+    border-bottom: 5px solid #f7a231;
+  } */
+
+  .illustration img {
+    height: 30vh;
+    width: 100%;
+  }
+}

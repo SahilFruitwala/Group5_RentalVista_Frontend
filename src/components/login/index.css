@@ -1,0 +1,26 @@
+.login-form {
+    width: 100%;
+    max-width: 530px;
+    padding: 15px;
+    margin: auto;
+    height: 100%;
+    margin-bottom: 20px;
+  }
+
+  .web-title {
+    width: 100%;
+    max-width: 500px;
+    padding-top:2.5%;
+    margin: auto;
+    height: 100%;
+    margin-bottom: 20px;
+  }
+  input.error {
+    border: 1px solid red;
+  }
+  
+  .errorMessage {
+    color: red;
+    display: relative;
+    padding-bottom: 5px;
+  }
