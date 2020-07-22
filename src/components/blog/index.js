@@ -4,6 +4,10 @@ import Popup from "reactjs-popup";
 import axios from 'axios';
 
 let flag = 0;
+
+
+const MAX_LENGTH = 25;
+
 const validateForm = (errors) => {
     let valid = false;
     Object.values(errors).forEach(      // if we have an error string set valid to false
@@ -240,8 +244,8 @@ class Form extends React.Component {
                         }
                         return (
                             <div key={blog.id} className="col col-sm-4 " 
-                                style={{width: "330px",float:"left", marginLeft: 'auto', marginRight: 'auto', marginBottom: 'auto', marginTop: 'auto'}}>
-                                <div className={"card "+newColor} style= {{width: "auto",margin: '5px'}}>
+                                style={{width: "330px", float:"left", marginLeft: 'auto', marginRight: 'auto', marginBottom: 'auto', marginTop: 'auto'}}>
+                                <div className={"card "+newColor} style= {{width: "auto",height: "225px",margin: '5px'}}>
                                     <div className="card-body" key={blog.id} style={{width: "auto",margin: '5px'}} >
                                         <h8 className="card-title">{blog.title}</h8>
                                         <hr />
@@ -250,7 +254,8 @@ class Form extends React.Component {
                                         </p1>
                                         <hr />
                                         <p1 className="card-text">
-                                            Description: {blog.desc}
+                                            Description: {`${blog.desc.substring(0, MAX_LENGTH)}...`}
+                                            <a href="#">Read more</a>
                                         </p1>
                                     </div>
                                 </div>
