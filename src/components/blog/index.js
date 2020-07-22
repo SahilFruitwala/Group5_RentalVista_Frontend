@@ -135,8 +135,10 @@ class Form extends React.Component {
         handleSubmit = (event) => {
           
             event.preventDefault();
-            this.setState({formValid: validateForm(this.state.errors)});
-            this.setState({errorCount: countErrors(this.state.errors)});  
+            
+            
+            const { name, value } = event.target;
+            
             console.log("Submit working") 
             console.log(this.state)
             axios
@@ -144,13 +146,22 @@ class Form extends React.Component {
               .then(response => {
                 console.log(response)
                 this.componentDidMount()
+                this.cancelCourse()
+                console.log(this.state)               
+
               })
               .catch(error => 
                 {
                 console.log(error)
                 })
         
-      }
+          }
+        resetForm = () => {
+                          this.setState({title: "", author: "", desc: ""});
+                        }
+        cancelCourse = () => { 
+            document.getElementById("create-course-form").reset();
+          }
     
 
   render() {
@@ -163,7 +174,7 @@ class Form extends React.Component {
       <div >
         <h1 style={{ display: 'flex',justifyContent: 'center', padding: '20px'}}> Blog Page</h1>
         <div className="container" style= {{padding: '5px',border: '2px solid black', borderRadius: '0.25rem'}}  >
-        <form onSubmit={this.handleSubmit} noValidate style={{}} >
+        <form id="create-course-form" onSubmit={this.handleSubmit} noValidate style={{}} >
             <h8 style={{ justifyContent: 'center'}}> Create a new Blog: </h8>
             <div className="col wrapper" style= {{display: 'flex'}}>
             <div className="col-7 " style={{ marginLeft: '1%', width: "150px"}}  >
@@ -181,9 +192,8 @@ class Form extends React.Component {
                 
                 <button
                       className="btn btn-primary"
-                      disabled={!this.state.formValid}
-                      onClick={this.submitHandler}>
-                      Register
+                      disabled={!this.state.formValid}>
+                      Submit Blog
                 </button>
                 
 
@@ -255,7 +265,29 @@ class Form extends React.Component {
                                         <hr />
                                         <p1 className="card-text">
                                             Description: {`${blog.desc.substring(0, MAX_LENGTH)}...`}
-                                            <a href="#">Read more</a>
+                                            
+                                            <Popup trigger={<Link >Read More</Link>} 
+                                                modal
+                                                closeOnDocumentClick
+                                                >                
+                                                {
+                                                <div style={{border: '5px',borderBlockColor: 'black', borderRadius: '10px', background: 'white'}}>
+                                                  <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Blog Details</h2>
+                                                  <div className="validmsg" style={{justifyContent: 'center'}}> 
+                                                    <h4 className="card-title" style={{color: 'black'}}>Title: {blog.title}</h4>
+                                                    <hr />
+                                                    <p1 style={{color: 'black'}} >
+                                                        Author: {blog.author}
+                                                    </p1>
+                                                    <hr />
+                                                    <p1 style={{color: 'black'}} >
+                                                        Description: {blog.desc}
+                                                    </p1>
+                                                  </div>
+                                                </div>
+                                                 }
+                                                
+                                            </Popup>
                                         </p1>
                                     </div>
                                 </div>
