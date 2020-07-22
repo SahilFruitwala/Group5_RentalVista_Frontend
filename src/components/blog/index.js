@@ -2,13 +2,13 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Popup from "reactjs-popup";
 import axios from 'axios';
-import NewMessageNotification from "../../utilities/NewMessageNotification";
+//import NewMessageNotification from "../../utilities/NewMessageNotification";
 import { ToastContainer, toast } from "react-toastify";
 
 let flag = 0;
 
 
-const MAX_LENGTH = 25;
+const MAX_LENGTH = 25;    //Character limit for card view text in blog page
 
 const validateForm = (errors) => {
     let valid = false;
@@ -149,8 +149,14 @@ class Form extends React.Component {
                 console.log(response)
                 this.componentDidMount()
                 this.cancelCourse()
-                this.play()
-                console.log(this.state)               
+                if(response.data=='Blog Title already present, cannot add'){
+                  this.play2()
+                }
+                else{
+                  this.play()
+                  console.log(this.state)  
+                }
+                             
 
               })
               .catch(error => 
@@ -168,6 +174,11 @@ class Form extends React.Component {
 
           play = () => {
               alert("Blog Added Successfully") 
+              //NewMessageNotification.CustomizedSnackbars()
+          }
+
+          play2 = () => {
+              alert("Blog title already present, enter a different title") 
               //NewMessageNotification.CustomizedSnackbars()
           }
     
