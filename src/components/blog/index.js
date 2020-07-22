@@ -44,53 +44,17 @@ class Form extends React.Component {
 
           posts: [],
 
-          BlogDetails: [
-            {
-                id: 1,
-                title: 'Blog post 1',
-                author: 'John Doe',
-                desc: 'RentalVista was a great start to my room-finding journey'
-            },    
-            {
-                id: 2,
-                title: 'Blog post 2',
-                author: 'John Doe',
-                desc: 'RentalVista was a good start to my room-finding journey'
-            },
-            {
-                id: 3,
-                title: 'Blog post 3',
-                author: 'John Doe',
-                desc: 'RentalVista was a nice start to my room-finding journey'
-            },    
-            {
-                id: 4,
-                title: 'Blog post 4',
-                author: 'John Doe',
-                desc: 'RentalVista was an amazing start to my room-finding journey'
-            }, 
-            {
-                id: 5,
-                title: 'Blog post 5',
-                author: 'John Doe',
-                desc: 'RentalVista was a splendid start to my room-finding journey'
-            }, 
-            {
-                id: 6   ,
-                title: 'Blog post 6',
-                author: 'John Doe',
-                desc: 'RentalVista was a fine start to my room-finding journey'
-            },              
-        ],
-        errors: {
-            title: '',
-            desc: '',
-            author: '',
-        },       
+          errors: {
+              title: '',
+              desc: '',
+              author: '',
+          },       
 
         };
     
       }
+
+
       
       componentDidMount() 
       {
@@ -168,7 +132,19 @@ class Form extends React.Component {
           
             event.preventDefault();
             this.setState({formValid: validateForm(this.state.errors)});
-            this.setState({errorCount: countErrors(this.state.errors)});   
+            this.setState({errorCount: countErrors(this.state.errors)});  
+            console.log("Submit working") 
+            console.log(this.state)
+            axios
+              .post('http://localhost:8080/addblog', this.state)
+              .then(response => {
+                console.log(response)
+                this.componentDidMount()
+              })
+              .catch(error => 
+                {
+                console.log(error)
+                })
         
       }
     
@@ -264,7 +240,7 @@ class Form extends React.Component {
                         }
                         return (
                             <div key={blog.id} className="col col-sm-4 " 
-                                style={{width: "auto",float:"left", marginLeft: 'auto', marginRight: 'auto', marginBottom: 'auto', marginTop: 'auto'}}>
+                                style={{width: "330px",float:"left", marginLeft: 'auto', marginRight: 'auto', marginBottom: 'auto', marginTop: 'auto'}}>
                                 <div className={"card "+newColor} style= {{width: "auto",margin: '5px'}}>
                                     <div className="card-body" key={blog.id} style={{width: "auto",margin: '5px'}} >
                                         <h8 className="card-title">{blog.title}</h8>
