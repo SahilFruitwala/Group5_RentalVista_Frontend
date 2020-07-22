@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Popup from "reactjs-popup";
 import axios from 'axios';
+import NewMessageNotification from "../../utilities/NewMessageNotification";
+import { ToastContainer, toast } from "react-toastify";
 
 let flag = 0;
 
@@ -147,6 +149,7 @@ class Form extends React.Component {
                 console.log(response)
                 this.componentDidMount()
                 this.cancelCourse()
+                this.play()
                 console.log(this.state)               
 
               })
@@ -161,6 +164,11 @@ class Form extends React.Component {
                         }
         cancelCourse = () => { 
             document.getElementById("create-course-form").reset();
+          }
+
+          play = () => {
+              alert("Blog Added Successfully") 
+              //NewMessageNotification.CustomizedSnackbars()
           }
     
 
