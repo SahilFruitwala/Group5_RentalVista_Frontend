@@ -166,12 +166,13 @@ class Form extends React.Component {
         
           }
 
-          handledelete = (event) => {
+          handledelete(param)  {
           
-            event.preventDefault();           
-            const { name, value } = event.target;
+            //event.preventDefault();           
+            //const { name, value } = event.target;
             
             console.log("Delete btn working") 
+            this.state.title = param
             console.log(this.state)
             axios
               .post('http://localhost:8080/deleteblog', this.state)
@@ -336,7 +337,7 @@ class Form extends React.Component {
                                         <hr />
                                             <button className="btn btn-primary " style={{padding:'5px', backgroundColor:'white', color:'black', margin:'5px'}}>Edit Blog</button>
                                             <button className="btn btn-primary" style={{padding:'5px', backgroundColor:'white', color:'black', margin:'5px'}}
-                                            onClick={this.handledelete} noValidate  >Delete Blog</button> 
+                                            onClick={() => this.handledelete(blog.title)} noValidate  >Delete Blog</button> 
                                     </div>
                                 </div>
                             </div>
