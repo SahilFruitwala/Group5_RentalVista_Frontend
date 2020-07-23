@@ -19,6 +19,9 @@ function ProfileManagement(props) {
         <button href="" onClick={() => setView("reset_password")}>
           Change Password
         </button>
+        <button href="" onClick={() => setView("requested_contacts")}>
+          My Properties
+        </button>
         <button href="" onClick={() => setView("saved_rooms")}>
           Saved Rooms
         </button>
