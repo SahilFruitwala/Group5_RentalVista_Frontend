@@ -349,11 +349,11 @@ class AddPost extends Component {
                   <input
                     className="form-check-input"
                     type="radio"
-                    name="exampleRadios"
-                    id="exampleRadios1"
+                    name="furnishingRadio"
+                    id="furnishedRadio"
                     value="Furnished"
                   />
-                  <label className="form-check-label" for="exampleRadios1">
+                  <label className="form-check-label" for="furnishedRadio">
                     Furnished
                   </label>
                 </div>
@@ -361,13 +361,41 @@ class AddPost extends Component {
                   <input
                     className="form-check-input"
                     type="radio"
-                    name="exampleRadios"
-                    id="exampleRadios2"
+                    name="furnishingRadio"
+                    id="unfurnishedRadio"
                     value="Unfurnished"
                     checked
                   />
-                  <label className="form-check-label" for="exampleRadios2">
+                  <label className="form-check-label" for="unfurnishedRadio">
                     Unfurnished
+                  </label>
+                </div>
+                <div>
+                  <label className="control-label mt-3">Pet Friendly</label>
+                </div>
+                <div className="form-check-inline">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="petFriendlyRadio"
+                    id="petFriendlyYesRadio"
+                    value="Yes"
+                  />
+                  <label className="form-check-label" for="petFriendlyYesRadio">
+                    Yes
+                  </label>
+                </div>
+                <div className="form-check-inline">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="petFriendlyRadio"
+                    id="petFriendlyNoRadio"
+                    value="No"
+                    checked
+                  />
+                  <label className="form-check-label" for="petFriendlyNoRadio">
+                    No
                   </label>
                 </div>
                 <div>
