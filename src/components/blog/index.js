@@ -165,6 +165,29 @@ class Form extends React.Component {
                 })
         
           }
+
+          handledelete = (event) => {
+          
+            event.preventDefault();           
+            const { name, value } = event.target;
+            
+            console.log("Delete btn working") 
+            console.log(this.state)
+            axios
+              .post('http://localhost:8080/deleteblog', this.state)
+              .then(response => {
+                console.log(response)
+                this.componentDidMount()
+                             
+
+              })
+              .catch(error => 
+                {
+                console.log(error)
+                })
+        
+          }
+
         resetForm = () => {
                           this.setState({title: "", author: "", desc: ""});
                         }
@@ -274,7 +297,7 @@ class Form extends React.Component {
                         return (
                             <div key={blog.id} className="col col-sm-4 " 
                                 style={{width: "330px", float:"left", marginLeft: 'auto', marginRight: 'auto', marginBottom: 'auto', marginTop: 'auto'}}>
-                                <div className={"card "+newColor} style= {{width: "auto",height: "225px",margin: '5px'}}>
+                                <div className={"card "+newColor} style= {{width: "auto",height: "270px",margin: '5px'}}>
                                     <div className="card-body" key={blog.id} style={{width: "auto",margin: '5px'}} >
                                         <h8 className="card-title">{blog.title}</h8>
                                         <hr />
@@ -284,6 +307,7 @@ class Form extends React.Component {
                                         <hr />
                                         <p1 className="card-text">
                                             Description: {`${blog.desc.substring(0, MAX_LENGTH)}...`}
+                                        
                                             
                                             <Popup trigger={<Link >Read More</Link>} 
                                                 modal
@@ -302,12 +326,17 @@ class Form extends React.Component {
                                                     <p1 style={{color: 'black'}} >
                                                         Description: {blog.desc}
                                                     </p1>
+                                                                                                       
                                                   </div>
                                                 </div>
                                                  }
                                                 
                                             </Popup>
                                         </p1>
+                                        <hr />
+                                            <button className="btn btn-primary " style={{padding:'5px', backgroundColor:'white', color:'black', margin:'5px'}}>Edit Blog</button>
+                                            <button className="btn btn-primary" style={{padding:'5px', backgroundColor:'white', color:'black', margin:'5px'}}
+                                            onClick={this.handledelete} noValidate  >Delete Blog</button> 
                                     </div>
                                 </div>
                             </div>
