@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Popup from "reactjs-popup";
 import axios from 'axios';
-//import NewMessageNotification from "../../utilities/NewMessageNotification";
+import Blog from "../../utilities/NewMessageNotification";
 import { ToastContainer, toast } from "react-toastify";
 
 let flag = 0;
@@ -153,7 +153,7 @@ class Form extends React.Component {
                   this.play2()
                 }
                 else{
-                  this.play()
+                  this.play("Blog Added Successfully")
                   console.log(this.state)  
                 }
                              
@@ -179,6 +179,7 @@ class Form extends React.Component {
               .then(response => {
                 console.log(response)
                 this.componentDidMount()
+                this.play("Blog deleted successfully!")
                              
 
               })
@@ -196,8 +197,8 @@ class Form extends React.Component {
             document.getElementById("create-course-form").reset();
           }
 
-          play = () => {
-              alert("Blog Added Successfully") 
+          play(msg)  {
+              alert(msg) 
               //NewMessageNotification.CustomizedSnackbars()
           }
 
@@ -205,6 +206,11 @@ class Form extends React.Component {
               alert("Blog title already present, enter a different title") 
               //NewMessageNotification.CustomizedSnackbars()
           }
+
+        //   handlepop = () => {
+        //       return <Blog  />
+
+        //   }
     
 
   render() {
@@ -300,7 +306,26 @@ class Form extends React.Component {
                                 style={{width: "330px", float:"left", marginLeft: 'auto', marginRight: 'auto', marginBottom: 'auto', marginTop: 'auto'}}>
                                 <div className={"card "+newColor} style= {{width: "auto",height: "270px",margin: '5px'}}>
                                     <div className="card-body" key={blog.id} style={{width: "auto",margin: '5px'}} >
-                                        <h8 className="card-title">{blog.title}</h8>
+                                        
+                                        <Popup trigger={<h4 className="card-title"><Link style={{}}>{blog.title}</Link></h4>} modal closeOnDocumentClick>                
+                                                {
+                                                <div style={{border: '5px',borderBlockColor: 'black', borderRadius: '10px', background: 'white'}}>
+                                                  <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Blog Details</h2>
+                                                  <div className="validmsg" style={{justifyContent: 'center'}}> 
+                                                    <h4 className="card-title" style={{color: 'black'}}>Title: {blog.title}</h4>
+                                                    <hr />
+                                                    <p1 style={{color: 'black'}} >
+                                                        Author: {blog.author}
+                                                    </p1>
+                                                    <hr />
+                                                    <p1 style={{color: 'black'}} >
+                                                        Description: {blog.desc}
+                                                    </p1>                                                                                                       
+                                                  </div>
+                                                </div>
+                                                 }
+                                                
+                                            </Popup>
                                         <hr />
                                         <p1 className="card-text">
                                             Author: {blog.author}
