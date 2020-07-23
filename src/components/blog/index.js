@@ -136,9 +136,7 @@ class Form extends React.Component {
         }
         handleSubmit = (event) => {
           
-            event.preventDefault();
-            
-            
+            event.preventDefault();           
             const { name, value } = event.target;
             
             console.log("Submit working") 
@@ -162,8 +160,16 @@ class Form extends React.Component {
               .catch(error => 
                 {
                 console.log(error)
-                })
-        
+                })        
+          }
+
+          handleEdit = (event) => {
+          
+            //event.preventDefault();           
+            //const { name, value } = event.target;
+            
+            console.log("Edit working") 
+            console.log(this.state)        
           }
 
           handledelete(param)  {
@@ -323,8 +329,7 @@ class Form extends React.Component {
                                                     </p1>                                                                                                       
                                                   </div>
                                                 </div>
-                                                 }
-                                                
+                                                 }                                                
                                             </Popup>
                                         <hr />
                                         <p1 className="card-text">
@@ -360,7 +365,38 @@ class Form extends React.Component {
                                             </Popup>
                                         </p1>
                                         <hr />
-                                            <button className="btn btn-primary " style={{padding:'5px', backgroundColor:'white', color:'black', margin:'5px'}}>Edit Blog</button>
+                                            
+                                                            
+                                            <Popup trigger={<button className="btn btn-primary " style={{padding:'5px', backgroundColor:'white', color:'black', margin:'5px'}}>Edit Blog</button>} modal>
+                                                {close => (
+                                                <div style={{border: '5px',borderBlockColor: 'black', borderRadius: '10px', background: 'white'}}>
+                                                <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Blog Details</h2>
+                                                <div className="validmsg" style={{justifyContent: 'center'}}> 
+                                                    <p1 className="card-title" style={{color: 'black'}}>Title: 
+                                                    <input className="form-control mb-2" onChange={this.handleChange} noValidate  name="title" placeholder="Article Title" style={{ width: '300px', display: 'flex'}}/>
+                                                    </p1>
+                                                    <hr />
+                                                    <p1 style={{color: 'black'}} >
+                                                        Description: <textarea className="form-control mb-2 " onChange={this.handleChange} noValidate
+                                                                placeholder="Article Description" name='desc'  style={{ width: '300px'}}>
+                                                                </textarea></p1>
+                                                    <hr />
+                                                    <p1 style={{color: 'black'}} >
+                                                        Author: <input className="form-control mb-2" onChange={this.handleChange} noValidate
+                                                        placeholder="Article Author" name="author" style={{ width: '300px'}} /></p1>  
+                                                    <hr/>
+                                                    <button
+                                                        className="button"
+                                                        onClick={() => {close();
+                                                            this.handleEdit();                                                       
+                                                        }}
+                                                    >
+                                                        Close modal
+                                                    </button>                                                                                                     
+                                                </div>
+                                                </div>        
+                                                )}
+                                            </Popup>
                                             <button className="btn btn-primary" style={{padding:'5px', backgroundColor:'white', color:'black', margin:'5px'}}
                                             onClick={() => this.handledelete(blog.title)} noValidate  >Delete Blog</button> 
                                     </div>
