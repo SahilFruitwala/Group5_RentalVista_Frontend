@@ -148,14 +148,12 @@ class Form extends React.Component {
                 this.componentDidMount()
                 this.cancelCourse()
                 if(response.data=='Blog Title already present, cannot add'){
-                  this.play2()
+                  this.play("Blog title already present, enter a different title")
                 }
                 else{
                   this.play("Blog Added Successfully")
                   console.log(this.state)  
                 }
-                             
-
               })
               .catch(error => 
                 {
@@ -169,7 +167,24 @@ class Form extends React.Component {
             //const { name, value } = event.target;
             
             console.log("Edit working") 
-            console.log(this.state)        
+            console.log(this.state)  
+            axios
+              .put('http://localhost:8080/editblog', this.state)
+              .then(response => {
+                console.log(response)
+                this.componentDidMount()
+                if(response.data=='Blog updated Successfully!'){
+                    this.play("Blog Added Successfully")                    
+                  }
+                  else{
+                    this.play("Blog Author not found, Enter Correct Author name")
+                    console.log(this.state)  
+                  }
+              })
+              .catch(error => 
+                {
+                console.log(error)
+                })      
           }
 
           handledelete(param)  {
@@ -186,8 +201,6 @@ class Form extends React.Component {
                 console.log(response)
                 this.componentDidMount()
                 this.play("Blog deleted successfully!")
-                             
-
               })
               .catch(error => 
                 {
@@ -205,11 +218,6 @@ class Form extends React.Component {
 
           play(msg)  {
               alert(msg) 
-              //NewMessageNotification.CustomizedSnackbars()
-          }
-
-          play2 = () => {
-              alert("Blog title already present, enter a different title") 
               //NewMessageNotification.CustomizedSnackbars()
           }
 
@@ -369,10 +377,10 @@ class Form extends React.Component {
                                                             
                                             <Popup trigger={<button className="btn btn-primary " style={{padding:'5px', backgroundColor:'white', color:'black', margin:'5px'}}>Edit Blog</button>} modal>
                                                 {close => (
-                                                <div style={{border: '5px',borderBlockColor: 'black', borderRadius: '10px', background: 'white'}}>
-                                                <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Blog Details</h2>
-                                                <div className="validmsg" style={{justifyContent: 'center'}}> 
-                                                    <p1 className="card-title" style={{color: 'black'}}>Title: 
+                                                <div style={{border: '5px',borderColor: 'black', borderRadius: '10px', background: 'white'}}>
+                                                <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Edit Blog Details</h2>
+                                                <div className="validmsg" style={{margin: '30px'}}> 
+                                                    <p1 className="card-title" style={{color: 'black', margin:'auto'}}>Title: 
                                                     <input className="form-control mb-2" onChange={this.handleChange} noValidate  name="title" placeholder="Article Title" style={{ width: '300px', display: 'flex'}}/>
                                                     </p1>
                                                     <hr />
@@ -386,19 +394,52 @@ class Form extends React.Component {
                                                         placeholder="Article Author" name="author" style={{ width: '300px'}} /></p1>  
                                                     <hr/>
                                                     <button
-                                                        className="button"
+                                                        className="btn btn-success"
                                                         onClick={() => {close();
                                                             this.handleEdit();                                                       
                                                         }}
                                                     >
-                                                        Close modal
+                                                        Update Blog
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-warning"
+                                                        onClick={() => {close();}}
+                                                        style={{margin:'15px'}}
+                                                    >
+                                                        Cancel
                                                     </button>                                                                                                     
                                                 </div>
                                                 </div>        
                                                 )}
                                             </Popup>
-                                            <button className="btn btn-primary" style={{padding:'5px', backgroundColor:'white', color:'black', margin:'5px'}}
-                                            onClick={() => this.handledelete(blog.title)} noValidate  >Delete Blog</button> 
+                                            
+                                            <Popup trigger={<button className="btn btn-primary" style={{padding:'5px', backgroundColor:'white', color:'black', margin:'5px'}}
+                                             noValidate  >Delete Blog</button> } modal>
+                                                {close => (
+                                                <div style={{border: '5px',borderColor: 'black', borderRadius: '10px', background: 'white'}}>
+                                                <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Delete Blog</h2>
+                                                <div className="validmsg" > 
+                                                    <p1 style={{color:"black",justifyContent: 'center', display: 'flex'}} >Are you sure you want to delete the blog?</p1>
+                                                    <hr/>
+                                                    <div style={{justifyContent: 'center', display: 'flex'}}>
+                                                    <button
+                                                        className="btn btn-success"
+                                                        onClick={() => {close();
+                                                            this.handledelete(blog.title);                                                       
+                                                        }} style={{justifyContent: 'center'}}>
+                                                        Delete Blog
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-warning"
+                                                        onClick={() => {close();}}
+                                                        style={{marginLeft:'20px'}}
+                                                    >
+                                                        Cancel
+                                                    </button></div>                                                                                                   
+                                                </div>
+                                                </div>        
+                                                )}
+                                            </Popup>
                                     </div>
                                 </div>
                             </div>
