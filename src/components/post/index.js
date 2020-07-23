@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import "./index.css";
+import ImageUploading from "react-images-uploading";
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ValidationMessage(props) {
   if (!props.valid) {
@@ -7,6 +10,9 @@ function ValidationMessage(props) {
   }
   return null;
 }
+
+const maxNumber = 10;
+const maxMbFileSize = 5 * 1024 * 1024;
 
 class AddPost extends Component {
   constructor(props) {
@@ -37,6 +43,14 @@ class AddPost extends Component {
     } else {
       return;
     }
+  };
+
+  onImageChange = (imageList) => {
+    // data for submit
+    console.log(imageList);
+  };
+  onImageUploadError = (errors, files) => {
+    console.log(errors, files);
   };
 
   validateForm = () => {
@@ -184,11 +198,35 @@ class AddPost extends Component {
             <div className="col-md-8 mb-2 text-left">
               <h2>Property Details</h2>
               <hr />
-              {/* <form
-                className="form-signin" */}
-                
-                {/* noValidate */}
-              {/* > */}
+              <form
+                className="form-signin"
+                noValidate
+              >
+                <ImageUploading
+                  onChange={this.onImageChange}
+                  maxNumber={maxNumber}
+                  multiple
+                  maxFileSize={maxMbFileSize}
+                  acceptType={["jpg", "gif", "png"]}
+                  onError={this.onImageUploadError}
+                >
+                  {({ imageList, onImageUpload, onImageRemoveAll }) => (
+                    <div>
+                      <button onClick={onImageUpload}>Upload images</button>          
+                      {imageList.map((image) => (
+                        <div key={image.key} className='fadein'>
+                          <div 
+                            onClick={image.onRemove} 
+                            className='delete'
+                          >
+                            <FontAwesomeIcon icon={faTimesCircle} size='1.2x' />
+                          </div>
+                          <img src={image.dataURL} alt="" width="150"/>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </ImageUploading>
                 <label for="headline">Property Headline</label>
                 <div className="input-group mb-3" style={{ width: "60%",border: "1px solid black " }}>
                   <input
@@ -566,7 +604,7 @@ class AddPost extends Component {
                     Post Ad
                   </button>
                 </div>
-              {/* </form> */}
+              </form>
               <div className="mt-2 text-center">{this.checkIfFormValid()}</div>
             </div>
             <div
