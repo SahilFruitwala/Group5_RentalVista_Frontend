@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import "./OtherPages.css";
-import { Container, Col, Row, Button, Form } from "react-bootstrap";
+import "./resetPassword.css";
+import { Container, Col, Row, Button, Form, Alert } from "react-bootstrap";
 
 const initialData = {
   password: "",
@@ -17,13 +17,14 @@ const initialError = {
   re_passwordError: "form-text-hide",
 };
 
-function OtherPages(props) {
+function ResetPassword(props) {
   const [changeDisable, setChangeDisable] = useState(true);
   const [userData, setUserData] = useState(initialData);
   const [errorClass, setErrorClass] = useState(initialError);
+  const [message, setMessage] = useState("");
 
   const handleOnChange = (data) => {
-    console.log(data);
+     // console.log(data);
 
     setUserData({
       ...userData,
@@ -79,22 +80,23 @@ function OtherPages(props) {
     const token = localStorage.getItem("token");
     axios
       .post("http://localhost:8080/users/change", {
+        "password": userData.password,
+        "new_password": userData.new_password
+      }, {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Request-Method": "POST",
           "Authorization": token,
-        },
-        data: {
-          "password": userData.password,
-          "new_password": userData.new_password
-        },
+        }
       })
       .then((response) => {
-        console.log("AXIOS", response.data)
+         // console.log("AXIOS", response.data)
         setUserData(initialData)
+        setMessage("Password Changed!");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(({response}) => {
+         // console.log(response['data']['msg']);
+        setMessage(response['data']['msg']);
       });
   }
 
@@ -108,6 +110,13 @@ function OtherPages(props) {
           md={{ offset: 2 }}
           lg={{ offset: 2 }}
         >
+          {
+            message === "Password Changed!" ? (
+              <Alert variant={"success"}>{message}</Alert>
+            ) : message !== "" && (
+              <Alert variant={"danger"}>{message}</Alert>
+            )
+          }
           <Row className="password">
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Current Password</Form.Label>
@@ -173,4 +182,4 @@ function OtherPages(props) {
   );
 }
 
-export default OtherPages;
+export default ResetPassword;

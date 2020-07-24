@@ -1,7 +1,11 @@
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
 import "./index.css";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, FormGroup, Label, Input, FormText, Alert } from "reactstrap";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
+import Modal from "./forgot";
+
 // import {
 //   FacebookLoginButton,
 //   GoogleLoginButton,
@@ -12,7 +16,7 @@ const emailRegex = RegExp(
 );
 
 // useEffect(() => {
-//     localStorage.getItem('token') ? console.log('HEY') : console.log('HI')
+//     localStorage.getItem('token') ?  // console.log('HEY') :  // console.log('HI')
 //     loginInstance.get({
 //         headers: {"Authorization": ""}
 //     })
@@ -23,12 +27,14 @@ class Login extends Component {
     super(props);
 
     this.state = {
+      error: "",
       email: null,
       password: null,
       formErrors: {
         email: "",
         password: "",
       },
+      show: false,
     };
   }
 
@@ -47,21 +53,25 @@ class Login extends Component {
 
     if (email != null && password != null) {
       axios
-        .post("http://localhost:8080/users/login", {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Request-Method": "POST",
-          },
-          data: { email: this.state.email, password: this.state.password },
-        })
+        .post(
+          "http://localhost:8080/users/login",
+          { email: this.state.email, password: this.state.password },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Request-Method": "POST",
+              // 'Authorization':"HEY"
+            },
+          }
+        )
         .then((response) => {
-          // console.log(response.data);
-          // alert(response.data['token']);
+           // console.log(response.data);
           localStorage.setItem("token", response.data["token"]);
           this.props.history.push("/house");
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(({ response }) => {
+           // console.log("Error:", response["data"]["msg"]);
+          this.setState({ ...this.state, error: response["data"]["msg"] });
         });
     } else {
       alert("Please provide valid credentials!");
@@ -90,6 +100,10 @@ class Login extends Component {
     this.setState({ formErrors, [name]: value });
   };
 
+  handleShowModal = () => {
+    this.setState({ ...this.state, show: !this.state.show });
+  };
+
   render() {
     const { formErrors } = this.state;
 
@@ -103,6 +117,11 @@ class Login extends Component {
         <div className="login-form">
           <div className="card container">
             <div className="card-body">
+              {this.state.error === "" ? (
+                <></>
+              ): this.state.error && <Alert color="danger">
+              {this.state.error}
+            </Alert>}
               {/* Actual Login Form starts here*/}
               <FormGroup>
                 <Label>Email</Label>
@@ -137,21 +156,29 @@ class Login extends Component {
                   </span>
                 )}
               </FormGroup>
-              <Button
-                className="btn-lg btn-dark btn-block"
-                onClick={this.handleSubmit}
-              >
-                Login
-              </Button>
-              {/* 
-                            <div className="text-center pt-3">Or continue with your social account</div>
-
-                            <FacebookLoginButton className="mt-3 mb-3" onClick={() => window.open('https://www.facebook.com/')} />
-                            <GoogleLoginButton className="mt-3 mb-3" onClick={() => window.open('https://accounts.google.com/')} /> */}
+              <FormGroup>
+                <Link to="" onClick={() => this.handleShowModal()}>
+                  <FormText className="float-right">Forgot Password?</FormText>
+                </Link>
+              </FormGroup>
+              <FormGroup>
+                <Button
+                  className="btn-lg btn-dark btn-block"
+                  onClick={this.handleSubmit}
+                >
+                  Login
+                </Button>
+              </FormGroup>
             </div>
           </div>
         </div>
         {/* </Form> */}
+        {this.state.show && (
+          <Modal
+            show={this.state.show}
+            handleShowModal={this.handleShowModal}
+          />
+        )}
       </div>
     );
   }

@@ -6,13 +6,13 @@ import { Card, Row } from "react-bootstrap";
 import BlogData from "./BlogData";
 
 function Blog(props) {
-  // console.log(city)
+  //  // console.log(city)
   // const [articles, setArticles] = useState(BlogData);
   // const [loading, setLoading] = useState(true);
 
   // const fetchData = (location) => {
   //   if (location !== "") {
-  //     console.log("WITH LOCATION");
+  //      // console.log("WITH LOCATION");
   //     axios
   //       .get("https://newsapi.org/v2/everything", {
   //         params: {
@@ -23,13 +23,13 @@ function Blog(props) {
   //         },
   //       })
   //       .then((response) => {
-  //         console.log(response.data.articles);
+  //          // console.log(response.data.articles);
   //         setLoading(false);
   //         setArticles(response.data.articles);
   //       })
-  //       .catch((err) => console.log(err));
+  //       .catch((err) =>  // console.log(err));
   //   } else {
-  //     console.log("WITH-OUT LOCATION");
+  //      // console.log("WITH-OUT LOCATION");
   //     axios
   //       .get("https://newsapi.org/v2/top-headlines", {
   //         params: {
@@ -40,11 +40,11 @@ function Blog(props) {
   //         },
   //       })
   //       .then((response) => {
-  //         console.log(response.data.articles);
+  //          // console.log(response.data.articles);
   //         setLoading(false);
   //         setArticles(response.data.articles);
   //       })
-  //       .catch((err) => console.log(err));
+  //       .catch((err) =>  // console.log(err));
   //   }
   // };
 
@@ -54,36 +54,36 @@ function Blog(props) {
   //   } else {
   //     navigator.geolocation.getCurrentPosition(
   //       (pos) => {
-  //         console.log("IN MAIN");
-  //         console.log("IN LOC");
+  //          // console.log("IN MAIN");
+  //          // console.log("IN LOC");
   //         fetch(
   //           `https://geocode.xyz/${pos.coords.latitude},${pos.coords.longitude}?geoit=json`
   //         )
   //           .then((response) => response.json())
   //           .then((response) => {
-  //             console.log(response.city);
+  //              // console.log(response.city);
   //             fetchData(response.city);
   //           })
-  //           .catch((err) => console.log(err));
+  //           .catch((err) =>  // console.log(err));
   //       },
   //       (error) => {
-  //         console.log("IN ERROR");
+  //          // console.log("IN ERROR");
   //         fetchData("");
   // switch (error.code) {
   //   case error.PERMISSION_DENIED:
-  //     console.log("User denied the request for Geolocation.");
+  //      // console.log("User denied the request for Geolocation.");
   //     break;
   //   case error.POSITION_UNAVAILABLE:
-  //     console.log("Location information is unavailable.");
+  //      // console.log("Location information is unavailable.");
   //     break;
   //   case error.TIMEOUT:
-  //     console.log("The request to get user location timed out.");
+  //      // console.log("The request to get user location timed out.");
   //     break;
   //   case error.UNKNOWN_ERROR:
-  //     console.log("An unknown error occurred.");
+  //      // console.log("An unknown error occurred.");
   //     break;
   //   default:
-  //     console.log("Some error occured.");
+  //      // console.log("Some error occured.");
   //     break;
   // }
   //       },

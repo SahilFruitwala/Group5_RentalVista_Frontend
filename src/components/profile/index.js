@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 
 import "./index.css";
 import EditProfile from "./editProfile/EditProfile";
-import OtherPages from "./otherPages/OtherPages";
+import ResetPasswordPage from "./resetPassword/resetPassword";
 import SavedRooms from "./savedRooms/SavedRooms";
 import RequestedContacts from "./requestedContacts/RequestedContacts";
 import MyRooms from "./myRooms/MyRooms";
@@ -12,12 +12,12 @@ function ProfileManagement(props) {
 
 
   return (
-    <div>
+    <div style={{'minHeight':'450px'}}>
       <div className="sidebar" style={{ color: "#FFFFFF !important" }}>
-        <button href="" onClick={() => setView("")}>
+        <button  onClick={() => setView("")}>
           Edit Profile
         </button>
-        <button href="" onClick={() => setView("reset_password")}>
+        <button  onClick={() => setView("reset_password")}>
           Change Password
         </button>
         <button href="" onClick={() => setView("my_properties")}>
@@ -26,7 +26,7 @@ function ProfileManagement(props) {
         <button href="" onClick={() => setView("saved_rooms")}>
           Saved Rooms
         </button>
-        <button href="" onClick={() => setView("requested_contacts")}>
+        <button  onClick={() => setView("requested_contacts")}>
           Requested Contacts
         </button>
       </div>
@@ -34,7 +34,7 @@ function ProfileManagement(props) {
         {view === "" ? (
           <EditProfile />
         ) : view === "reset_password" ? (
-          <OtherPages
+          <ResetPasswordPage
           />
         ) :view === "my_properties" ? (
           <MyRooms/>
@@ -42,7 +42,7 @@ function ProfileManagement(props) {
           <SavedRooms />
         ) : (
           <RequestedContacts />
-          // <OtherPages message={{title: 'Sorry!', body: 'Currently, you do not have any contact request approved!'}}/>
+          // <ResetPasswordPage message={{title: 'Sorry!', body: 'Currently, you do not have any contact request approved!'}}/>
         )}
       </div>
     </div>

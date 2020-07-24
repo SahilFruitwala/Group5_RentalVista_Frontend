@@ -36,7 +36,7 @@ class SignupPopup extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
-      // console.log('HERE')
+      //  // console.log('HERE')
       // this.props.history.push('/house')
       this.setState({ ...this.state, redirect: true });
       // return <Redirect to="/house"/>
@@ -55,16 +55,15 @@ class SignupPopup extends React.Component {
   submitHandler = () => {
     axios
       .post("http://localhost:8080/users/signup", {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        contact: "",
+      },{
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Request-Method": "POST",
-        },
-        data: {
-          name: this.state.name,
-          email: this.state.email,
-          password: this.state.password,
-          contact: "",
-        },
+        }
       })
       .then((response) => {
         this.props.history.push("/login");
@@ -72,7 +71,7 @@ class SignupPopup extends React.Component {
         // res = true;
       })
       .catch((error) => {
-        console.log(error);
+         // console.log(error);
         // res = false
       });
   };

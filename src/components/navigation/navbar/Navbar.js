@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { Navbar, Nav } from "react-bootstrap";
-import { Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import logo from "../../../assets/images/logo-light.svg";
 import TestModal from "../../../utilities/TestModal";
 import axios from "axios";
@@ -25,21 +25,21 @@ function NavigationBar(props) {
   const logout = (props) => {
     // !localStorage.getItem("token") && props.history.push("/");
     axios
-      .post("http://localhost:8080/users/logout", {
+      .get("http://localhost:8080/users/logout", {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Request-Method": "POST",
           Authorization: localStorage.getItem("token"),
-        },
+        }
       })
       .then((response) => {
-        console.log(response.data);
+         // console.log(response.data);
         localStorage.clear();
         // return  <Redirect  to="/login" />
         props.history.push("/");
       })
       .catch((error) => {
-        console.log(error);
+         // console.log(error);
       });
   };
 

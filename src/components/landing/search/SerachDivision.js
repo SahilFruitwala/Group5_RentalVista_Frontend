@@ -30,10 +30,10 @@ function SerachDivision() {
     //   },
     // }).then((response) => {
     //   // handle success
-    //   console.log(response);
+    //    // console.log(response);
     // })
     
-    // console.log(event.target.value)
+    //  // console.log(event.target.value)
 
   };
 
