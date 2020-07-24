@@ -742,9 +742,10 @@ class AddPost extends Component {
                 className="img-fluid rounded-circle mb-3 mt-4"
                 style={{ width: "200px", height: "200px" }}
                 src={require("./../../assets/images/user.svg")}
+                alt=""
               />
               <h2 className="mt-3">John Martin</h2>
-              <a className="btn btn-info mt-3 mb-1" href="#">
+              <a className="btn btn-info mt-3 mb-1" href="/edit">
                 View My Profile
               </a>
             </div>
