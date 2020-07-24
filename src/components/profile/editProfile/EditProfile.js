@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Image, Row, Col, Button, Form, Container } from "react-bootstrap";
+import { Row, Col, Button, Form, Container, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import TestModal from "../../../utilities/TestModal";
-import {withRouter} from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 
-import user from "../../../assets/images/user.svg";
+// import user from "../../../assets/images/user.svg";
 import "./EditProfile.css";
 
 const initialData = {
@@ -28,7 +28,7 @@ function EditProfile(props) {
   const [errorClass, setErrorClass] = useState(initialError);
 
   const handleOnChange = (data) => {
-    console.log(data);
+     // console.log(data);
 
     setUserData({
       ...userData,
@@ -43,26 +43,27 @@ function EditProfile(props) {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if(token) {
-    axios
-      .get("http://localhost:8080/users/user", {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Request-Method": "POST",
-          Authorization: token,
-        },
-      })
-      .then((response) => {
-        console.log("AXIOS", response.data);
-        setInitialUserData({ ...response.data });
-        setUserData({ ...response.data });
-        // setSaveDisable(true)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+     // console.log(token);
+    if (token) {
+      axios
+        .get("http://localhost:8080/users/user", {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Request-Method": "POST",
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+           // console.log("AXIOS", response.data);
+          setInitialUserData({ ...response.data });
+          setUserData({ ...response.data });
+          // setSaveDisable(true)
+        })
+        .catch((error) => {
+           // console.log(error);
+        });
     } else {
-      props.history.push('/login')
+      props.history.push("/login");
     }
   }, []);
 
@@ -81,48 +82,57 @@ function EditProfile(props) {
       userData.contact.trim() === "" ||
       userData.contact.length !== 10 ||
       isNaN(userData.contact)
-      ) {
-        flag = false;
+    ) {
+      flag = false;
       error.contactError = "";
     }
-    if (flag)
-    {
-      setSaveDisable(false)
+    if (flag) {
+      setSaveDisable(false);
       setErrorClass(initialError);
-    }
-    else {
-      setSaveDisable(true)
+    } else {
+      setSaveDisable(true);
       setErrorClass({ ...error });
     }
   }, [userData.name, userData.contact]);
 
   const handleCancel = () => {
-    setUserData(initialUserData)
+    setUserData(initialUserData);
   };
 
   const handleSave = () => {
-    if(initialUserData.name !== userData.name || initialUserData.contact !== userData.contact){
-    const token = localStorage.getItem('token')
-    axios
-      .post("http://localhost:8080/users/edit", {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Request-Method": "POST",
-          Authorization: token,
-        },
-        data:{
-          "name": userData.name,
-          "contact": userData.contact
-        }
-      })
-      .then((response) => {
-        console.log("AXIOS", response.data);
-        setInitialUserData({ ...response.data });
-        setUserData({ ...response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (
+      initialUserData.name !== userData.name ||
+      initialUserData.contact !== userData.contact
+    ) {
+      const token = localStorage.getItem("token");
+       // console.log(token);
+      axios
+        .post(
+          "http://localhost:8080/users/edit",
+          {
+            name: userData.name,
+            contact: userData.contact,
+          },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Request-Method": "POST",
+              Authorization: token,
+            },
+          }
+        )
+        .then((response) => {
+          //  // console.log("AXIOS", response.data);
+          setMessage({ msg: "Profile Saved!" });
+          setShow(true);
+          setInitialUserData({ ...response.data });
+          setUserData({ ...response.data });
+        })
+        .catch(({ response }) => {
+          setMessage({ msg: "Some error occurred while saving data. Please, try again later." });
+          setShow(true);
+           // console.log(response);
+        });
     }
   };
 
@@ -136,7 +146,16 @@ function EditProfile(props) {
           md={{ offset: 2 }}
           lg={{ offset: 2 }}
         >
-          <Row className="">
+          {show ? (
+            message["msg"] === "Profile Saved!" ? (
+              <Alert variant={"success"}>{message["msg"]}</Alert>
+            ) : (
+              <Alert variant={"danger"}>{message["msg"]}</Alert>
+            )
+          ) : (
+            <></>
+          )}
+          {/* <Row className="">
             <Image
               src={user}
               alt="Profile"
@@ -155,7 +174,7 @@ function EditProfile(props) {
             >
               Upload
             </button>
-          </Row>
+          </Row> */}
           <Row className=" mt-3">
             <Form.Group controlId="formBasicName">
               <Form.Label>Name</Form.Label>
@@ -217,7 +236,7 @@ function EditProfile(props) {
           </Row>
         </Col>
       </Row>
-      {show && <TestModal message={message} renderComponent={showModal} />}
+      {/* {show && <TestModal message={message} renderComponent={showModal} />} */}
     </Container>
   );
 }

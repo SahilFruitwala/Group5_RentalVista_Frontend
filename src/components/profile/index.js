@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 
 import "./index.css";
 import EditProfile from "./editProfile/EditProfile";
@@ -11,18 +11,18 @@ function ProfileManagement(props) {
 
 
   return (
-    <div>
+    <div style={{'minHeight':'450px'}}>
       <div className="sidebar" style={{ color: "#FFFFFF !important" }}>
-        <button href="" onClick={() => setView("")}>
+        <button  onClick={() => setView("")}>
           Edit Profile
         </button>
-        <button href="" onClick={() => setView("reset_password")}>
+        <button  onClick={() => setView("reset_password")}>
           Change Password
         </button>
-        <button href="" onClick={() => setView("saved_rooms")}>
+        <button  onClick={() => setView("saved_rooms")}>
           Saved Rooms
         </button>
-        <button href="" onClick={() => setView("requested_contacts")}>
+        <button  onClick={() => setView("requested_contacts")}>
           Requested Contacts
         </button>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./utilities/FontAwesome";
 import "./App.css";
 import {
@@ -7,7 +7,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory } from "history";
 
 import ScrollToTop from "./components/scrollToTop";
 import NavigationBar from "./components/navigation/navbar/Navbar";
@@ -25,22 +25,22 @@ import AddPost from "./components/post";
 import SignupPage from "./components/signup/index";
 import ViewRoom from "./components/house/View_Room/ViewRoom";
 
-
 function App(props) {
-  // const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const history = createBrowserHistory();
-  const [isTokenExist, setIsTokenExist] = useState(false);
+
+  // const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  // const [isTokenExist, setIsTokenExist] = useState(false);
 
   // const handleSignUpClick = (bool) => {
   //   setIsSignUpOpen(bool);
   //   document.body.style.overflow = bool ? "hidden" : "scroll";
   // };
 
-  useEffect(() => {
-    localStorage.getItem("token")
-      ? setIsTokenExist(true)
-      : setIsTokenExist(false);
-  }, []);
+  // useEffect(() => {
+  //   localStorage.getItem("token")
+  //     ? setIsTokenExist(true)
+  //     : setIsTokenExist(false);
+  // }, []);
 
   /* 
   TODO: logout was not working
@@ -50,7 +50,7 @@ function App(props) {
   return (
     <div className="page-container">
       <Router history={history}>
-          <NavigationBar  />
+        <NavigationBar />
         <ScrollToTop>
           <Switch>
             <Route path="/" exact component={LandingPage} />
