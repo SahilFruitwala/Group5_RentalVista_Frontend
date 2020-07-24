@@ -9,7 +9,7 @@
 
 | Name            | Banner ID | Dal Email              |
 | --------------- | --------- | ---------------------- |
-| Sahil Fruitwala | B00844489 | sahil.fruitwala@dal.ca |
+| Naitik Prajapati | B00834636 | naitik.prajapati@dal.ca |
 
 ### Demo Website Link: https://rentalvista.herokuapp.com/
 
