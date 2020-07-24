@@ -25,12 +25,12 @@ function NavigationBar(props) {
   const logout = (props) => {
     // !localStorage.getItem("token") && props.history.push("/");
     axios
-      .post("http://localhost:8080/users/logout", {
+      .get("http://localhost:8080/users/logout", {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Request-Method": "POST",
           Authorization: localStorage.getItem("token"),
-        },
+        }
       })
       .then((response) => {
         console.log(response.data);

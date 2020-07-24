@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import "./OtherPages.css";
+import "./resetPassword.css";
 import { Container, Col, Row, Button, Form } from "react-bootstrap";
 
 const initialData = {
@@ -17,7 +17,7 @@ const initialError = {
   re_passwordError: "form-text-hide",
 };
 
-function OtherPages(props) {
+function ResetPassword(props) {
   const [changeDisable, setChangeDisable] = useState(true);
   const [userData, setUserData] = useState(initialData);
   const [errorClass, setErrorClass] = useState(initialError);
@@ -79,15 +79,14 @@ function OtherPages(props) {
     const token = localStorage.getItem("token");
     axios
       .post("http://localhost:8080/users/change", {
+        "password": userData.password,
+        "new_password": userData.new_password
+      }, {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Request-Method": "POST",
           "Authorization": token,
-        },
-        data: {
-          "password": userData.password,
-          "new_password": userData.new_password
-        },
+        }
       })
       .then((response) => {
         console.log("AXIOS", response.data)
@@ -173,4 +172,4 @@ function OtherPages(props) {
   );
 }
 
-export default OtherPages;
+export default ResetPassword;
