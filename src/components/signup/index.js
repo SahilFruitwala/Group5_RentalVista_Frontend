@@ -55,16 +55,15 @@ class SignupPopup extends React.Component {
   submitHandler = () => {
     axios
       .post("http://localhost:8080/users/signup", {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        contact: "",
+      },{
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Request-Method": "POST",
-        },
-        data: {
-          name: this.state.name,
-          email: this.state.email,
-          password: this.state.password,
-          contact: "",
-        },
+        }
       })
       .then((response) => {
         this.props.history.push("/login");

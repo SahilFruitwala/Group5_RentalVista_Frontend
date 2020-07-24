@@ -45,7 +45,7 @@ function EditProfile(props) {
     const token = localStorage.getItem("token");
     if(token) {
     axios
-      .post("http://localhost:8080/users/user", {
+      .get("http://localhost:8080/users/user", {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Request-Method": "POST",

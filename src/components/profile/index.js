@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import "./index.css";
 import EditProfile from "./editProfile/EditProfile";
-import OtherPages from "./otherPages/OtherPages";
+import ResetPasswordPage from "./resetPassword/resetPassword";
 import SavedRooms from "./savedRooms/SavedRooms";
 import RequestedContacts from "./requestedContacts/RequestedContacts";
 
@@ -30,13 +30,13 @@ function ProfileManagement(props) {
         {view === "" ? (
           <EditProfile />
         ) : view === "reset_password" ? (
-          <OtherPages
+          <ResetPasswordPage
           />
         ) : view === "saved_rooms" ? (
           <SavedRooms />
         ) : (
           <RequestedContacts />
-          // <OtherPages message={{title: 'Sorry!', body: 'Currently, you do not have any contact request approved!'}}/>
+          // <ResetPasswordPage message={{title: 'Sorry!', body: 'Currently, you do not have any contact request approved!'}}/>
         )}
       </div>
     </div>

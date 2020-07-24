@@ -50,11 +50,7 @@ function App(props) {
   return (
     <div className="page-container">
       <Router history={history}>
-        {/* {
-          isTokenExist?
-          <NavigationBar  />: */}
-          : <NavigationBar  />
-        {/* } */}
+          <NavigationBar  />
         <ScrollToTop>
           <Switch>
             <Route path="/" exact component={LandingPage} />
