@@ -242,8 +242,8 @@ class Form extends React.Component {
 
     return (
       <div >
-        <h1 style={{ display: 'flex',justifyContent: 'center', padding: '20px'}}> Blog Page</h1>
-        <div className="container" ref={this.inputRef} style= {{padding: '5px',border: '2px solid black', borderRadius: '0.25rem', backgroundImage:`url(${blog1})`, backgroundSize: 'cover', opacity: '0.9' }}  >
+        <h1 style={{ display: 'flex',justifyContent: 'center', padding: '20px'}}> RentalVista Blog Posts</h1>
+        <div className="container" ref={this.inputRef} style= {{padding: '10px',border: '2px solid black', borderRadius: '0.25rem', backgroundImage:`url(${blog1})`, backgroundSize: 'cover', opacity: '0.9' }}  >
         <form id="create-course-form" onSubmit={this.handleSubmit} noValidate style={{ }} >
             <h4 style={{ justifyContent: 'center',display: 'flex'}}> Create a new Blog: </h4>
             <div className="col wrapper" style= {{display: 'flex'}}>
@@ -289,8 +289,8 @@ class Form extends React.Component {
             </div>
             </form>
         </div>
-        <div className="container" style= {{height: "auto",border: '2px solid black', borderRadius: '0.25rem'}}  >
-        <h9 style={{ marginRight: 'auto'}}> Current Blogs </h9>
+        <div className="container" style= {{height: "auto",border: '2px solid black', borderRadius: '0.25rem', padding:'10px'}}  >
+        <h4 style={{ justifyContent: 'center',display: 'flex'}}> Current Blogs: </h4>
         <div className="container " style= {{height: 'auto',width: 'auto', overflowY: 'scroll', margin: '5px'}}>
                 {
                     // console.log(displayCountry)
@@ -313,7 +313,7 @@ class Form extends React.Component {
                                 newColor="bg-success text-light"; 
                                 break;
                             case 6:
-                                newColor="bg-primary text-light"; 
+                                newColor="#a8cdff"; 
                                 break;
                             case 7:
                                 newColor="bg-dark text-light"; 
