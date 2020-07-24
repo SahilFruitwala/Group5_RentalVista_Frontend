@@ -4,6 +4,7 @@ import Popup from "reactjs-popup";
 import axios from 'axios';
 import Blog from "../../utilities/NewMessageNotification";
 import { ToastContainer, toast } from "react-toastify";
+import blog1 from "../../assets/images/blogimage.jpg";
 
 let flag = 0;
 
@@ -38,7 +39,8 @@ const validateForm = (errors) => {
 class Form extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
+        this.inputRef = React.createRef();
     
         this.state = {
           formValid: false,
@@ -64,6 +66,11 @@ class Form extends React.Component {
       
       componentDidMount() 
       {
+        const imagesToBePreloaded = [blog1]
+        imagesToBePreloaded.forEach(image => { new Image().src = image })
+        
+        this.inputRef.current.focus();
+
         axios
           .get('http://localhost:8080/getblog')
           .then(response => {
@@ -236,22 +243,25 @@ class Form extends React.Component {
     return (
       <div >
         <h1 style={{ display: 'flex',justifyContent: 'center', padding: '20px'}}> Blog Page</h1>
-        <div className="container" style= {{padding: '5px',border: '2px solid black', borderRadius: '0.25rem'}}  >
-        <form id="create-course-form" onSubmit={this.handleSubmit} noValidate style={{}} >
-            <h8 style={{ justifyContent: 'center'}}> Create a new Blog: </h8>
+        <div className="container" ref={this.inputRef} style= {{padding: '5px',border: '2px solid black', borderRadius: '0.25rem', backgroundImage:`url(${blog1})`, backgroundSize: 'cover', opacity: '0.9' }}  >
+        <form id="create-course-form" onSubmit={this.handleSubmit} noValidate style={{ }} >
+            <h4 style={{ justifyContent: 'center',display: 'flex'}}> Create a new Blog: </h4>
             <div className="col wrapper" style= {{display: 'flex'}}>
-            <div className="col-7 " style={{ marginLeft: '1%', width: "150px"}}  >
+                <div style={{ }}>
+                   <div style={{color:"black", justifyContent:'center', padding:'5px'}}><h3 style={{justifyContent:'center'}}>Welcome to Rental Vista User Blog page!</h3></div><div style={{color:"black", justifyContent:'center', margin:'10px'}}>You can view Blogs posted by other RentalVista users, create your own blog, update and delete it</div> 
+                </div>
+            <div className="col-4 " style={{ marginLeft: '1%', width: "auto"}}  >
                 <label1 className="label1" style={{ margin: 'none!important'}}>Title:</label1>
                 <input className="form-control mb-2" onChange={this.handleChange} noValidate  name="title" 
-                placeholder="Article Title" style={{ width: '300px', display: 'flex'}}/>
+                placeholder="Article Title" maxLength="16" style={{  display: 'flex'}}/>
                 
                 <label1 className="label1" style={{ margin: 'none!important'}}>Description:</label1>            
                 <textarea className="form-control mb-2 " onChange={this.handleChange} noValidate
-                placeholder="Article Description" name='desc'  style={{ width: '300px'}}>
+                placeholder="Article Description" name='desc'  style={{ }}>
                 </textarea>
                 <label1 className="label1" style={{ margin: 'none!important'}}>Author:</label1>
                 <input className="form-control mb-2" onChange={this.handleChange} noValidate
-                    placeholder="Article Author" name="author" style={{ width: '300px'}} />
+                    placeholder="Article Author" name="author" style={{ }} />
                 
                 <button
                       className="btn btn-primary"
@@ -262,7 +272,7 @@ class Form extends React.Component {
 
                 <Link className="btn btn-primary btn-inline" to={"/"} style={{marginLeft: '15px'}}>Cancel</Link>
             </div>
-            <div className="col-6 " style={{ width: '180px'}}  >
+            <div className="col-4 " style={{ width: '180px'}}  >
                 <br/>
                 <div>&nbsp;{errors.title.length > 0 && errors.title !== 'set' 
                     &&  <span1 className='error1'>{errors.title}</span1>}</div>
@@ -317,8 +327,8 @@ class Form extends React.Component {
                         }
                         return (
                             <div key={blog.id} className="col col-sm-4 " 
-                                style={{width: "330px", float:"left", marginLeft: 'auto', marginRight: 'auto', marginBottom: 'auto', marginTop: 'auto'}}>
-                                <div className={"card "+newColor} style= {{width: "auto",height: "270px",margin: '5px'}}>
+                                style={{width: "360px", float:"left", marginLeft: 'auto', marginRight: 'auto', marginBottom: 'auto', marginTop: 'auto'}}>
+                                <div className={"card "+newColor} style= {{width: "auto",height: "300px",margin: '5px'}}>
                                     <div className="card-body" key={blog.id} style={{width: "auto",margin: '5px'}} >
                                         
                                         <Popup trigger={<h4 className="card-title"><Link style={{}}>{blog.title}</Link></h4>} modal closeOnDocumentClick>                
