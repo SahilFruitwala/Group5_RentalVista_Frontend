@@ -1,4 +1,4 @@
-// 1. Author: Sahil Fruitwala, B00844489
+// 1. Author: Sahil Fruitwala - B00844489
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { Navbar, Nav } from "react-bootstrap";

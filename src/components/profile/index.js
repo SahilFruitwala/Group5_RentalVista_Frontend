@@ -1,4 +1,4 @@
-// 1. Author: Sahil Fruitwala, B00844489
+// 1. Author: Sahil Fruitwala - B00844489
 import React, { useState} from "react";
 
 import "./index.css";
