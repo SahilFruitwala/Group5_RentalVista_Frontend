@@ -1,5 +1,4 @@
-// Created by Gaurav Anand (B00832139)
-
+// Author: Gaurav Anand - B00832139
 import React, { useState, useEffect } from "react";
 import { Card, Row, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
