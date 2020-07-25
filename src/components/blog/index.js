@@ -1,3 +1,5 @@
+//Author: Amogh Adithya Bangalore - B00833535
+
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Popup from "reactjs-popup";
