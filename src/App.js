@@ -23,7 +23,6 @@ import LoginPage from "./components/login/index";
 import PaymentPage from "./components/payment/index";
 import FAQPage from "./components/faq/FAQ";
 
-import ViewRoom from "./components/house/View_Room/viewroom";
 import AppointmentBook from "./components/appointment/AppointmentBook";
 import MyAppointment from "./components/appointment/MyAppointment";
 import AddPost from "./components/post";
