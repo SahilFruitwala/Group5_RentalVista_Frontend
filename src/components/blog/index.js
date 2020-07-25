@@ -203,8 +203,12 @@ class Form extends React.Component {
             
             console.log("Delete btn working") 
             this.state.title = param
-            console.log(this.state)
-            axios
+            console.log(this.state.title)
+            if(this.state.title == 'Blog post 1' || param =='Blog post 1'){
+                this.play("Cannot delete default Admin blog")
+            }
+            else{
+                axios
               .post('http://localhost:8080/deleteblog', this.state)
               .then(response => {
                 console.log(response)
@@ -215,6 +219,10 @@ class Form extends React.Component {
                 {
                 console.log(error)
                 })
+
+            }
+                
+            
         
           }
 
