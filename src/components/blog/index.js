@@ -171,36 +171,44 @@ class Form extends React.Component {
                 })        
           }
 
-          handleEdit = (event) => {
+          handleEdit(param) {
           
             //event.preventDefault();           
             //const { name, value } = event.target;
             
             console.log("Edit working") 
             console.log(this.state)  
+            if(this.state.title == 'Blog post 1' || param =='Blog post 1'){
+                this.play("Cannot Edit default Admin blog")
+            }
+            if(this.state.title == 'Blog post 2' || param =='Blog post 2' || param =='Housing post 1' || param == 'Housing post 2'){
+                this.play("Cannot Edit another user's blog, try editing a blog created by you.")
+            }  
+            else{
             axios
-              .put('https://rentalvista-api.herokuapp.com/editblog', this.state)
-              .then(response => {
-                console.log(response)
-                this.componentDidMount()
-                if(response.data=='Blog updated Successfully!'){
-                    this.play("Blog Updated Successfully")                    
-                  }
-                  else if(response.data=='Title missing'){
-                      this.play("Blog Title missing, try again!")
-                  }
-                  else if(response.data=='Title missing'){
-                    this.play("Blog Description missing, try again!")
-                }
-                  else{
-                    this.play("Blog Author not found, Enter Correct Author name")
-                    console.log(this.state)  
-                  }
-              })
-              .catch(error => 
-                {
-                console.log(error)
-                })      
+                .put('https://rentalvista-api.herokuapp.com/editblog', this.state)
+                .then(response => {
+                    console.log(response)
+                    this.componentDidMount()
+                    if(response.data=='Blog updated Successfully!'){
+                        this.play("Blog Updated Successfully")                    
+                    }
+                    else if(response.data=='Title missing'){
+                        this.play("Blog Title missing, try again!")
+                    }
+                    else if(response.data=='Title missing'){
+                        this.play("Blog Description missing, try again!")
+                    }
+                    else{
+                        this.play("Blog Author not found, Enter Correct Author name")
+                        console.log(this.state)  
+                    }
+                })
+                .catch(error => 
+                    {
+                    console.log(error)
+                    })  
+                }    
           }
 
           handledelete(param)  {
@@ -214,6 +222,9 @@ class Form extends React.Component {
             if(this.state.title == 'Blog post 1' || param =='Blog post 1'){
                 this.play("Cannot delete default Admin blog")
             }
+            if(this.state.title == 'Blog post 2' || param =='Blog post 2' || param =='Housing post 1' || param == 'Housing post 2'){
+                this.play("Cannot delete another user's blog, try a blog created by you.")
+            }  
             else{
                 axios
               .post('https://rentalvista-api.herokuapp.com/deleteblog', this.state)
@@ -437,7 +448,7 @@ class Form extends React.Component {
                                                     <button
                                                         className="btn btn-success"
                                                         onClick={() => {close();
-                                                            this.handleEdit();                                                       
+                                                            this.handleEdit(blog.title);                                                       
                                                         }}
                                                     >
                                                         Update Blog
