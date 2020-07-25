@@ -12,15 +12,22 @@ function Footer() {
           <div className="col-12 col-sm-6 col-md-4 justify-content-center">
             <h5>RentalVista Inc.</h5>
             <ul className="list-unstyled">
-              <NavLink to="/blog"> <li>Blog</li> </NavLink>
-              <NavLink to="/aboutus"><li>About Us</li></NavLink>
+              <NavLink to="/blog">
+                {" "}
+                <li>Blog</li>{" "}
+              </NavLink>
+              <NavLink to="/aboutus">
+                <li>About Us</li>
+              </NavLink>
               <li>Developrs</li>
             </ul>
           </div>
           <div className="col-12 col-sm-6 col-md-4 justify-content-center">
             <h5>More</h5>
             <ul className="list-unstyled">
-            <NavLink to="/faq"><li>FAQ</li></NavLink>
+              <NavLink to="/faq">
+                <li>FAQ</li>
+              </NavLink>
               <li>Privacy</li>
               <li>Terms of Services</li>
             </ul>
@@ -28,13 +35,13 @@ function Footer() {
           <div className="col-12 col-sm col-md-4 justify-content-center">
             <ul className="list-unstyled">
               <li>
-                <FontAwesomeIcon icon="phone" className="icon-button" />{" "}
-                +1 (123)-456-7890
+                <FontAwesomeIcon icon="phone" className="icon-button" /> +1
+                (123)-456-7890
               </li>
               <li>
-              <a href="mailto:confusion@food.net">
-                <FontAwesomeIcon icon="envelope" className="icon-button" /> Drop
-                a mail
+                <a href="mailto:info@rental-vista.com">
+                  <FontAwesomeIcon icon="envelope" className="icon-button" />{" "}
+                  Drop a mail
                 </a>
               </li>
               <address>

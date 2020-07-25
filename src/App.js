@@ -21,6 +21,7 @@ import LoginPage from "./components/login/index";
 import PaymentPage from "./components/payment/index";
 import FAQPage from "./components/faq/FAQ";
 import ViewRoom from "./components/house/View_Room/viewroom";
+import AppointmentBook from "./components/appointment/AppointmentBook";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path="/login" exact component={LoginPage} />
             <Route path="/payment" exact component={PaymentPage} />
             <Route path="/404" component={Page404} />
+            <Route path="/appointment-book" component={AppointmentBook} />
             <Redirect from="*" to="/404" />
           </Switch>
         </ScrollToTop>
