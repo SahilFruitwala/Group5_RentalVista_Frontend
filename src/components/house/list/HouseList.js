@@ -1,11 +1,11 @@
-// Author : Sahil Fruitwala
+//Author : Naitik Prajapati
 
 import React, { useState } from "react";
 // import axios from "axios";
 import { Card, Row, Button, Badge } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import TestModal from "../../../utilities/TestModal";
+//import TestModal from "../../../utilities/TestModal";
 import "./HouseList.css";
 
 function HouseList(props) {
@@ -78,7 +78,7 @@ function HouseList(props) {
           </center>
         )}
       </Row>
-      {display && (
+      {/* {display && (
         <TestModal
           message={{
             title: "Success!",
@@ -87,7 +87,7 @@ function HouseList(props) {
           }}
           renderComponent={handleModal}
         />
-      )}
+      )} */}
     </>
   );
 }

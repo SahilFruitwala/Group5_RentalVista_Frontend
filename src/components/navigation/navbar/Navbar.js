@@ -5,7 +5,7 @@ import "./Navbar.css";
 import { Navbar, Nav } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import logo from "../../../assets/images/logo-light.svg";
-import TestModal from "../../../utilities/TestModal";
+//import TestModal from "../../../utilities/TestModal";
 import axios from "axios";
 
 function NavigationBar(props) {
@@ -82,9 +82,9 @@ function NavigationBar(props) {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      {message.show && (
+      {/* {message.show && (
         <TestModal message={message} renderComponent={renderComponent} />
-      )}
+      )} */}
     </React.Fragment>
   );
 }

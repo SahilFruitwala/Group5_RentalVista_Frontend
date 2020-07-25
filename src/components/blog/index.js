@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Blog from "./blogs/Blog";
 import "./index.css";
-import Model from "../../utilities/TestModal";
+// import Model from "../../utilities/TestModal";
 
 function BlogPage() {
   
@@ -61,7 +61,7 @@ function BlogPage() {
         </Container>
       </Jumbotron>
       <Blog city={""} />
-      {showModel && (
+      {/* {showModel && (
         <Model
           message={{
             show: true,
@@ -70,7 +70,7 @@ function BlogPage() {
           }}
           renderComponent={handleSubmitButton}
         />
-      )}
+      )} */}
     </React.Fragment>
   );
 }
