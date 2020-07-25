@@ -1,4 +1,42 @@
-// Author : Amogh Adithya
+//Author: Amogh Adithya Bangalore - B00833535
+
+import React from 'react';
+import {Link} from 'react-router-dom';
+import Popup from "reactjs-popup";
+import axios from 'axios';
+import Blog from "../../utilities/NewMessageNotification";
+import { ToastContainer, toast } from "react-toastify";
+import blog1 from "../../assets/images/blogimage.jpg";
+
+let flag = 0;
+
+
+const MAX_LENGTH = 25;    //Character limit for card view text in blog page
+
+const validateForm = (errors) => {
+    let valid = false;
+    Object.values(errors).forEach(      // if we have an error string set valid to false
+      (val) => 
+      { if(val=='set' && flag == 1)
+            { valid = true; }
+        else
+            { valid = false; }
+      }      
+    );
+    return valid;
+  }
+  const countErrors = (errors) => {
+    let count = 0;
+    Object.values(errors).forEach(
+      (val) => {if(val.length > 0)
+        {
+            if(val!=='set'){
+                (count = count+1);
+            }
+        } }
+    );
+    return count;
+  }
 
 import React, { useState } from "react";
 import {
