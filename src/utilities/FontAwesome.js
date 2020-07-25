@@ -1,5 +1,4 @@
-// Author : Sahil Fruitwala
-
+// 1. Author: Sahil Fruitwala, B00844489
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faSearch,
