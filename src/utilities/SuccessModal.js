@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-function TestModal(props) {
+function SuccessModal(props) {
     
     return (
         <Modal
@@ -57,4 +57,4 @@ function TestModal(props) {
       </Modal>
     )
 }
-export default TestModal
+export default SuccessModal

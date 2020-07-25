@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Row, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import TestModal from '../../../utilities/TestModal'
+import SuccessModal from '../../../utilities/SuccessModal'
 import axios from "axios";
 
 function MyRooms() {
@@ -106,7 +106,7 @@ function MyRooms() {
     </Row>
     {
         display && (
-        <TestModal
+        <SuccessModal
           message={{
             title: "Success!",
             body: "Room has been deleted from your account!",

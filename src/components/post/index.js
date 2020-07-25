@@ -4,7 +4,7 @@ import ImageUploading from "react-images-uploading";
 import axios from "axios";
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import TestModal from './../../utilities/TestModal';
+import SuccessModal from './../../utilities/SuccessModal';
 
 function ValidationMessage(props) {
   if (!props.valid) {
@@ -771,7 +771,7 @@ class AddPost extends Component {
       </div>
       {
         this.state.displayModal && (
-        <TestModal
+        <SuccessModal
           message={{
             title: "Success!",
             body: "Property has been added to your account!",
