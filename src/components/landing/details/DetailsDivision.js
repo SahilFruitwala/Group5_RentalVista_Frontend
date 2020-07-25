@@ -1,5 +1,4 @@
-// Author : Sahil Fruitwala
-
+// 1. Author: Sahil Fruitwala, B00844489
 import React from "react";
 import moving from "../../../assets/images/moving.svg";
 import budget from "../../../assets/images/budget.svg";

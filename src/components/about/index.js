@@ -1,5 +1,4 @@
-// Author : Sahil Fruitwala
-
+// 1. Author: Sahil Fruitwala, B00844489
 import React from "react";
 
 import CabinImage from "../../assets/images/about-us.svg";

@@ -1,5 +1,4 @@
-// Author : Sahil Fruitwala
-
+// 1. Author: Sahil Fruitwala, B00844489
 import React, { useState, useEffect } from "react";
 import { Row, Col, Button, Form, Container, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
