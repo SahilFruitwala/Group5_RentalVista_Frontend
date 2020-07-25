@@ -1,3 +1,4 @@
+//Author: Amogh Adithya Bangalore - B00833535
 import React from "react";
 import Popup from "reactjs-popup";
 import { Card, Row } from "react-bootstrap";

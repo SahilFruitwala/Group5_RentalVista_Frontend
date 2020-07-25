@@ -383,7 +383,7 @@ class Form extends React.Component {
                                                     </button> 
                                                 </div>
                                                 )}                                                
-                                            </Popup>
+                                        </Popup>
                                         <hr />
                                         <p1 className="card-text">
                                             Author: {blog.author}
