@@ -1,3 +1,5 @@
+// Author : Sahil Fruitwala
+
 import React from "react";
 
 import Image404 from "../../assets/images/404.svg";

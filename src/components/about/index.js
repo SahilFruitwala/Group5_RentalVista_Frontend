@@ -1,3 +1,5 @@
+// Author : Sahil Fruitwala
+
 import React from "react";
 
 import CabinImage from "../../assets/images/about-us.svg";
