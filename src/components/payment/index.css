@@ -95,7 +95,18 @@
     font-size: 17px;
   }
   
-  
+  .error1 {
+    margin-left: 0px;
+    margin-right: 0px;
+    font-size: 15px;
+    
+    color: #999;
+    max-height: 0;
+    transition: 0.28s;
+    overflow: hidden;
+    color: red;
+    
+  }
   
   span.price {
     float: right;
@@ -103,8 +114,8 @@
   }
   
   /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
-  @media (max-width: 800px) {
-    .row {
+  @media (max-width: 450px) {
+    .custom-row {
       flex-direction: column-reverse;
       background-color: white;
     }

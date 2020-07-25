@@ -1,3 +1,4 @@
+// 1. Author: Sahil Fruitwala, B00844489
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
@@ -19,7 +20,7 @@ function Footer() {
               <NavLink to="/aboutus">
                 <li>About Us</li>
               </NavLink>
-              <li>Developrs</li>
+              <li>Developers</li>
             </ul>
           </div>
           <div className="col-12 col-sm-6 col-md-4 justify-content-center">

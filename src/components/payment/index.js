@@ -1,5 +1,4 @@
 import React from "react";
-
 import Popup from "reactjs-popup";
 import "./index.css";
 import {validateCard} from "../../utilities/validate_card";
@@ -15,18 +14,20 @@ const validateemail =
   RegExp(/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i);
 
 
-const validateForm = (errors) => {
-    let valid = false;
-    Object.values(errors).forEach(      // if we have an error string set valid to false
-      (val) => 
-      { if(val==='set')
-            { valid = true; }
-            else
-            { valid = false; }
-      }      
-    );
-    return valid;
-  }
+  let flag = 0;
+  const validateForm = (errors) => {
+      let valid = false;
+      Object.values(errors).forEach(      // if we have an error string set valid to false
+        (val) => 
+        { if(val==='set' && flag === 1)
+              { valid = true; }
+          else
+              { valid = false; }
+        }      
+      );
+      return valid;
+    }
+
   const countErrors = (errors) => {
     let count = 0;
     Object.values(errors).forEach(
@@ -52,7 +53,6 @@ export default class Payment extends React.Component {
       expmonth: null,
       expyear: null,
       cvv: null,
-      flag: 0,
       errors: {
         cardnum: '',
         fullname: '',
@@ -86,10 +86,12 @@ export default class Payment extends React.Component {
               {
                 errors.cardnum = "set";
                 set = true;
+                flag = 1;
               }
               else if(value.length===17 && set===true)
               {
                 errors.cardnum = "set";
+                flag = 1;
               
               }
               else{ errors.cardnum = "Enter valid 16 digit Cardnumber!";
@@ -106,6 +108,8 @@ export default class Payment extends React.Component {
               value.length < 5 || !(value.match(/^[a-zA-z ]+$/i))
                 ? 'Min 5 alphabetic characters!'
                 : 'set';
+
+              if (value.length>=5) {flag = 1;} else{ flag=0;}
             }
         break;
       
@@ -114,6 +118,7 @@ export default class Payment extends React.Component {
         validateemail.test(value)
             ? 'set'
             : 'Email is not Valid!';
+        if(errors.email=='set'){ flag = 1} else{flag=0}
         break;
       
       case 'expmonth':         
@@ -129,8 +134,9 @@ export default class Payment extends React.Component {
           | event.target.value === 'OCT'| event.target.value === 'NOV'| event.target.value === 'DEC')
           {
             errors.expmonth = 'set';
+            flag = 1;
           }
-          else { errors.expmonth = 'Enter Valid Month !'; }
+          else { errors.expmonth = 'Enter Valid Month !'; flag=0; }
 
           break;
 
@@ -141,6 +147,7 @@ export default class Payment extends React.Component {
           }
           let curyear = new Date().getFullYear();
           errors.expyear = value > curyear ? 'set' : 'Invalid Year Entered!'
+          if(value > curyear){ flag = 1;} else{flag=0;}
           break;
 
       case 'cvv':
@@ -149,6 +156,7 @@ export default class Payment extends React.Component {
               event.target.value = event.target.value.replace(/[^0-9]/ig, '')
             }           
             errors.cvv = value >= 1 ? 'set' : 'Invalid CVV Entered!'
+            if(value>=1){flag=1;} else{ flag=0;}
           break;     
 
       default:
@@ -156,7 +164,7 @@ export default class Payment extends React.Component {
     }
   
     this.setState({errors, [name]: value}, ()=> {
-      console.log(errors)
+       // console.log(errors)
   })
 }
 
@@ -174,14 +182,14 @@ export default class Payment extends React.Component {
   render (){
     const {errors, formValid} = this.state;
       return (
-        <div class="row" style={{ display: 'flex'}}>
-        <div class="container" style={{marginLeft: '200px', background:'white', paddingTop: '15px'}}>
+        <div class="custom-row">
+        <div class="container" style={{ background:'white', paddingTop: '15px'}}>
           <h2 style={{background:'white',display: "flex",justifyContent: "center",alignItems: "center", float: 'left', paddingTop:'10px'}}>Payment Page</h2>
-          <h4 style={{marginLeft: '200px', float: 'left', paddingTop: '15px'}}>Accepted Cards : &nbsp;&nbsp;&nbsp;</h4><img className="img1" src={visa} alt="visa" />
+          <h4 style={{ float: 'left', paddingTop: '15px'}}>Accepted Cards : &nbsp;&nbsp;&nbsp;</h4><img className="img1" src={visa} alt="visa" />
           <img className="img1" src={amex} alt="amex" /><img className="img1" src={master} alt="master" />
           <img className="img1" src={discover} alt="discover" />
         </div>
-        <div class="col-75" style={{ display: 'flex',justifyContent: "center",alignItems: "center"}}>
+        <div class="col-50" style={{ display: 'flex',justifyContent: "center",alignItems: "center"}}>
           <div class="container4" style={{float : 'left', paddingRight : '5px', display: 'flex'}}>
             <form onSubmit={this.handleSubmit} noValidate >
               <div class="row1" style={{ display: 'flex'}}>
@@ -249,7 +257,7 @@ export default class Payment extends React.Component {
                 >                
                 {this.state.errorCount !== null ? 
                 <div style={{border: '5px',borderBlockColor: 'black', borderRadius: '10px', background: 'white'}}>
-                  <h8 style={{display: 'flex', justifyContent: 'center'}}>Payment details</h8>
+                  <h4 style={{display: 'flex', justifyContent: 'center'}}>Payment details</h4>
                   <div className="validmsg" style={{display: 'flex', justifyContent: 'center'}}> 
                 {formValid ? 'Payment Completed Successfully!' 
                 : 'Incomplete details, Please enter all the details correctly! (Press Enter to close or click outside)'}

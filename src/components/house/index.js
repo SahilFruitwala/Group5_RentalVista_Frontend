@@ -1,3 +1,4 @@
+// 1. Author: Sahil Fruitwala, B00844489
 import React, { useState } from "react";
 import { Jumbotron, Row, Col, Form} from "react-bootstrap";
 
@@ -73,7 +74,7 @@ function HousePage() {
   return (
     <>
       <Jumbotron>
-        <h1 className="text-center pb-2">Aprtments in Toronto</h1>
+        <h1 className="text-center pb-2">Apartments in Toronto</h1>
         <Row className="drawer justify-content-center">
           <Col sm={4} md={4} lg={3}>
             <Row>

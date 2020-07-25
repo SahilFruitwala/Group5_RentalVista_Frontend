@@ -1,29 +1,28 @@
 # Rental Vista
 
-    Assignment - 2
+    Project Proposal
 
     Date Created: 3 Jun 2020
-    Last Modification Date: 14 Jun 2020
+    Last Modification Date: 23 Jun 2020
 
-## Author
+## Authors
 
-| Name            | Banner ID | Dal Email              |
-| --------------- | --------- | ---------------------- |
-| Sahil Fruitwala | B00844489 | sahil.fruitwala@dal.ca |
+| Name               | Banner ID    | Email                   |
+|--------------------|--------------|-------------------------|
+| Amogh Bangalore    | B00833535    | am210633@dal.ca         |
+| Gaurav Anand       | B00832139    | gaurav.anand@dal.ca     |
+| Harshitha M S      | B00838019    | Harshitha.MS@dal.ca     |
+| Krupa Patel        | B00828120    | Krupa.Patel@dal.ca      |
+| Naitik Prajapati   | B00856835    | naitik.prajapati@dal.ca |
+| Sahil Fruitwala    | B00844489    | sahil.fruitwala@dal.ca  |
 
 ### Demo Website Link: https://rentalvista.herokuapp.com/
 
 ### Github Repository Link: https://github.com/SahilFruitwala/rental-vista
 
-### Demo
-
-![Website Demo](gif/website.gif)
-
----
-
 ## Content
 
-I have created four pages of the main feature and one 404 pages. Four pages are Landing Page, List of houses page, Edit Profile page and Blog Page. Moreover, when the user will try to access any URL which is not implemented yet, he/she will be redirected to the 404 page.
+We have created 10 pages of the main feature and one 404 pages. The pages are Landing Page, User Profile Management pages, List posts, View room, Post room, Payment, Blogs, Wishlist, Request contact, Support pages. Moreover, when the user will try to access any URL which is not implemented yet, he/she will be redirected to the 404 page.
 
 ## How to install and run on a local system
 
@@ -42,8 +41,13 @@ I have created five pages and those can be accessed by method given below:
 
 1. For home-page / landing-page click on **RentalVista logo/button**.
 2. To see a list of houses click on **House** on the navigation bar.
-3. For the edit profile page click on the **Login** button. It will show you a button that can lead one to edit the profile page.
-4. The blog can be seen using clicking **Blog** on the navigation bar.
+3. To view the details of a particular post click on **View Rooms** button of the listed page.
+4. To add a posting click on **Add Post** button in navigation bar.
+5. To look at the blogs click on **Blogs** button in nav bar.
+6. For login and signup click on **Login** and **Signup** buttons respectively on nav bar.
+7. For the edit profile page click on the **Login** button. It will show you a button that can lead one to edit the profile page.
+8. To view the list of saved rooms and to request contact got to **Edit profile** page where the buttons for saved rooms and request contact are accessible.
+9. For Aboutus and FAQ click on **About** and **FAQ** buttons in the footer.
 5. If a user enters any wrong path or URL application will lead it to a **404 page**.
 
 ### Link of Pages

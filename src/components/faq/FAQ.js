@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./FAQ.css"
+// import "./FAQ.css"
 import FAQimage from '../../assets/images/faq.svg';
 
 function FAQ(props){
