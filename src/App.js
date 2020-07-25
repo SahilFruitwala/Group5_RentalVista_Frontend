@@ -1,3 +1,6 @@
+// Author : Sahil Fruitwala
+// Author : Sahil Fruitwala
+
 import React from "react";
 import "./utilities/FontAwesome";
 import "./App.css";
@@ -27,26 +30,6 @@ import ViewRoom from "./components/house/View_Room/ViewRoom";
 
 function App(props) {
   const history = createBrowserHistory();
-
-  // const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  // const [isTokenExist, setIsTokenExist] = useState(false);
-
-  // const handleSignUpClick = (bool) => {
-  //   setIsSignUpOpen(bool);
-  //   document.body.style.overflow = bool ? "hidden" : "scroll";
-  // };
-
-  // useEffect(() => {
-  //   localStorage.getItem("token")
-  //     ? setIsTokenExist(true)
-  //     : setIsTokenExist(false);
-  // }, []);
-
-  /* 
-  TODO: logout was not working
-  TODO: ask Sneh why I need to reload every-time after login or logout to reflect navbar change
-  */
-
   return (
     <div className="page-container">
       <Router history={history}>

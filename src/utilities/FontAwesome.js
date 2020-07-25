@@ -1,3 +1,5 @@
+// Author : Sahil Fruitwala
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faSearch,
