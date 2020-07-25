@@ -1,9 +1,10 @@
+// Author: Gaurav Anand - B00832139
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-function TestModal(props) {
-    console.log("TestModal -> props")
+function SuccessModal(props) {
+    
     return (
         <Modal
         show={props.message.show}
@@ -57,5 +58,4 @@ function TestModal(props) {
       </Modal>
     )
 }
-
-export default TestModal
+export default SuccessModal

@@ -74,7 +74,7 @@ class Form extends React.Component {
         this.inputRef.current.focus();
 
         axios
-          .get('http://localhost:8080/getblog')
+          .get('https://rentalvista-api.herokuapp.com/getblog')
           .then(response => {
             console.log(response)
             this.setState({ posts: response.data })
@@ -93,9 +93,9 @@ class Form extends React.Component {
       
         switch (name) {
             case 'title': 
-                if((!event.target.value.match(/^[a-zA-Z ]+$/i)))
+                if((!event.target.value.match(/^[a-zA-Z0-9 ]+$/i)))
                 {
-                    event.target.value = event.target.value.replace(/[^A-Za-z ]/ig, '')
+                    event.target.value = event.target.value.replace(/[^A-Za-z0-9 ]/ig, '')
                 }
                 else{
                     errors.title = 
@@ -107,9 +107,9 @@ class Form extends React.Component {
                 break;
             
             case 'desc': 
-                if((!event.target.value.match(/^[a-zA-Z .]+$/i)))
+                if((!event.target.value.match(/^[a-zA-Z0-9,! .]+$/i)))
                 {
-                    event.target.value = event.target.value.replace(/[^A-Za-z. ]/ig, '')
+                    event.target.value = event.target.value.replace(/[^A-Za-z0-9.,! ]/ig, '')
                 }
                 else{
                     errors.desc = 
@@ -151,17 +151,18 @@ class Form extends React.Component {
             console.log("Submit working") 
             console.log(this.state)
             axios
-              .post('http://localhost:8080/addblog', this.state)
+              .post('https://rentalvista-api.herokuapp.com/addblog', this.state)
               .then(response => {
                 console.log(response)
                 this.componentDidMount()
-                this.cancelCourse()
+                
                 if(response.data=='Blog Title already present, cannot add'){
                   this.play("Blog title already present, enter a different title")
                 }
                 else{
                   this.play("Blog Added Successfully")
                   console.log(this.state)  
+                  this.cancelCourse()
                 }
               })
               .catch(error => 
@@ -170,30 +171,44 @@ class Form extends React.Component {
                 })        
           }
 
-          handleEdit = (event) => {
+          handleEdit(param) {
           
             //event.preventDefault();           
             //const { name, value } = event.target;
             
             console.log("Edit working") 
             console.log(this.state)  
+            if(this.state.title == 'Blog post 1' || param =='Blog post 1'){
+                this.play("Cannot Edit default Admin blog")
+            }
+            if(this.state.title == 'Blog post 2' || param =='Blog post 2' || param =='Housing post 1' || param == 'Housing post 2'){
+                this.play("Cannot Edit another user's blog, try editing a blog created by you.")
+            }  
+            else{
             axios
-              .put('http://localhost:8080/editblog', this.state)
-              .then(response => {
-                console.log(response)
-                this.componentDidMount()
-                if(response.data=='Blog updated Successfully!'){
-                    this.play("Blog Added Successfully")                    
-                  }
-                  else{
-                    this.play("Blog Author not found, Enter Correct Author name")
-                    console.log(this.state)  
-                  }
-              })
-              .catch(error => 
-                {
-                console.log(error)
-                })      
+                .put('https://rentalvista-api.herokuapp.com/editblog', this.state)
+                .then(response => {
+                    console.log(response)
+                    this.componentDidMount()
+                    if(response.data=='Blog updated Successfully!'){
+                        this.play("Blog Updated Successfully")                    
+                    }
+                    else if(response.data=='Title missing'){
+                        this.play("Blog Title missing, try again!")
+                    }
+                    else if(response.data=='Title missing'){
+                        this.play("Blog Description missing, try again!")
+                    }
+                    else{
+                        this.play("Blog Author not found, Enter Correct Author name")
+                        console.log(this.state)  
+                    }
+                })
+                .catch(error => 
+                    {
+                    console.log(error)
+                    })  
+                }    
           }
 
           handledelete(param)  {
@@ -207,9 +222,12 @@ class Form extends React.Component {
             if(this.state.title == 'Blog post 1' || param =='Blog post 1'){
                 this.play("Cannot delete default Admin blog")
             }
+            if(this.state.title == 'Blog post 2' || param =='Blog post 2' || param =='Housing post 1' || param == 'Housing post 2'){
+                this.play("Cannot delete another user's blog, try a blog created by you.")
+            }  
             else{
                 axios
-              .post('http://localhost:8080/deleteblog', this.state)
+              .post('https://rentalvista-api.herokuapp.com/deleteblog', this.state)
               .then(response => {
                 console.log(response)
                 this.componentDidMount()
@@ -342,11 +360,11 @@ class Form extends React.Component {
                                     <div className="card-body" key={blog.id} style={{width: "auto",margin: '5px'}} >
                                         
                                         <Popup trigger={<h4 className="card-title"><Link style={{}}>{blog.title}</Link></h4>} modal closeOnDocumentClick>                
-                                                {
+                                                { close => (
                                                 <div style={{border: '5px',borderBlockColor: 'black', borderRadius: '10px', background: 'white'}}>
                                                   <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Blog Details</h2>
-                                                  <div className="validmsg" style={{justifyContent: 'center'}}> 
-                                                    <h4 className="card-title" style={{color: 'black'}}>Title: {blog.title}</h4>
+                                                  <div className="validmsg" style={{margin: '30px'}}> 
+                                                    <p1 className="card-title" style={{color: 'black'}}>Title: {blog.title}</p1>
                                                     <hr />
                                                     <p1 style={{color: 'black'}} >
                                                         Author: {blog.author}
@@ -356,9 +374,16 @@ class Form extends React.Component {
                                                         Description: {blog.desc}
                                                     </p1>                                                                                                       
                                                   </div>
+                                                  <button
+                                                        className="btn btn-warning"
+                                                        onClick={() => {close();}}
+                                                        style={{margin:'15px'}}
+                                                    >
+                                                        Close Blog Details
+                                                    </button> 
                                                 </div>
-                                                 }                                                
-                                            </Popup>
+                                                )}                                                
+                                        </Popup>
                                         <hr />
                                         <p1 className="card-text">
                                             Author: {blog.author}
@@ -372,11 +397,11 @@ class Form extends React.Component {
                                                 modal
                                                 closeOnDocumentClick
                                                 >                
-                                                {
+                                                { close => (
                                                 <div style={{border: '5px',borderBlockColor: 'black', borderRadius: '10px', background: 'white'}}>
                                                   <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Blog Details</h2>
-                                                  <div className="validmsg" style={{justifyContent: 'center'}}> 
-                                                    <h4 className="card-title" style={{color: 'black'}}>Title: {blog.title}</h4>
+                                                  <div className="validmsg" style={{margin: '30px'}}> 
+                                                    <p1 className="card-title" style={{color: 'black'}}>Title: {blog.title}</p1>
                                                     <hr />
                                                     <p1 style={{color: 'black'}} >
                                                         Author: {blog.author}
@@ -387,8 +412,15 @@ class Form extends React.Component {
                                                     </p1>
                                                                                                        
                                                   </div>
+                                                  <button
+                                                        className="btn btn-warning"
+                                                        onClick={() => {close();}}
+                                                        style={{margin:'15px'}}
+                                                    >
+                                                        Close Blog Details
+                                                    </button> 
                                                 </div>
-                                                 }
+                                                )}
                                                 
                                             </Popup>
                                         </p1>
@@ -416,7 +448,7 @@ class Form extends React.Component {
                                                     <button
                                                         className="btn btn-success"
                                                         onClick={() => {close();
-                                                            this.handleEdit();                                                       
+                                                            this.handleEdit(blog.title);                                                       
                                                         }}
                                                     >
                                                         Update Blog
