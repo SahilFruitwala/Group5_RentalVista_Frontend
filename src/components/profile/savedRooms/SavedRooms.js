@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Row, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import TestModal from '../../../utilities/TestModal'
+// import TestModal from '../../../utilities/TestModal'
 import SavedRoomsData from './SavedRoomsData'
 
 function SavedRooms() {
@@ -49,7 +49,7 @@ function SavedRooms() {
         })
     }
     </Row>
-    {
+    {/* {
         display && (
         <TestModal
           message={{
@@ -60,7 +60,7 @@ function SavedRooms() {
 
           renderComponent={handleModal}
         />
-      )}
+      )} */}
       </>
   );
 }
