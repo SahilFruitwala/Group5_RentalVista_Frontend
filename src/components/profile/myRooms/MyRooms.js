@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Row, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import TestModal from '../../../utilities/TestModal'
+// import TestModal from '../../../utilities/TestModal'
 import axios from "axios";
 
 function MyRooms() {
@@ -99,7 +99,7 @@ function MyRooms() {
         })
     }
     </Row>
-    {
+    {/* {
         display && (
         <TestModal
           message={{
@@ -110,7 +110,7 @@ function MyRooms() {
 
           renderComponent={handleModal}
         />
-      )}
+      )} */}
       </>
   );
 }

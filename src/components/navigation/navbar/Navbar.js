@@ -4,12 +4,12 @@ import "./Navbar.css";
 import { Navbar, Nav } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import logo from "../../../assets/images/logo-light.svg";
-import TestModal from "../../../utilities/TestModal";
+// import TestModal from "../../../utilities/TestModal";
 import axios from "axios";
 
 function NavigationBar(props) {
   const [message, setMessage] = useState({ title: "", body: "", show: false });
-  const [showEdit, setShowEdit] = useState(true);
+  const [showEdit, setShowEdit] = useState(false);
 
   useEffect(() => {
     !localStorage.getItem("token") ? setShowEdit(false) : setShowEdit(true);
@@ -81,9 +81,9 @@ function NavigationBar(props) {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      {message.show && (
+      {/* {message.show && (
         <TestModal message={message} renderComponent={renderComponent} />
-      )}
+      )} */}
     </React.Fragment>
   );
 }
