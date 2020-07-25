@@ -1,5 +1,5 @@
+// Created by Gaurav Anand (B00832139)
 import React, { Component } from "react";
-import "./index.css";
 import ImageUploading from "react-images-uploading";
 import axios from "axios";
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -48,8 +48,12 @@ class AddPost extends Component {
 
   handleModal = (msg) => {
     this.setState({displayModal: !this.state.displayModal})
-    console.log("value set to"+this.state.displayModal)
   };
+
+  goToHome = () => {
+    this.setState({displayModal: !this.state.displayModal})
+    this.props.history.push("/house");
+  }
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
@@ -76,7 +80,7 @@ class AddPost extends Component {
 
   submitHandler = () => {    
     axios
-      .post("http://localhost:8080/post/add", {
+      .post("https://rentalvista-api.herokuapp.com/post/add", {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Request-Method": "POST",
@@ -99,7 +103,6 @@ class AddPost extends Component {
       .then((response) => {
         console.log(response)
         this.handleModal()
-        this.props.history.push("/house");
       })
       .catch((error) => {
         console.log(error);
@@ -775,7 +778,7 @@ class AddPost extends Component {
             show: true
           }}
 
-          renderComponent={this.handleModal}
+          renderComponent={this.goToHome}
         />
       )}
       </>

@@ -15,7 +15,7 @@ function Footer() {
             <ul className="list-unstyled">
               <NavLink to="/blog"> <li>Blog</li> </NavLink>
               <NavLink to="/aboutus"><li>About Us</li></NavLink>
-              <li>Developrs</li>
+              <li>Developers</li>
             </ul>
           </div>
           <div className="col-12 col-sm-6 col-md-4 justify-content-center">

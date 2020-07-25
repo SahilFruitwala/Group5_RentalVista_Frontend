@@ -1,8 +1,10 @@
+// Created by Gaurav Anand (B00832139)
+
 import React, { useState, useEffect } from "react";
 import { Card, Row, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// import TestModal from '../../../utilities/TestModal'
+import TestModal from '../../../utilities/TestModal'
 import axios from "axios";
 
 function MyRooms() {
@@ -14,7 +16,7 @@ function MyRooms() {
 
     useEffect(() => {
       axios
-      .get("http://localhost:8080/post/get", {
+      .get("https://rentalvista-api.herokuapp.com/post/get", {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Request-Method": "GET",
@@ -22,18 +24,16 @@ function MyRooms() {
         },
       })
       .then((response) => {
-        console.log(response)
         setRooms(response.data);
       })
       .catch((error) => {
         console.log(error);
-        // res = false
       });
   }, [])
 
   const handleDelete = (roomID) => {
     axios
-      .delete("http://localhost:8080/post/delete", {
+      .delete("https://rentalvista-api.herokuapp.com/post/delete", {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Request-Method": "DELETE",
@@ -48,8 +48,6 @@ function MyRooms() {
         var array = [...rooms];
         let obj = array.find(x => x.roomID === roomID);
         let index = array.indexOf(obj);
-        console.log(index)
-        console.log(array)
         if (index !== -1) {
           array.splice(index, 1);
           setRooms(array)
@@ -70,7 +68,7 @@ function MyRooms() {
             <Card
               key={room.roomID}
               className="col-lg-4 mb-5 mr-auto"
-              style={{ border: "none" }}
+              style={{ border: "none"}}
             >
               <Card.Img
                 variant="top"
@@ -106,7 +104,7 @@ function MyRooms() {
         })
     }
     </Row>
-    {/* {
+    {
         display && (
         <TestModal
           message={{
@@ -117,7 +115,7 @@ function MyRooms() {
 
           renderComponent={handleModal}
         />
-      )} */}
+      )}
       </>
   );
 }
