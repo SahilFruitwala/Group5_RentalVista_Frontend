@@ -1,4 +1,4 @@
-// Created by Gaurav Anand (B00832139)
+// Author: Gaurav Anand - B00832139
 import React, { Component } from "react";
 import ImageUploading from "react-images-uploading";
 import axios from "axios";
