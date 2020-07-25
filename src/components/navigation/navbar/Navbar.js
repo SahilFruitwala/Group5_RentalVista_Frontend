@@ -26,7 +26,7 @@ function NavigationBar(props) {
   const logout = (props) => {
     // !localStorage.getItem("token") && props.history.push("/");
     axios
-      .get("http://localhost:8080/users/logout", {
+      .get("https://rentalvista-api.herokuapp.com/users/logout", {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Request-Method": "POST",

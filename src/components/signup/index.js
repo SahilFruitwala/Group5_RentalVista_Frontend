@@ -54,7 +54,7 @@ class SignupPopup extends React.Component {
 
   submitHandler = () => {
     axios
-      .post("http://localhost:8080/users/signup", {
+      .post("https://rentalvista-api.herokuapp.com/users/signup", {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password,

@@ -80,7 +80,7 @@ function ResetPassword(props) {
   const handleSubmit = () => {
     const token = localStorage.getItem("token");
     axios
-      .post("http://localhost:8080/users/change", {
+      .post("https://rentalvista-api.herokuapp.com/users/change", {
         "password": userData.password,
         "new_password": userData.new_password
       }, {

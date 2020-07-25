@@ -30,7 +30,7 @@ const ModalExample = (props) => {
   const handleSubmit = () => {
     axios
       .post(
-        "http://localhost:8080/users/forgot",
+        "https://rentalvista-api.herokuapp.com/users/forgot",
         { email: email },
         {
           headers: {

@@ -47,7 +47,7 @@ function EditProfile(props) {
      // console.log(token);
     if (token) {
       axios
-        .get("http://localhost:8080/users/user", {
+        .get("https://rentalvista-api.herokuapp.com/users/user", {
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Request-Method": "POST",
@@ -109,7 +109,7 @@ function EditProfile(props) {
        // console.log(token);
       axios
         .post(
-          "http://localhost:8080/users/edit",
+          "https://rentalvista-api.herokuapp.com/users/edit",
           {
             name: userData.name,
             contact: userData.contact,

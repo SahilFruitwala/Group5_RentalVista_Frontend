@@ -54,7 +54,7 @@ class Login extends Component {
     if (email != null && password != null) {
       axios
         .post(
-          "http://localhost:8080/users/login",
+          "https://rentalvista-api.herokuapp.com/users/login",
           { email: this.state.email, password: this.state.password },
           {
             headers: {
