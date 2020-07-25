@@ -32,7 +32,7 @@ export default class RentalForm extends Component {
   };
 
   handleSubmit = () => {
-    axios.post("http://localhost:5000/appointment/book", {
+    axios.post("https://rentalvista-api.herokuapp.com/appointment/book", {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Request-Method": "POST",

@@ -25,7 +25,7 @@ import FAQPage from "./components/faq/FAQ";
 
 import ViewRoom from "./components/house/View_Room/viewroom";
 import AppointmentBook from "./components/appointment/AppointmentBook";
-
+import MyAppointment from "./components/appointment/MyAppointment";
 import AddPost from "./components/post";
 import SignupPage from "./components/signup/index";
 import ViewRoom from "./components/house/View_Room/ViewRoom";
@@ -73,6 +73,7 @@ function App(props) {
             <Route path="/post" exact component={AddPost} />
             <Route path="/404" component={Page404} />
             <Route path="/appointment-book" component={AppointmentBook} />
+            <Route path="/myapps" component={MyAppointment} />
             <Redirect from="*" to="/404" />
           </Switch>
         </ScrollToTop>
