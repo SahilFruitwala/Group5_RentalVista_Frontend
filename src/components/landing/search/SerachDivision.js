@@ -1,3 +1,4 @@
+// 1. Author: Sahil Fruitwala, B00844489
 import React, { useState } from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
