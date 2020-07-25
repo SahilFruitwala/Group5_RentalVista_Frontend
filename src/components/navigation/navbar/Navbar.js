@@ -9,7 +9,7 @@ import axios from "axios";
 
 function NavigationBar(props) {
   const [message, setMessage] = useState({ title: "", body: "", show: false });
-  const [showEdit, setShowEdit] = useState(true);
+  const [showEdit, setShowEdit] = useState(false);
 
   useEffect(() => {
     !localStorage.getItem("token") ? setShowEdit(false) : setShowEdit(true);
