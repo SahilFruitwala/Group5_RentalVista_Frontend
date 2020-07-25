@@ -4,7 +4,9 @@ import React, { useState, useEffect } from "react";
 import { Card, Row, Button, Badge } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
 import TestModal from "../../../utilities/TestModal";
+
 import "./HouseList.css";
 
 function HouseList() {
