@@ -78,12 +78,19 @@ function MyRooms() {
                 style={{ borderRadius: "10%" }}
               />
               <Card.Body>
+                <Card.Subtitle className="pt-2" style={{ color: "#000000" }}>
+                  <Row>
+                    <center><b>{room.title}</b></center>
+                  </Row>
+                </Card.Subtitle>
                 <Card.Subtitle className="pt-2" style={{ color: "#696969" }}>
                   <Row>
                     <FontAwesomeIcon icon="star" color="#F7A231" />
                     {room.rating} / 5
                   </Row>
                 </Card.Subtitle>
+                
+                
                 <Card.Text className="justify-data pt-1">
                   {room.description}
                 </Card.Text>

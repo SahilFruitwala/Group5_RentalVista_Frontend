@@ -4,10 +4,11 @@ import ImageUploading from "react-images-uploading";
 import axios from "axios";
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import TestModal from './../../utilities/TestModal';
 
 function ValidationMessage(props) {
   if (!props.valid) {
-    return <div className="error-msg">{props.message}</div>;
+    return <div className="error-msg mb-3">{props.message}</div>;
   }
   return null;
 }
@@ -38,9 +39,17 @@ class AddPost extends Component {
       checkBoxArray: [],
       isFurnished: false,
       isPetFriendly: false,
-      selectedImages: []
+      selectedImages: [],
+      todaysDate: "",
+      displayModal: false,
     };
+    this.setTodaysDate();
   }
+
+  handleModal = (msg) => {
+    this.setState({displayModal: !this.state.displayModal})
+    console.log("value set to"+this.state.displayModal)
+  };
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
@@ -49,9 +58,23 @@ class AddPost extends Component {
     }
   }
 
-  submitHandler = () => {
-    console.log(this.state.headline+this.state.location+this.state.rent+this.state.date+this.state.detail+this.state.bed+this.state.bath+'checkbox list is' + this.state.checkBoxArray + ' '+ this.state.isFurnished+' '+ this.state.isPetFriendly+ this.state.selectedImages);
-    
+  setTodaysDate = () => {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    this.setState({todaysDate: today})
+  }
+
+  submitHandler = () => {    
     axios
       .post("http://localhost:8080/post/add", {
         headers: {
@@ -75,6 +98,7 @@ class AddPost extends Component {
       })
       .then((response) => {
         console.log(response)
+        this.handleModal()
         this.props.history.push("/house");
       })
       .catch((error) => {
@@ -257,6 +281,7 @@ class AddPost extends Component {
 
   render() {
     return (
+      <>
       <div style={{ backgroundColor: "rgb(219, 219, 219)" }}>
         <div
           className="container mt-4 border rounded"
@@ -266,16 +291,8 @@ class AddPost extends Component {
             <div className="col-md-8 mb-2 text-left">
               <h2>Property Details</h2>
               <hr />
-              {/* <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  this.submitHandler
-                  console.log(this.state.headline+this.state.location+this.state.rent+this.state.date+this.state.detail+this.state.bed+this.state.bath+'checkbox list is' + this.state.checkBoxArray + ' '+ this.state.isFurnished+' '+ this.state.isPetFriendly+ this.state.selectedImages);}
-                }
-                className="form-signin"
-                noValidate
-              > */}
                 <ImageUploading
+                  className="mb-3"
                   onChange={this.onImageChange}
                   maxNumber={maxNumber}
                   multiple
@@ -285,23 +302,23 @@ class AddPost extends Component {
                 >
                   {({ imageList, onImageUpload}) => (
                     <div>
-                      <button type="button" onClick={onImageUpload}>Upload images</button>          
+                      <button className="mb-3" type="button" onClick={onImageUpload}>Upload images</button><label className="error-msg">Choose .jpg, .png or .gif files(Max 5MB)</label>        
                       {imageList.map((image) => (
                         <div key={image.key} className='fadein'>
                           <div 
                             onClick={image.onRemove} 
                             className='delete'
                           >
-                            <FontAwesomeIcon icon={faTimesCircle} size='2x' />
+                            <FontAwesomeIcon icon={faTimesCircle} size='lg' />
                           </div>
-                          <img src={image.dataURL} alt="" width="150"/>
+                          <img className="mb-3" src={image.dataURL} alt="" width="150"/>
                         </div>
                       ))}
                     </div>
                   )}
                 </ImageUploading>
                 <label htmlFor="headline">Property Headline</label>
-                <div className="input-group mb-3" style={{ width: "60%",border: "1px solid black " }}>
+                <div className="mb-3" style={{ width: "60%"}}>
                   <input
                     id="headline"
                     name="headline"
@@ -319,7 +336,7 @@ class AddPost extends Component {
                   message={this.state.errorMsg.headline}
                 />
                 <label htmlFor="location">Location</label>
-                <div className="input-group mb-3" style={{ width: "60%",border:"1px solid black " }}>
+                <div className="mb-3" style={{ width: "60%" }}>
                   <input
                     id="location"
                     name="location"
@@ -336,24 +353,19 @@ class AddPost extends Component {
                   valid={this.state.locationValid}
                   message={this.state.errorMsg.location}
                 />
-                <label htmlFor="rent">Monthly Rent</label>
-                <div className="input-group mb-3" style={{ width: "60%",border:"1px solid black"  }}>
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">$</span>
-                  </div>
+                <label htmlFor="rent">Monthly Rent in Dollars</label>
+                <div className="mb-3" style={{ width: "60%" }}>
                   <input
                     id="rent"
                     name="rent"
                     type="number"
+                    min="0"
                     className="form-control"
                     aria-label="Amount (to the nearest dollar)"
                     value={this.state.rent}
                     onFocus={(e) => this.updateRent(e.target.value)}
                     onChange={(e) => this.updateRent(e.target.value)}
                   />
-                  <div className="input-group-append">
-                    <span className="input-group-text">.00</span>
-                  </div>
                 </div>
                 <ValidationMessage
                   valid={this.state.rentValid}
@@ -366,10 +378,12 @@ class AddPost extends Component {
                   <input
                     style={{ width: "60%" }}
                     className="form-control"
-                    id="date"
+                    id="datefield"
                     name="date"
                     placeholder="MM/DD/YYYY"
+                    onClick={() => this.setTodaysDate()}
                     type="date"
+                    min={this.state.todaysDate}
                     value={this.state.date}
                     onFocus={(e) => this.updateDate(e.target.value)}
                     onChange={(e) => this.updateDate(e.target.value)}
@@ -752,6 +766,19 @@ class AddPost extends Component {
           </div>
         </div>
       </div>
+      {
+        this.state.displayModal && (
+        <TestModal
+          message={{
+            title: "Success!",
+            body: "Property has been added to your account!",
+            show: true
+          }}
+
+          renderComponent={this.handleModal}
+        />
+      )}
+      </>
     );
   }
 }
