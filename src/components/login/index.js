@@ -1,10 +1,10 @@
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
 import "./index.css";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Button, FormGroup, Label, Input, FormText, Alert } from "reactstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import Modal from './forgot';
+import Modal from "./forgot";
 
 // import {
 //   FacebookLoginButton,
@@ -16,7 +16,7 @@ const emailRegex = RegExp(
 );
 
 // useEffect(() => {
-//     localStorage.getItem('token') ? console.log('HEY') : console.log('HI')
+//     localStorage.getItem('token') ?  // console.log('HEY') :  // console.log('HI')
 //     loginInstance.get({
 //         headers: {"Authorization": ""}
 //     })
@@ -27,13 +27,14 @@ class Login extends Component {
     super(props);
 
     this.state = {
+      error: "",
       email: null,
       password: null,
       formErrors: {
         email: "",
         password: "",
       },
-      show: false
+      show: false,
     };
   }
 
@@ -52,19 +53,25 @@ class Login extends Component {
 
     if (email != null && password != null) {
       axios
-        .post("http://localhost:8080/users/login", { email: this.state.email, password: this.state.password }, {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Request-Method": "POST",
-            // 'Authorization':"HEY"
+        .post(
+          "http://localhost:8080/users/login",
+          { email: this.state.email, password: this.state.password },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Request-Method": "POST",
+              // 'Authorization':"HEY"
+            },
           }
-        })
+        )
         .then((response) => {
+           // console.log(response.data);
           localStorage.setItem("token", response.data["token"]);
           this.props.history.push("/house");
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(({ response }) => {
+           // console.log("Error:", response["data"]["msg"]);
+          this.setState({ ...this.state, error: response["data"]["msg"] });
         });
     } else {
       alert("Please provide valid credentials!");
@@ -94,8 +101,8 @@ class Login extends Component {
   };
 
   handleShowModal = () => {
-    this.setState({...this.state, show: !this.state.show})
-  }
+    this.setState({ ...this.state, show: !this.state.show });
+  };
 
   render() {
     const { formErrors } = this.state;
@@ -110,6 +117,11 @@ class Login extends Component {
         <div className="login-form">
           <div className="card container">
             <div className="card-body">
+              {this.state.error === "" ? (
+                <></>
+              ): this.state.error && <Alert color="danger">
+              {this.state.error}
+            </Alert>}
               {/* Actual Login Form starts here*/}
               <FormGroup>
                 <Label>Email</Label>
@@ -145,21 +157,28 @@ class Login extends Component {
                 )}
               </FormGroup>
               <FormGroup>
-                <Link  onClick={() => this.handleShowModal()}><FormText className="float-right">Forgot Password?</FormText></Link>
+                <Link to="" onClick={() => this.handleShowModal()}>
+                  <FormText className="float-right">Forgot Password?</FormText>
+                </Link>
               </FormGroup>
               <FormGroup>
-              <Button
-                className="btn-lg btn-dark btn-block"
-                onClick={this.handleSubmit}
-              >
-                Login
-              </Button>
+                <Button
+                  className="btn-lg btn-dark btn-block"
+                  onClick={this.handleSubmit}
+                >
+                  Login
+                </Button>
               </FormGroup>
             </div>
           </div>
         </div>
         {/* </Form> */}
-        {this.state.show && <Modal show={this.state.show} handleShowModal={this.handleShowModal}/>}
+        {this.state.show && (
+          <Modal
+            show={this.state.show}
+            handleShowModal={this.handleShowModal}
+          />
+        )}
       </div>
     );
   }

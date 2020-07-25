@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel, Col, Row, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Carousel, Col, Row, ListGroup} from "react-bootstrap";
 import room1 from "../../../assets/images/room-1.jpg";
 import room2 from "../../../assets/images/room-2.jpg";
 import room3 from "../../../assets/images/room-3.jpg";

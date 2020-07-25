@@ -36,7 +36,7 @@ class SignupPopup extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
-      // console.log('HERE')
+      //  // console.log('HERE')
       // this.props.history.push('/house')
       this.setState({ ...this.state, redirect: true });
       // return <Redirect to="/house"/>
@@ -71,7 +71,7 @@ class SignupPopup extends React.Component {
         // res = true;
       })
       .catch((error) => {
-        console.log(error);
+         // console.log(error);
         // res = false
       });
   };

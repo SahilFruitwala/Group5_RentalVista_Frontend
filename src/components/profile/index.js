@@ -1,28 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 
 import "./index.css";
 import EditProfile from "./editProfile/EditProfile";
 import ResetPasswordPage from "./resetPassword/resetPassword";
 import SavedRooms from "./savedRooms/SavedRooms";
 import RequestedContacts from "./requestedContacts/RequestedContacts";
+import MyRooms from "./myRooms/MyRooms";
 
 function ProfileManagement(props) {
   const [view, setView] = useState("");
 
 
   return (
-    <div>
+    <div style={{'minHeight':'450px'}}>
       <div className="sidebar" style={{ color: "#FFFFFF !important" }}>
-        <button href="" onClick={() => setView("")}>
+        <button  onClick={() => setView("")}>
           Edit Profile
         </button>
-        <button href="" onClick={() => setView("reset_password")}>
+        <button  onClick={() => setView("reset_password")}>
           Change Password
+        </button>
+        <button href="" onClick={() => setView("my_properties")}>
+          My Properties
         </button>
         <button href="" onClick={() => setView("saved_rooms")}>
           Saved Rooms
         </button>
-        <button href="" onClick={() => setView("requested_contacts")}>
+        <button  onClick={() => setView("requested_contacts")}>
           Requested Contacts
         </button>
       </div>
@@ -32,7 +36,9 @@ function ProfileManagement(props) {
         ) : view === "reset_password" ? (
           <ResetPasswordPage
           />
-        ) : view === "saved_rooms" ? (
+        ) :view === "my_properties" ? (
+          <MyRooms/>
+        ) :view === "saved_rooms" ? (
           <SavedRooms />
         ) : (
           <RequestedContacts />
