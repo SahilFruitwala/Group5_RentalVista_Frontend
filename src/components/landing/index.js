@@ -1,3 +1,4 @@
+// 1. Author: Sahil Fruitwala - B00844489
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -5,7 +6,7 @@ import SerachDivision from "./search/SerachDivision";
 import DetailsDivision from "./details/DetailsDivision";
 import "./index.css";
 
-function LandingPage() {
+function LandingPage(props) {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

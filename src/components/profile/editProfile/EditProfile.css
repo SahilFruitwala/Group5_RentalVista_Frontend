@@ -32,7 +32,7 @@
   .personal-detail-col {
     justify-content:start;
   }
-  .questions {
+  .password {
     justify-content:start;
   }
 }
@@ -50,7 +50,7 @@
 
   .personal-detail-col {
     padding-right:50px;
-      border-right: 1px solid;
+      /* border-right: 1px solid; */
   }
 
   .row {
@@ -64,8 +64,8 @@
 
     align-items: flex-end;
   }
-  .questions {
+  .password-button{
     justify-content:start;
-    margin-bottom: 2vh;
+    margin-bottom: 15vh;
   }
 }

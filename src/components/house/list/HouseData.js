@@ -1,3 +1,4 @@
+//Author: Naitik Prajapati - B00856835
 import room1 from '../../../assets/images/room-1.jpg'
 import room2 from '../../../assets/images/room-2.jpg'
 import room3 from '../../../assets/images/room-3.jpg'

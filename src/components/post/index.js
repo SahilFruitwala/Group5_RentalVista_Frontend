@@ -1,12 +1,20 @@
+// Author: Gaurav Anand - B00832139
 import React, { Component } from "react";
-import "./index.css";
+import ImageUploading from "react-images-uploading";
+import axios from "axios";
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SuccessModal from './../../utilities/SuccessModal';
 
 function ValidationMessage(props) {
   if (!props.valid) {
-    return <div className="error-msg">{props.message}</div>;
+    return <div className="error-msg mb-3">{props.message}</div>;
   }
   return null;
 }
+
+const maxNumber = 10;
+const maxMbFileSize = 5 * 1024 * 1024;
 
 class AddPost extends Component {
   constructor(props) {
@@ -28,7 +36,100 @@ class AddPost extends Component {
       bathValid: false,
       formValid: false,
       errorMsg: {},
+      checkBoxArray: [],
+      isFurnished: false,
+      isPetFriendly: false,
+      selectedImages: [],
+      todaysDate: "",
+      displayModal: false,
     };
+    this.setTodaysDate();
+  }
+
+  handleModal = (msg) => {
+    this.setState({displayModal: !this.state.displayModal})
+  };
+
+  goToHome = () => {
+    this.setState({displayModal: !this.state.displayModal})
+    this.props.history.push("/house");
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem("token")) {
+    } else {
+      this.props.history.push("/login")
+    }
+  }
+
+  setTodaysDate = () => {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    this.setState({todaysDate: today})
+  }
+
+  submitHandler = () => {    
+    axios
+      .post("https://rentalvista-api.herokuapp.com/post/add", {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Request-Method": "POST",
+          Authorization: localStorage.getItem("token")
+        },
+        data: {
+          headline: this.state.headline,
+          location: this.state.location,
+          rent: this.state.rent,
+          date: this.state.date,
+          detail: this.state.detail,
+          bedrooms: this.state.bed,
+          bathrooms: this.state.bath,
+          furnishing: this.state.isFurnished,
+          petFriendly: this.state.isPetFriendly,
+          amenities: this.state.checkBoxArray,
+          images: this.state.selectedImages
+        },
+      })
+      .then((response) => {
+        console.log(response)
+        this.handleModal()
+      })
+      .catch((error) => {
+        console.log(error);
+        // res = false
+      });
+  };
+
+  onFurnishingChange(e) {
+    this.setState({isFurnished: e.target.value})
+  }
+
+  onPetFriendlyChange(e) {
+    this.setState({isPetFriendly: e.target.value})
+  }
+
+  onCheckboxChange(e) {
+    const checkBoxArray = this.state.checkBoxArray
+    let index
+
+    if (e.target.checked) {
+      checkBoxArray.push(e.target.value)
+    } else {
+      index = checkBoxArray.indexOf(e.target.value)
+      checkBoxArray.splice(index, 1)
+    }
+
+    this.setState({ checkBoxArray: checkBoxArray })
   }
 
   checkIfFormValid = () => {
@@ -37,6 +138,14 @@ class AddPost extends Component {
     } else {
       return;
     }
+  };
+
+  onImageChange = (imageList, files) => {
+    this.setState({selectedImages: imageList})
+    console.log(this.state.selectedImages);
+  };
+  onImageUploadError = (errors, files) => {
+    console.log(errors, files);
   };
 
   validateForm = () => {
@@ -175,6 +284,7 @@ class AddPost extends Component {
 
   render() {
     return (
+      <>
       <div style={{ backgroundColor: "rgb(219, 219, 219)" }}>
         <div
           className="container mt-4 border rounded"
@@ -184,15 +294,37 @@ class AddPost extends Component {
             <div className="col-md-8 mb-2 text-left">
               <h2>Property Details</h2>
               <hr />
-              {/* <form
-                className="form-signin" */}
-                
-                {/* noValidate */}
-              {/* > */}
-                <label for="headline">Property Headline</label>
-                <div className="input-group mb-3" style={{ width: "60%",border: "1px solid black " }}>
+                <ImageUploading
+                  className="mb-3"
+                  onChange={this.onImageChange}
+                  maxNumber={maxNumber}
+                  multiple
+                  maxFileSize={maxMbFileSize}
+                  acceptType={["jpg", "gif", "png"]}
+                  onError={this.onImageUploadError}
+                >
+                  {({ imageList, onImageUpload}) => (
+                    <div>
+                      <button className="mb-3" type="button" onClick={onImageUpload}>Upload images</button><label className="error-msg">Choose .jpg, .png or .gif files(Max 5MB)</label>        
+                      {imageList.map((image) => (
+                        <div key={image.key} className='fadein'>
+                          <div 
+                            onClick={image.onRemove} 
+                            className='delete'
+                          >
+                            <FontAwesomeIcon icon={faTimesCircle} size='lg' />
+                          </div>
+                          <img className="mb-3" src={image.dataURL} alt="" width="150"/>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </ImageUploading>
+                <label htmlFor="headline">Property Headline</label>
+                <div className="mb-3" style={{ width: "60%"}}>
                   <input
                     id="headline"
+                    name="headline"
                     type="text"
                     className="form-control"
                     aria-label="Sizing example input"
@@ -206,10 +338,11 @@ class AddPost extends Component {
                   valid={this.state.headlineValid}
                   message={this.state.errorMsg.headline}
                 />
-                <label for="location">Location</label>
-                <div className="input-group mb-3" style={{ width: "60%",border:"1px solid black " }}>
+                <label htmlFor="location">Location</label>
+                <div className="mb-3" style={{ width: "60%" }}>
                   <input
                     id="location"
+                    name="location"
                     type="text"
                     className="form-control"
                     aria-label="Sizing example input"
@@ -223,39 +356,37 @@ class AddPost extends Component {
                   valid={this.state.locationValid}
                   message={this.state.errorMsg.location}
                 />
-                <label for="rent">Monthly Rent</label>
-                <div className="input-group mb-3" style={{ width: "60%",border:"1px solid black"  }}>
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">$</span>
-                  </div>
+                <label htmlFor="rent">Monthly Rent in Dollars</label>
+                <div className="mb-3" style={{ width: "60%" }}>
                   <input
                     id="rent"
+                    name="rent"
                     type="number"
+                    min="0"
                     className="form-control"
                     aria-label="Amount (to the nearest dollar)"
                     value={this.state.rent}
                     onFocus={(e) => this.updateRent(e.target.value)}
                     onChange={(e) => this.updateRent(e.target.value)}
                   />
-                  <div className="input-group-append">
-                    <span className="input-group-text">.00</span>
-                  </div>
                 </div>
                 <ValidationMessage
                   valid={this.state.rentValid}
                   message={this.state.errorMsg.rent}
                 />
                 <div className="form-group">
-                  <label className="control-label" for="date">
+                  <label className="control-label" htmlFor="date">
                     Move-in Date
                   </label>
                   <input
                     style={{ width: "60%" }}
                     className="form-control"
-                    id="date"
+                    id="datefield"
                     name="date"
                     placeholder="MM/DD/YYYY"
+                    onClick={() => this.setTodaysDate()}
                     type="date"
+                    min={this.state.todaysDate}
                     value={this.state.date}
                     onFocus={(e) => this.updateDate(e.target.value)}
                     onChange={(e) => this.updateDate(e.target.value)}
@@ -266,13 +397,14 @@ class AddPost extends Component {
                   message={this.state.errorMsg.date}
                 />
                 <div className="form-group mt-3">
-                  <label for="exampleFormControlTextarea1">
+                  <label htmlFor="description">
                     Describe your property in detail. Our popular property
                     listings are more than 150 words long.
                   </label>
                   <textarea
                     className="form-control"
-                    id="exampleFormControlTextarea1"
+                    id="description"
+                    name="description"
                     rows="8"
                     value={this.state.detail}
                     onFocus={(e) => this.updateDetail(e.target.value)}
@@ -287,20 +419,21 @@ class AddPost extends Component {
                   <div className="form-group mt-3">
                     <label
                       className="my-1 mr-2"
-                      for="inlineFormCustomSelectPref"
+                      htmlFor="bedrooms"
                       style={{ width: "20%" }}
                     >
                       Bedrooms
                     </label>
                     <select
                       className="custom-select my-1 mr-sm-2"
-                      id="inlineFormCustomSelectPref"
+                      id="bedrooms"
+                      name="bedrooms"
                       style={{ width: "40%" }}
                       value={this.state.bed}
                       onFocus={(e) => this.updateBed(e.target.value)}
                       onChange={(e) => this.updateBed(e.target.value)}
                     >
-                      <option selected>Select</option>
+                      <option value="Select">Select</option>
                       <option value="1">1 Bedroom</option>
                       <option value="2">2 Bedrooms</option>
                       <option value="3">3 Bedrooms</option>
@@ -315,20 +448,21 @@ class AddPost extends Component {
                   <div className="form-group mt-3">
                     <label
                       className="my-1 mr-2"
-                      for="inlineFormCustomSelectPref"
+                      htmlFor="bathrooms"
                       style={{ width: "20%" }}
                     >
                       Bathrooms
                     </label>
                     <select
                       className="custom-select my-1 mr-sm-2"
-                      id="inlineFormCustomSelectPref"
+                      id="bathrooms"
+                      name="bathrooms"
                       style={{ width: "40%" }}
                       value={this.state.bath}
                       onFocus={(e) => this.updateBath(e.target.value)}
                       onChange={(e) => this.updateBath(e.target.value)}
                     >
-                      <option selected>Select</option>
+                      <option value="Select">Select</option>
                       <option value="1">1</option>
                       <option value="1.5">1.5</option>
                       <option value="2">2</option>
@@ -351,9 +485,10 @@ class AddPost extends Component {
                     type="radio"
                     name="furnishingRadio"
                     id="furnishedRadio"
-                    value="Furnished"
+                    value="true"
+                    onChange={this.onFurnishingChange.bind(this)}
                   />
-                  <label className="form-check-label" for="furnishedRadio">
+                  <label className="form-check-label" htmlFor="furnishedRadio">
                     Furnished
                   </label>
                 </div>
@@ -363,10 +498,11 @@ class AddPost extends Component {
                     type="radio"
                     name="furnishingRadio"
                     id="unfurnishedRadio"
-                    value="Unfurnished"
-                    checked
+                    value="false"
+                    defaultChecked
+                    onChange={this.onFurnishingChange.bind(this)}
                   />
-                  <label className="form-check-label" for="unfurnishedRadio">
+                  <label className="form-check-label" htmlFor="unfurnishedRadio">
                     Unfurnished
                   </label>
                 </div>
@@ -379,9 +515,10 @@ class AddPost extends Component {
                     type="radio"
                     name="petFriendlyRadio"
                     id="petFriendlyYesRadio"
-                    value="Yes"
+                    value="true"
+                    onChange={this.onPetFriendlyChange.bind(this)}
                   />
-                  <label className="form-check-label" for="petFriendlyYesRadio">
+                  <label className="form-check-label" htmlFor="petFriendlyYesRadio">
                     Yes
                   </label>
                 </div>
@@ -391,10 +528,11 @@ class AddPost extends Component {
                     type="radio"
                     name="petFriendlyRadio"
                     id="petFriendlyNoRadio"
-                    value="No"
-                    checked
+                    value="false"
+                    defaultChecked
+                    onChange={this.onPetFriendlyChange.bind(this)}
                   />
-                  <label className="form-check-label" for="petFriendlyNoRadio">
+                  <label className="form-check-label" htmlFor="petFriendlyNoRadio">
                     No
                   </label>
                 </div>
@@ -407,10 +545,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Elevator"
                         id="defaultCheck1"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck1">
+                      <label className="form-check-label" htmlFor="defaultCheck1">
                         Elevator
                       </label>
                     </div>
@@ -418,10 +557,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Low-rise"
                         id="defaultCheck2"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck2">
+                      <label className="form-check-label" htmlFor="defaultCheck2">
                         Low-rise
                       </label>
                     </div>
@@ -429,10 +569,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Garage"
                         id="defaultCheck3"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck3">
+                      <label className="form-check-label" htmlFor="defaultCheck3">
                         Garage
                       </label>
                     </div>
@@ -440,10 +581,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Security"
                         id="defaultCheck4"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck4">
+                      <label className="form-check-label" htmlFor="defaultCheck4">
                         Security
                       </label>
                     </div>
@@ -451,10 +593,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Internet"
                         id="defaultCheck5"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck5">
+                      <label className="form-check-label" htmlFor="defaultCheck5">
                         Internet
                       </label>
                     </div>
@@ -462,10 +605,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Swimming Pool"
                         id="defaultCheck6"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck6">
+                      <label className="form-check-label" htmlFor="defaultCheck6">
                         Swimming Pool
                       </label>
                     </div>
@@ -473,10 +617,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Near Bus Stop"
                         id="defaultCheck7"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck7">
+                      <label className="form-check-label" htmlFor="defaultCheck7">
                         Near Bus Stop
                       </label>
                     </div>
@@ -484,10 +629,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Covered Parking"
                         id="defaultCheck8"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck8">
+                      <label className="form-check-label" htmlFor="defaultCheck8">
                         Covered Parking
                       </label>
                     </div>
@@ -497,10 +643,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Health Club"
                         id="defaultCheck9"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck9">
+                      <label className="form-check-label" htmlFor="defaultCheck9">
                         Health Club
                       </label>
                     </div>
@@ -508,10 +655,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="High-rise"
                         id="defaultCheck10"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck10">
+                      <label className="form-check-label" htmlFor="defaultCheck10">
                         High-rise
                       </label>
                     </div>
@@ -519,10 +667,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Disability Access"
                         id="defaultCheck11"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck11">
+                      <label className="form-check-label" htmlFor="defaultCheck11">
                         Disability Access
                       </label>
                     </div>
@@ -530,10 +679,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Walkup"
                         id="defaultCheck12"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck12">
+                      <label className="form-check-label" htmlFor="defaultCheck12">
                         Walkup
                       </label>
                     </div>
@@ -541,10 +691,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Electronic Security"
                         id="defaultCheck13"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck13">
+                      <label className="form-check-label" htmlFor="defaultCheck13">
                         Electronic Security
                       </label>
                     </div>
@@ -552,10 +703,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Laundromat"
                         id="defaultCheck14"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck14">
+                      <label className="form-check-label" htmlFor="defaultCheck14">
                         Laundromat
                       </label>
                     </div>
@@ -563,10 +715,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Street Parking"
                         id="defaultCheck15"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck15">
+                      <label className="form-check-label" htmlFor="defaultCheck15">
                         Street Parking
                       </label>
                     </div>
@@ -574,10 +727,11 @@ class AddPost extends Component {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
+                        value="Near Subway"
                         id="defaultCheck16"
+                        onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" for="defaultCheck16">
+                      <label className="form-check-label" htmlFor="defaultCheck16">
                         Near Subway
                       </label>
                     </div>
@@ -588,8 +742,8 @@ class AddPost extends Component {
                     className="btn btn-info mt-5 mb-1 text-uppercase"
                     style={{ width: "20%" }}
                     disabled={!this.state.formValid}
-                    onSubmit={() => this.props.history.push("/")}
-                    type="submit"
+                    // onSubmit={() => this.props.history.push("/")}
+                    onClick={this.submitHandler}
                   >
                     Post Ad
                   </button>
@@ -605,15 +759,29 @@ class AddPost extends Component {
                 className="img-fluid rounded-circle mb-3 mt-4"
                 style={{ width: "200px", height: "200px" }}
                 src={require("./../../assets/images/user.svg")}
+                alt=""
               />
               <h2 className="mt-3">John Martin</h2>
-              <a className="btn btn-info mt-3 mb-1" href="#">
+              <a className="btn btn-info mt-3 mb-1" href="/edit">
                 View My Profile
               </a>
             </div>
           </div>
         </div>
       </div>
+      {
+        this.state.displayModal && (
+        <SuccessModal
+          message={{
+            title: "Success!",
+            body: "Property has been added to your account!",
+            show: true
+          }}
+
+          renderComponent={this.goToHome}
+        />
+      )}
+      </>
     );
   }
 }

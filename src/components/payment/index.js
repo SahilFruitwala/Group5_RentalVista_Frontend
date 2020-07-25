@@ -19,7 +19,7 @@ const validateemail =
       let valid = false;
       Object.values(errors).forEach(      // if we have an error string set valid to false
         (val) => 
-        { if(val=='set' && flag == 1)
+        { if(val==='set' && flag === 1)
               { valid = true; }
           else
               { valid = false; }
@@ -164,7 +164,7 @@ export default class Payment extends React.Component {
     }
   
     this.setState({errors, [name]: value}, ()=> {
-      console.log(errors)
+       // console.log(errors)
   })
 }
 

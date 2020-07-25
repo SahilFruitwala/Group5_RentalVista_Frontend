@@ -1,3 +1,5 @@
+// 1. Author: Sahil Fruitwala - B00844489
+
 import React from "react";
 
 import Image404 from "../../assets/images/404.svg";
