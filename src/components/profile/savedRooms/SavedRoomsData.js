@@ -35,6 +35,17 @@ const intialRooms = [
       reviews: 15,
       pet: true,
       image: room6
+    },
+    {
+      id: 7,
+      promoted: false,
+      description:
+        "Proident labore excepteur non id amet. Enim dolore labore qui quis ex nisi veniam. Dolor Lorem esse do enim ad cillum officia enim consequat incididunt in mollit. Officia ex eiusmod veniam excepteur. Ut anim proident reprehenderit fugiat eiusmod.",
+      rating: 3.2,
+      rent: 1100,
+      reviews: 15,
+      pet: true,
+      image: room6
     }
   ];
 
