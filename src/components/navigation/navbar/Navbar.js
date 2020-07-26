@@ -61,6 +61,8 @@ function NavigationBar(props) {
           <Nav className="ml-auto">
             <Nav.Link href="/house">House</Nav.Link>
             <Nav.Link href="/payment">Payment</Nav.Link>
+            <Nav.Link href="/myapps">My Appointment</Nav.Link>
+    
           </Nav>
           <Nav>
             <Nav.Link href="/blog">Blog</Nav.Link>
