@@ -761,7 +761,6 @@ class AddPost extends Component {
                 src={require("./../../assets/images/user.svg")}
                 alt=""
               />
-              <h2 className="mt-3">John Martin</h2>
               <a className="btn btn-info mt-3 mb-1" href="/edit">
                 View My Profile
               </a>
