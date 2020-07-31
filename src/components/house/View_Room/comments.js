@@ -60,7 +60,6 @@ export default class addComment extends Component {
         this.setState({ ...this.state, errorMsg: "Error retrieving data" });
       });
   }
-
   handleChange = (event) => {
     console.log("Hi");
     event.preventDefault();
