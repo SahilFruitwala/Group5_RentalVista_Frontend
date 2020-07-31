@@ -27,7 +27,7 @@ import AppointmentBook from "./components/appointment/AppointmentBook";
 import MyAppointment from "./components/appointment/MyAppointments";
 import AddPost from "./components/post";
 import SignupPage from "./components/signup/index";
-import ViewRoom from "./components/house/View_Room/ViewRoom";
+import ViewRoom from "./components/house/View_Room/viewroom";
 
 function App(props) {
   const history = createBrowserHistory();
