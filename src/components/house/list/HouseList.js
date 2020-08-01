@@ -72,7 +72,7 @@ function HouseList() {
                     Save Room
                   </Button>
                   <a href="/view-room">
-                    <Button variant="warning" style={{ marginLeft: "2rem" }}>
+                    <Button variant="warning" style={{ marginLeft: "15px" }}>
                       View Room
                     </Button>
                   </a>
@@ -135,7 +135,7 @@ function HouseList() {
                     Save Room
                   </Button>
                   <a href="/view-room">
-                    <Button variant="warning" style={{ marginLeft: "2rem" }}>
+                    <Button variant="warning" style={{ marginLeft: "15px" }}>
                       View Room
                     </Button>
                   </a>
