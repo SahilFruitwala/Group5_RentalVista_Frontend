@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { Card, Row, Button, Badge } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 import TestModal from "../../../utilities/TestModal";
 
 import "./HouseList.css";
@@ -15,21 +14,31 @@ function HouseList() {
   const handleModal = (msg) => {
     setDisplay(!display);
   };
-  useEffect( () => {
-    fetch('http://rentalvista-api.herokuapp.com/api/getrooms').then(response =>
-      response.json().then(data => {
-        //console.log(data);
-        setRooms(data.Data)
+  useEffect(() => {
+    fetch("http://rentalvista-api.herokuapp.com/api/getrooms", {
+      method: "GET",
+      mode: "cors",
+      cache: "no-cache",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setRooms(data.Data);
       })
-    )
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
-//  console.log(rooms);
+  //  console.log(rooms);
   return (
     <>
       <Row className="container-fluid">
-        { rooms.length !== 0 ? (
-          rooms.map(room => {
+        {rooms.length !== 0 ? (
+          rooms.map((room) => {
             return (
               <Card
                 key={room.roomID}
@@ -54,7 +63,7 @@ function HouseList() {
                   <Card.Subtitle className="pt-2" style={{ color: "#696969" }}>
                     <Row>
                       <FontAwesomeIcon icon="star" color="#F7A231" />
-                      {room.rating} / 5, 
+                      {room.rating} / 5,
                     </Row>
                   </Card.Subtitle>
                   <Card.Text className="justify-data pt-1">
@@ -73,7 +82,7 @@ function HouseList() {
                   </a>
                 </Card.Body>
               </Card>
-            )
+            );
           })
         ) : (
           <center className="container m-5">
@@ -86,10 +95,7 @@ function HouseList() {
               No Result found!
             </h2>
           </center>
-        )
-
-        }
-
+        )}
       </Row>
       {/* <Row className="container-fluid">
         {props.houses.length !== 0 ? (
