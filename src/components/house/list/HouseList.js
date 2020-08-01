@@ -15,7 +15,7 @@ function HouseList() {
     setDisplay(!display);
   };
   useEffect(() => {
-    fetch("http://rentalvista-api.herokuapp.com/api/getrooms", {
+    fetch("https://rentalvista-api.herokuapp.com/api/getrooms", {
       method: "GET",
       mode: "cors",
       cache: "no-cache",
