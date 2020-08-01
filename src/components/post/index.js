@@ -55,7 +55,8 @@ class AddPost extends Component {
     this.setState({displayModal: !this.state.displayModal})
     if(this.state.isPromoted){
                                           //If Advertise posting is checked then goto payments page
-      this.props.history.push("/payment");        
+      this.props.history.push("/house");                                            
+      //this.props.history.push("/payment");        
     }
     else
     {                                     // If Advertise posting is not checked go to list rooms page
