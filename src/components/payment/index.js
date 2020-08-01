@@ -177,19 +177,25 @@ export default class Payment extends React.Component {
     
   }
 
+  handleroute = (event) => {
+          
+    this.props.history.push("/house");  
+
+}
+
  
 
   render (){
     const {errors, formValid} = this.state;
       return (
         <div class="custom-row">
-        <div class="container" style={{ background:'white', paddingTop: '15px'}}>
+        <div class="container" style={{display: 'flex', justifyContent: "center", background:'white', paddingTop: '15px'}}>
           <h2 style={{background:'white',display: "flex",justifyContent: "center",alignItems: "center", float: 'left', paddingTop:'10px'}}>Payment Page</h2>
-          <h4 style={{ float: 'left', paddingTop: '15px'}}>Accepted Cards : &nbsp;&nbsp;&nbsp;</h4><img className="img1" src={visa} alt="visa" />
+          <h4 style={{ float: 'left', paddingTop: '15px', marginLeft:"50px"}}>Accepted Cards : &nbsp;&nbsp;&nbsp;</h4><img className="img1" src={visa} alt="visa" />
           <img className="img1" src={amex} alt="amex" /><img className="img1" src={master} alt="master" />
           <img className="img1" src={discover} alt="discover" />
         </div>
-        <div class="col-50" style={{ display: 'flex',justifyContent: "center",alignItems: "center"}}>
+        <div class="col-50" style={{ display: 'flex',justifyContent: "center",alignItems: "center", width:"100%"}}>
           <div class="container4" style={{float : 'left', paddingRight : '5px', display: 'flex'}}>
             <form onSubmit={this.handleSubmit} noValidate >
               <div class="row1" style={{ display: 'flex'}}>
@@ -251,19 +257,50 @@ export default class Payment extends React.Component {
               <label style={{marginLeft: '30px'}}>
                  Complete Payment process:
               </label>
-              <Popup trigger={<button type="submit" className="btn btn-primary btn-inline" style={{marginLeft: '220px'}}>Checkout</button>} 
-                modal
-                closeOnDocumentClick
-                >                
-                {this.state.errorCount !== null ? 
-                <div style={{border: '5px',borderBlockColor: 'black', borderRadius: '10px', background: 'white'}}>
-                  <h4 style={{display: 'flex', justifyContent: 'center'}}>Payment details</h4>
-                  <div className="validmsg" style={{display: 'flex', justifyContent: 'center'}}> 
-                {formValid ? 'Payment Completed Successfully!' 
-                : 'Incomplete details, Please enter all the details correctly! (Press Enter to close or click outside)'}
-                </div></div> : 'Form not submitted'}
-                
+              
+                <Popup trigger={<button type="submit" className="btn btn-primary btn-inline" style={{marginLeft: '220px'}}>Submit</button>} modal>
+                    {close => (
+                    <div style={{border: '5px',borderColor: 'black', borderRadius: '10px', background: 'white'}}>
+                    <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Payment Checkout details</h2>
+                    <div className="validmsg" style={{margin: '30px'}}> 
+                        <p1 className="card-title" style={{color: 'black', margin:'auto'}}>
+                        {this.state.errorCount !== null ? 
+                            
+                          (<div className="validmsg" style={{display: 'flex', justifyContent: 'center'}}> 
+                          {formValid ? 
+                          <div style={{border:"0.2"}}>
+                          <div>Payment Completed Successfully! Redirecting to House Listings   </div>
+                          <hr/><br/>
+                              <button                        
+                                className="btn btn-success"
+                                onClick={() => {close();
+                                    this.handleroute();                                                       
+                                }}
+                            >
+                                Okay
+                            </button> 
+                          </div>
+                            : 
+                          <div style={{border: '5px',borderRadius: '8px',borderColor: 'black'}}>
+                            <div>Incomplete details, Please enter all the details correctly!</div>
+                            <hr />
+                              <button                        
+                                  className="btn btn-warning"
+                                  onClick={() => {close();                                                      
+                                  }}
+                              >
+                                  Okay
+                              </button> 
+                          </div>}
+                          
+                          </div>) : ('Form not submitted')
+                        }
+                        </p1>                                                                                                                         
+                    </div>
+                    </div>        
+                    )}
                 </Popup>
+
                 <Link type="submit" className="btn btn-primary btn-inline" style={{marginLeft: '20px', width:'90px'}} to="/">Cancel</Link>
               </div>
             </form>
