@@ -1,5 +1,5 @@
 //Author1: Krupa Patel - B00828120
-//Author2: Harshitha M.S. - 
+//Author2: Harshitha M.S. - B00838019
 import React from "react";
 import { Carousel, Col, Row, ListGroup} from "react-bootstrap";
 import room1 from "../../../assets/images/room-1.jpg";
