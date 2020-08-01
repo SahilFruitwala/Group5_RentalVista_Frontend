@@ -1,4 +1,5 @@
-//Author: Krupa Patel - B00828120
+//Author1: Krupa Patel - B00828120
+//Author2: Harshitha M.S. - 
 import React from "react";
 import { Carousel, Col, Row, ListGroup} from "react-bootstrap";
 import room1 from "../../../assets/images/room-1.jpg";
@@ -10,6 +11,7 @@ import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
 import { faBed } from "@fortawesome/free-solid-svg-icons";
 import { faPaw } from "@fortawesome/free-solid-svg-icons";
 import { faBath } from "@fortawesome/free-solid-svg-icons";
+import Comments from "./comments";
 
 function ViewRoom(props) {
   return (
@@ -65,6 +67,7 @@ function ViewRoom(props) {
           fermentum velit massa a urna. Vestibulum pulvinar elit arcu.
         </Col>
       </Row>
+      <Comments/>
     </div>
   );
 }

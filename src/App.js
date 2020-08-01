@@ -28,6 +28,7 @@ import MyAppointment from "./components/appointment/MyAppointments";
 import AddPost from "./components/post";
 import SignupPage from "./components/signup/index";
 import ViewRoom from "./components/house/View_Room/viewroom";
+import Comments from "./components/house/View_Room/comments";
 
 function App(props) {
   const history = createBrowserHistory();
@@ -63,6 +64,7 @@ function App(props) {
             <Route path="/house" exact component={HousePage} />
 
             <Route path="/view-room" exact component={ViewRoom} />
+            <Route path="/comments" exact component={Comments} /> 
 
             <Route path="/aboutus" exact component={AboutUsPage} />
             <Route path="/faq" exact component={FAQPage} />
