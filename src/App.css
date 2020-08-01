@@ -33,4 +33,17 @@
   * {
     caret-color: #F7A231;
   }
-  
+  .card1 {
+    background-color: #fff;
+    min-width: 100%;
+    min-height: 200px;
+  }
+  .card1 {display: flex}
+  .card1 {
+    overflow-x: auto;
+  }
+  .card1--content {
+    background-color: #e74c3c;
+    min-width: 200px;
+    margin: 5px;
+  }
