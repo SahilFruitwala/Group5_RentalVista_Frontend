@@ -776,7 +776,7 @@ class AddPost extends Component {
                         style={{marginLeft: '20px'}}
                       />
                       <label className="form-check" htmlFor="defaultCheck17" style={{fontWeight: "bold",marginLeft: '20px'}}>
-                        Advertise Room ? 
+                        Advertise Room? (10$ Payment Fee for prioritizing your room post)
                       </label>
                     </div>
                 <div className="text-center">

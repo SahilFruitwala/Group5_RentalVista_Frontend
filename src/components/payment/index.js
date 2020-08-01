@@ -181,7 +181,13 @@ export default class Payment extends React.Component {
           
     this.props.history.push("/house");  
 
-}
+  }
+  componentDidMount() {
+    if (localStorage.getItem("token")) {
+    } else {
+      this.props.history.push("/login")
+    }
+  }
 
  
 

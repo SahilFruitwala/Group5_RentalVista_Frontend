@@ -68,6 +68,10 @@ class Form extends React.Component {
       
       componentDidMount() 
       {
+        if (localStorage.getItem("token")) {
+        } else {
+          this.props.history.push("/login")
+        }
         const imagesToBePreloaded = [blog1]
         imagesToBePreloaded.forEach(image => { new Image().src = image })
         
@@ -222,7 +226,7 @@ class Form extends React.Component {
             if(this.state.title == 'Blog post 1' || param =='Blog post 1'){
                 this.play("Cannot delete default Admin blog")
             }
-            if(this.state.title == 'Blog post 2' || param =='Blog post 2' || param =='Housing post 1' || param == 'Housing post 2'){
+            else if(this.state.title == 'Blog post 2' || param =='Blog post 2' || param =='Housing post 1' || param == 'Housing post 2' || param == 'Housing post 3'){
                 this.play("Cannot delete another user's blog, try a blog created by you.")
             }  
             else{
@@ -238,10 +242,7 @@ class Form extends React.Component {
                 console.log(error)
                 })
 
-            }
-                
-            
-        
+            }       
           }
 
         resetForm = () => {
@@ -255,11 +256,6 @@ class Form extends React.Component {
               alert(msg) 
               //NewMessageNotification.CustomizedSnackbars()
           }
-
-        //   handlepop = () => {
-        //       return <Blog  />
-
-        //   }
     
 
   render() {
