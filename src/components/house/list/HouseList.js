@@ -27,8 +27,7 @@ function HouseList() {
 //  console.log(rooms);
   return (
     <>
-      <Row className="container-fluid">
-        
+      <Row className="container-fluid">        
       <section class="card1">
       { rooms.length !== 0 ? (
           rooms.map(room => {
@@ -77,14 +76,11 @@ function HouseList() {
                       View Room
                     </Button>
                   </a>
-                </Card.Body>
-                
+                </Card.Body>                
               </Card>
-              </div>        
-              
+              </div>             
               ) : ( <></>
-                )}
-                
+                )}                
               </>
             )
           })
@@ -95,7 +91,6 @@ function HouseList() {
             </h2>
           </center>
         )
-
         }
         </section>
         

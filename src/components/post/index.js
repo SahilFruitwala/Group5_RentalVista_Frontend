@@ -37,6 +37,7 @@ class AddPost extends Component {
       formValid: false,
       errorMsg: {},
       checkBoxArray: [],
+      isPromoted: false,
       isFurnished: false,
       isPetFriendly: false,
       selectedImages: [],
@@ -52,7 +53,15 @@ class AddPost extends Component {
 
   goToHome = () => {
     this.setState({displayModal: !this.state.displayModal})
-    this.props.history.push("/house");
+    if(this.state.isPromoted){
+                                          //If Advertise posting is checked then goto payments page
+      this.props.history.push("/payment");        
+    }
+    else
+    {                                     // If Advertise posting is not checked go to list rooms page
+      this.props.history.push("/house");  
+    }
+    
   }
 
   componentDidMount() {
@@ -97,6 +106,7 @@ class AddPost extends Component {
           furnishing: this.state.isFurnished,
           petFriendly: this.state.isPetFriendly,
           amenities: this.state.checkBoxArray,
+          promoted: this.state.isPromoted,
           images: this.state.selectedImages
         },
       })
@@ -130,6 +140,21 @@ class AddPost extends Component {
     }
 
     this.setState({ checkBoxArray: checkBoxArray })
+  }
+
+  onCheckboxChange2(e) {
+    let checkBox = false
+    console.log("Before if"+this.state.isPromoted)
+    if (e.target.checked) {
+      checkBox = true
+      console.log("In if"+checkBox)
+    } else {
+      checkBox = false
+      console.log("In else"+checkBox)
+    }
+    this.setState({ isPromoted: checkBox }, () => {
+      console.log(this.state.isPromoted, 'promotedval');
+    });
   }
 
   checkIfFormValid = () => {
@@ -737,6 +762,22 @@ class AddPost extends Component {
                     </div>
                   </div>
                 </div>
+                <div>
+                  <label className="control-label mt-3" style={{fontWeight: "bold"}}>Room Advertisement</label>
+                </div>
+                <div className="form">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        value="Advert room"
+                        id="defaultCheck17"
+                        onChange={this.onCheckboxChange2.bind(this)}
+                        style={{marginLeft: '20px'}}
+                      />
+                      <label className="form-check" htmlFor="defaultCheck17" style={{fontWeight: "bold",marginLeft: '20px'}}>
+                        Advertise Room ? 
+                      </label>
+                    </div>
                 <div className="text-center">
                   <button
                     className="btn btn-info mt-5 mb-1 text-uppercase"
