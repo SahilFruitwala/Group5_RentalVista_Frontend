@@ -10,7 +10,6 @@ import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
 import { faBed } from "@fortawesome/free-solid-svg-icons";
 import { faPaw } from "@fortawesome/free-solid-svg-icons";
 import { faBath } from "@fortawesome/free-solid-svg-icons";
-import Comments from "./comments";
 
 function ViewRoom(props) {
   return (
@@ -66,7 +65,6 @@ function ViewRoom(props) {
           fermentum velit massa a urna. Vestibulum pulvinar elit arcu.
         </Col>
       </Row>
-      <Comments/>
     </div>
   );
 }
