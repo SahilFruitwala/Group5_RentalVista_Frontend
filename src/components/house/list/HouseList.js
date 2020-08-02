@@ -16,7 +16,7 @@ function HouseList() {
     setDisplay(!display);
   };
   useEffect( () => {
-    fetch('http://rentalvista-api.herokuapp.com/api/getrooms').then(response =>
+    fetch('https://rentalvista-api.herokuapp.com/api/getrooms').then(response =>
       response.json().then(data => {
         //console.log(data);
         setRooms(data.Data)
