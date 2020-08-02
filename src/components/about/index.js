@@ -1,12 +1,10 @@
 // 1. Author: Sahil Fruitwala - B00844489
 import React from "react";
-
 import CabinImage from "../../assets/images/about-us.svg";
 import UserImage from "../../assets/images/user.svg";
 import "./index.css";
 
 function About() {
-
   return (
     <>
       <div className="jumbotron text-center">
@@ -34,62 +32,38 @@ function About() {
         <h3 className="text-center">Meet Our Team</h3>
         <div className="row text-center">
           <div className="col-12 col-lg-3">
-            <img
-              src={UserImage}
-              alt="Profile"
-              className="custom-team-image"
-            />
+            <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
             <p className="mt-2">John Doe</p>
           </div>
           <div className="col-12 col-lg-3">
-            <img
-              src={UserImage}
-              alt="Profile"
-              className="custom-team-image"
-            />
+            <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
             <p className="mt-2">Jane Doe</p>
           </div>
           <div className="col-12 col-lg-3">
-            <img
-              src={UserImage}
-              alt="Profile"
-              className="custom-team-image"
-            />
+            <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
             <p className="mt-2">John Doe</p>
           </div>
           <div className="col-12 col-lg-3">
-            <img
-              src={UserImage}
-              alt="Profile"
-              className="custom-team-image"
-            />
+            <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
             <p className="mt-2">Jane Doe</p>
           </div>
         </div>
         <div className="row text-center">
           <div className="col-12 col-lg-6">
-            <img
-              src={UserImage}
-              alt="Profile"
-              className="custom-team-image"
-            />
+            <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
             <p className="mt-2">John Doe</p>
           </div>
           <div className="col-12 col-lg-6">
-            <img
-              src={UserImage}
-              alt="Profile"
-              className="custom-team-image"
-            />
+            <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
             <p className="mt-2">Jane Doe</p>
           </div>
-          </div>
+        </div>
       </div>
     </>
   );
