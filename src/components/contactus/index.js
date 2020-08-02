@@ -30,7 +30,7 @@ function Contact() {
 
   const handleOnSubmit = () => {
     axios({
-      url: "http://127.0.0.1:8080/feedback",
+      url: "https://rentalvista-api.herokuapp.com/feedback",
       method: "POST",
       data: {
         email: data.email,
