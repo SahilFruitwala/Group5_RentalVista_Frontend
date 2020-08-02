@@ -20,7 +20,9 @@ function Footer() {
               <NavLink to="/aboutus">
                 <li>About Us</li>
               </NavLink>
-              <li>Developers</li>
+              <NavLink to="/contactus">
+                <li>Contact Us</li>
+              </NavLink>
             </ul>
           </div>
           <div className="col-12 col-sm-6 col-md-4 justify-content-center">

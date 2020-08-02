@@ -1,32 +1,43 @@
-import React from 'react';
+// Author2: Sahil Fruitwala - B00844489import React from "react";
+import React from "react";
+import FAQImage from "../../assets/images/faq.svg";
+import { Link } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
-// import "./FAQ.css"
-import FAQimage from '../../assets/images/faq.svg';
+function FAQ() {
 
-function FAQ(props){
-    return(
-        <div> 
-            <div className="imageSet">
-            <img src={FAQimage} />   
-            </div>               
-            <div className="position">
-                <h3>1. Lorem ipsum dolor sit amet?</h3>
-                <p className="styleanswer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <h3>2. Lorem ipsum dolor sit amet?</h3>
-                <p className="styleanswer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
-                ex ea commodo consequat.</p>
-                <h3>3. Lorem ipsum dolor sit amet?</h3>
-                <p className="styleanswer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-                sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-        </div>
-    );
+  return (
+    <>
+      <div className="imageSet">
+        <img src={FAQImage} className="img-fluid" alt="FAQ Image" />
+      </div>
+      <Container className="position m-2">
+        <h4>1. What are pricing?</h4>
+        <p className="styleanswer">
+          We are not charging the people who wants to see the available rooms
+          and wants to post their rooms. But we have some charges for people we
+          wants to promote their rooms.
+        </p>
+        <h4>2. How to recover password?</h4>
+        <p className="styleanswer">
+          To recover password go to the <Link to="/login">Login</Link> page and
+          click on forgot password link. Enter email id with you registered
+          earlier, if email exist new password will be sent to your mail.
+        </p>
+        <h4>3. How to post a room?</h4>
+        <p className="styleanswer">
+          To post a room, one need to either create an account or login first.
+          After Login you can access Add post from navigation bar. You need to
+          feel some details to post a room.
+        </p>
+        <h4>4. How to check pets are allowed or not in a room?</h4>
+        <p className="styleanswer">
+          To check if pets are allowed or not, one can either use filers or can
+          go to the specific room and check there as well.
+        </p>
+      </Container>
+    </>
+  );
 }
 
 export default FAQ;
