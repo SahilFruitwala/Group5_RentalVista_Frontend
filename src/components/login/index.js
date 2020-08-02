@@ -85,7 +85,7 @@ class Login extends Component {
 
     switch (name) {
       case "email":
-        formErrors.email = emailRegex.test(value)
+        formErrors.email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
           ? ""
           : "invalid email address";
         break;

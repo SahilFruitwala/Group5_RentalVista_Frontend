@@ -24,7 +24,7 @@ const ModalExample = (props) => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    regex.test(email) ? setHidden(true) : setHidden(false);
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? setHidden(true) : setHidden(false);
   }, [email]);
 
   const handleSubmit = () => {
