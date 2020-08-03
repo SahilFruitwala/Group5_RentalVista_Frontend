@@ -37,7 +37,7 @@ const intialRooms = [
       image: room6
     },
     {
-      id: 7,
+      id: 8,
       promoted: false,
       description:
         "Proident labore excepteur non id amet. Enim dolore labore qui quis ex nisi veniam. Dolor Lorem esse do enim ad cillum officia enim consequat incididunt in mollit. Officia ex eiusmod veniam excepteur. Ut anim proident reprehenderit fugiat eiusmod.",

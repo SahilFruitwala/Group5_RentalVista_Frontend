@@ -15,6 +15,7 @@ function ValidationMessage(props) {
 
 const maxNumber = 10;
 const maxMbFileSize = 5 * 1024 * 1024;
+const mounted = false;
 
 class AddPost extends Component {
   constructor(props) {
@@ -50,7 +51,9 @@ class AddPost extends Component {
   }
 
   handleModal = (msg) => {
-    this.setState({displayModal: !this.state.displayModal})
+    if(this.mounted){
+      this.setState({displayModal: !this.state.displayModal})
+    }
   };
 
   goToHome = () => {
@@ -65,14 +68,18 @@ class AddPost extends Component {
     {                                     // If Advertise posting is not checked go to list rooms page
       this.props.history.push("/house");  
     }
-    
   }
 
   componentDidMount() {
+    this.mounted = true;
     if (localStorage.getItem("token")) {
     } else {
       this.props.history.push("/login")
     }
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   setTodaysDate = () => {
@@ -88,7 +95,9 @@ class AddPost extends Component {
     } 
 
     today = yyyy+'-'+mm+'-'+dd;
-    this.setState({todaysDate: today})
+    if(this.mounted){
+      this.setState({todaysDate: today})
+    }
   }
 
   submitHandler = () => {    
