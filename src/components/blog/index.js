@@ -274,15 +274,15 @@ class Form extends React.Component {
                    <div style={{color:"black", justifyContent:'center', padding:'5px'}}><h3 style={{justifyContent:'center'}}>Welcome to Rental Vista User Blog page!</h3></div><div style={{color:"black", justifyContent:'center', margin:'10px'}}>You can view Blogs posted by other RentalVista users, create your own blog, update and delete it</div> 
                 </div>
             <div className="col-4 " style={{ marginLeft: '1%', width: "auto"}}  >
-                <label1 className="label1" style={{ margin: 'none!important'}}>Title:</label1>
+                <label className="label" style={{ margin: 'none!important'}}>Title:</label>
                 <input className="form-control mb-2" onChange={this.handleChange} noValidate  name="title" 
                 placeholder="Article Title" maxLength="16" style={{  display: 'flex'}}/>
                 
-                <label1 className="label1" style={{ margin: 'none!important'}}>Description:</label1>            
+                <label className="label" style={{ margin: 'none!important'}}>Description:</label>            
                 <textarea className="form-control mb-2 " onChange={this.handleChange} noValidate
                 placeholder="Article Description" name='desc'  style={{ }}>
                 </textarea>
-                <label1 className="label1" style={{ margin: 'none!important'}}>Author:</label1>
+                <label className="label" style={{ margin: 'none!important'}}>Author:</label>
                 <input className="form-control mb-2" onChange={this.handleChange} noValidate
                     placeholder="Article Author" name="author" style={{ }} />
                 
@@ -321,10 +321,10 @@ class Form extends React.Component {
                         let newColor = ""
                         switch(blog.id % 9) {
                             case 1:
-                                newColor="bg-warning text-dark"; 
+                                newColor="bg-secondary text-light";
                                 break;
                             case 2:
-                                newColor="bg-secondary text-light"; 
+                                newColor="bg-primary text-light"; 
                                 break;
                             case 3:
                                 newColor="bg-danger text-light"; 
@@ -354,20 +354,20 @@ class Form extends React.Component {
                                 <div className={"card "+newColor} style= {{width: "auto",height: "300px",margin: '5px'}}>
                                     <div className="card-body" key={blog.id} style={{width: "auto",margin: '5px'}} >
                                         
-                                        <Popup trigger={<h4 className="card-title"><Link style={{}}>{blog.title}</Link></h4>} modal closeOnDocumentClick>                
+                                        <Popup trigger={<h4 className="card-title"><Link>{blog.title}</Link></h4>} modal closeOnDocumentClick>                
                                                 { close => (
                                                 <div style={{border: '5px',borderBlockColor: 'black', borderRadius: '10px', background: 'white'}}>
                                                   <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Blog Details</h2>
                                                   <div className="validmsg" style={{margin: '30px'}}> 
-                                                    <p1 className="card-title" style={{color: 'black'}}>Title: {blog.title}</p1>
+                                                    <label className="card-title" style={{color: 'black'}}>Title: {blog.title}</label>
                                                     <hr />
-                                                    <p1 style={{color: 'black'}} >
+                                                    <label style={{color: 'black'}} >
                                                         Author: {blog.author}
-                                                    </p1>
+                                                    </label>
                                                     <hr />
-                                                    <p1 style={{color: 'black'}} >
+                                                    <p style={{color: 'black'}} >
                                                         Description: {blog.desc}
-                                                    </p1>                                                                                                       
+                                                    </p>                                                                                                       
                                                   </div>
                                                   <button
                                                         className="btn btn-warning"
@@ -380,11 +380,11 @@ class Form extends React.Component {
                                                 )}                                                
                                         </Popup>
                                         <hr />
-                                        <p1 className="card-text">
+                                        <p className="card-text">
                                             Author: {blog.author}
-                                        </p1>
+                                        </p>
                                         <hr />
-                                        <p1 className="card-text">
+                                        <p className="card-text">
                                             Description: {`${blog.desc.substring(0, MAX_LENGTH)}...`}
                                         
                                             
@@ -396,15 +396,15 @@ class Form extends React.Component {
                                                 <div style={{border: '5px',borderBlockColor: 'black', borderRadius: '10px', background: 'white'}}>
                                                   <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Blog Details</h2>
                                                   <div className="validmsg" style={{margin: '30px'}}> 
-                                                    <p1 className="card-title" style={{color: 'black'}}>Title: {blog.title}</p1>
+                                                    <p className="card-title" style={{color: 'black'}}>Title: {blog.title}</p>
                                                     <hr />
-                                                    <p1 style={{color: 'black'}} >
+                                                    <p style={{color: 'black'}} >
                                                         Author: {blog.author}
-                                                    </p1>
+                                                    </p>
                                                     <hr />
-                                                    <p1 style={{color: 'black'}} >
+                                                    <p style={{color: 'black'}} >
                                                         Description: {blog.desc}
-                                                    </p1>
+                                                    </p>
                                                                                                        
                                                   </div>
                                                   <button
@@ -418,7 +418,7 @@ class Form extends React.Component {
                                                 )}
                                                 
                                             </Popup>
-                                        </p1>
+                                        </p>
                                         <hr />
                                             
                                                             
@@ -427,18 +427,18 @@ class Form extends React.Component {
                                                 <div style={{border: '5px',borderColor: 'black', borderRadius: '10px', background: 'white'}}>
                                                 <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Edit Blog Details</h2>
                                                 <div className="validmsg" style={{margin: '30px'}}> 
-                                                    <p1 className="card-title" style={{color: 'black', margin:'auto'}}>Title: 
+                                                    <p className="card-title" style={{color: 'black', margin:'auto'}}>Title: 
                                                     <input className="form-control mb-2" onChange={this.handleChange} noValidate  name="title" placeholder="Article Title" style={{ width: '300px', display: 'flex'}}/>
-                                                    </p1>
+                                                    </p>
                                                     <hr />
-                                                    <p1 style={{color: 'black'}} >
+                                                    <p style={{color: 'black'}} >
                                                         Description: <textarea className="form-control mb-2 " onChange={this.handleChange} noValidate
                                                                 placeholder="Article Description" name='desc'  style={{ width: '300px'}}>
-                                                                </textarea></p1>
+                                                                </textarea></p>
                                                     <hr />
-                                                    <p1 style={{color: 'black'}} >
+                                                    <p style={{color: 'black'}} >
                                                         Author: <input className="form-control mb-2" onChange={this.handleChange} noValidate
-                                                        placeholder="Article Author" name="author" style={{ width: '300px'}} /></p1>  
+                                                        placeholder="Article Author" name="author" style={{ width: '300px'}} /></p>  
                                                     <hr/>
                                                     <button
                                                         className="btn btn-success"
@@ -466,7 +466,7 @@ class Form extends React.Component {
                                                 <div style={{border: '5px',borderColor: 'black', borderRadius: '10px', background: 'white'}}>
                                                 <h2 style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Delete Blog</h2>
                                                 <div className="validmsg" > 
-                                                    <p1 style={{color:"black",justifyContent: 'center', display: 'flex'}} >Are you sure you want to delete the blog?</p1>
+                                                    <p style={{color:"black",justifyContent: 'center', display: 'flex'}} >Are you sure you want to delete the blog?</p>
                                                     <hr/>
                                                     <div style={{justifyContent: 'center', display: 'flex'}}>
                                                     <button

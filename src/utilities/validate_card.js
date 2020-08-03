@@ -12,19 +12,7 @@ var acceptedCards = {
   export function validateCard(value) {
     // remove all non digit characters
     value = value.replace(/\D/g, '');
-    let sum = 0;
-    var shouldDouble = false;
-    // loop through values starting at the rightmost side
-    for (var i = value.length - 1; i >= 0; i--) {
-      var digit = parseInt(value.charAt(i));
-  
-      if (shouldDouble) {
-        if ((digit *= 2) > 9) digit -= 9;
-      }
-  
-      sum += digit;
-      shouldDouble = !shouldDouble;
-    }
+    
     
     // var valid = (sum % 10) === 0;
     var accepted = false;
