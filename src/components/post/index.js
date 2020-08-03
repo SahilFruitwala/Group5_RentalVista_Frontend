@@ -103,8 +103,6 @@ class AddPost extends Component {
     axios
       .post("https://rentalvista-api.herokuapp.com/post/add", {
         headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Request-Method": "POST",
           Authorization: localStorage.getItem("token")
         },
         data: {
@@ -120,7 +118,7 @@ class AddPost extends Component {
           amenities: this.state.checkBoxArray,
           promoted: this.state.isPromoted,
           images: this.state.selectedImages,
-          disabled: this.state.isDisabled
+          disabled: this.state.isDisabled,
         },
       })
       .then((response) => {
