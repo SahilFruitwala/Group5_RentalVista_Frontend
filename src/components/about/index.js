@@ -35,8 +35,7 @@ function About() {
           <div className="col-12 col-lg-3">
             <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
-            <p className="mt-2">Jane Doe</p>
-            <p className="mt-1"></p>
+            <p className="mt-2">Amogh Adithya Bangalore<br/>Fullstack Developer</p>
           </div>
           <div className="col-12 col-lg-3">
             <img src={UserImage} alt="Profile" className="custom-team-image" />
