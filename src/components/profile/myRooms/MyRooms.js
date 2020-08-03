@@ -30,7 +30,7 @@ function MyRooms() {
         setRoomsFetched(true);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }, [show])
 
@@ -74,7 +74,7 @@ function MyRooms() {
         },
       })
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         var array = [...rooms];
         let obj = array.find(x => x.roomID === roomID);
         let index = array.indexOf(obj);
@@ -86,7 +86,7 @@ function MyRooms() {
         setShow(true);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }
 

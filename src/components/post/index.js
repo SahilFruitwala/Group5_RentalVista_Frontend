@@ -57,11 +57,10 @@ class AddPost extends Component {
   };
 
   goToHome = () => {
-    console.log("in go to home")
     this.setState({displayModal: !this.state.displayModal})
     if(this.state.isPromoted){
                                           //If Advertise posting is checked then goto payments page
-      console.log("in ispromoted go to")
+      // console.log("in ispromoted go to")
       this.props.history.push("/payment");        
     }
     else
@@ -125,11 +124,11 @@ class AddPost extends Component {
         },
       })
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         this.handleModal()
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         // res = false
       });
   };
@@ -158,16 +157,16 @@ class AddPost extends Component {
 
   onCheckboxChange2(e) {
     let checkBox = false
-    console.log("Before if"+this.state.isPromoted)
+    // console.log("Before if"+this.state.isPromoted)
     if (e.target.checked) {
       checkBox = true
-      console.log("In if"+checkBox)
+      // console.log("In if"+checkBox)
     } else {
       checkBox = false
-      console.log("In else"+checkBox)
+      // console.log("In else"+checkBox)
     }
     this.setState({ isPromoted: checkBox }, () => {
-      console.log(this.state.isPromoted, 'promotedval');
+      // console.log(this.state.isPromoted, 'promotedval');
     });
   }
 
@@ -182,10 +181,10 @@ class AddPost extends Component {
   onImageChange = (imageList, files) => {
     this.setState({selectedImages: imageList})
     this.validateImages(imageList);
-    console.log(this.state.selectedImages);
+    // console.log(this.state.selectedImages);
   };
   onImageUploadError = (errors, files) => {
-    console.log(errors, files);
+    // console.log(errors, files);
   };
 
   validateForm = () => {
