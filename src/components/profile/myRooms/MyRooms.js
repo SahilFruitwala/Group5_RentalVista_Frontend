@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Row, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import SuccessModal from '../../../utilities/SuccessModal'
 import axios from "axios";
 import Loader from 'react-loader-spinner';
@@ -53,7 +52,7 @@ function MyRooms() {
         }
       )
       .then((response) => {
-        setMessage("Property status changed Successfully!");
+        setMessage("Property status changed successfully!");
         setShow(true);
       })
       .catch(({ response }) => {
