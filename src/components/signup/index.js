@@ -1,10 +1,9 @@
 // Author2: Sahil Fruitwala - B00844489
 import React from "react";
-// import Popup from "reactjs-popup";
 import "./index.css";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-// import registerInstance from '../../utilities/api.js'
+import { Alert } from "reactstrap";
 
 function ValidationMessage(props) {
   if (!props.valid) {
@@ -17,11 +16,12 @@ class SignupPopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      resDataSuccess: "",
+      resDataError: "",
       redirect: false,
       open: true,
       name: "",
       nameValid: false,
-      // username: '', usernameValid: false,
       email: "",
       emailValid: false,
       password: "",
@@ -37,10 +37,7 @@ class SignupPopup extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
-      //  // console.log('HERE')
-      // this.props.history.push('/house')
       this.setState({ ...this.state, redirect: true });
-      // return <Redirect to="/house"/>
     }
   }
 
@@ -71,13 +68,19 @@ class SignupPopup extends React.Component {
         }
       )
       .then((response) => {
-        this.props.history.push("/login");
-        this.closeModal();
-        // res = true;
+        this.setState(
+          { ...this.state, resDataError: "", resDataSuccess: response.data.msg },
+          () => {
+            this.props.history.push("/login");
+          }
+        );
       })
-      .catch((error) => {
-        // console.log(error);
-        // res = false
+      .catch(({ response }) => {
+        this.setState({
+          ...this.state,
+          resDataError: response.data.msg,
+          resDataSuccess: "",
+        });
       });
   };
 
@@ -91,7 +94,6 @@ class SignupPopup extends React.Component {
     this.setState({
       formValid:
         nameValid && emailValid && passwordValid && passwordConfirmValid,
-      // formValid: nameValid && usernameValid && emailValid && passwordValid && passwordConfirmValid
     });
   };
 
@@ -111,23 +113,6 @@ class SignupPopup extends React.Component {
 
     this.setState({ nameValid, errorMsg }, this.validateForm);
   };
-
-  // updateUsername = (username) => {
-  //   this.setState({username}, this.validateUsername)
-  // }
-
-  // validateUsername = () => {
-  //   const {username} = this.state;
-  //   let usernameValid = true;
-  //   let errorMsg = {...this.state.errorMsg}
-
-  //   if (username.length < 3) {
-  //     usernameValid = false;
-  //     errorMsg.username = 'Must be at least 3 characters long'
-  //   }
-
-  //   this.setState({usernameValid, errorMsg}, this.validateForm)
-  // }
 
   updateEmail = (email) => {
     this.setState({ email }, this.validateEmail);
@@ -201,12 +186,18 @@ class SignupPopup extends React.Component {
     }
     return (
       <center>
-        <div className="row" style={{"maxWidth":"650px"}}>
+        <div className="row" style={{ maxWidth: "650px" }}>
           <div className="col-lg-10 col-xl-9 mx-auto my-auto">
             <div className="card card-signin flex-row mt-5 mb-5">
               <div className="card-body">
                 <h2 className="text-center font-weight-bold">Register</h2>
                 <div>
+                  {this.state.resDataError !== "" && (
+                    <Alert color="danger">{this.state.resDataError}</Alert>
+                  )}
+                  {this.state.resDataSuccess !== "" && (
+                    <Alert color="success">{this.state.resDataSuccess}</Alert>
+                  )}
                   <div className="form-label-group  text-left">
                     <input
                       type="text"
