@@ -3,10 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Button, Form, Container, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-// import TestModal from "../../../utilities/TestModal";
 import { withRouter } from "react-router-dom";
 
-// import user from "../../../assets/images/user.svg";
 import "./EditProfile.css";
 
 const initialData = {
@@ -29,7 +27,6 @@ function EditProfile(props) {
   const [errorClass, setErrorClass] = useState(initialError);
 
   const handleOnChange = (data) => {
-     // console.log(data);
 
     setUserData({
       ...userData,
@@ -44,7 +41,6 @@ function EditProfile(props) {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-     // console.log(token);
     if (token) {
       axios
         .get("https://rentalvista-api.herokuapp.com/users/user", {
@@ -55,13 +51,10 @@ function EditProfile(props) {
           },
         })
         .then((response) => {
-           // console.log("AXIOS", response.data);
           setInitialUserData({ ...response.data });
           setUserData({ ...response.data });
-          // setSaveDisable(true)
         })
         .catch((error) => {
-           // console.log(error);
         });
     } else {
       props.history.push("/login");
@@ -106,7 +99,6 @@ function EditProfile(props) {
       initialUserData.contact !== userData.contact
     ) {
       const token = localStorage.getItem("token");
-       // console.log(token);
       axios
         .post(
           "https://rentalvista-api.herokuapp.com/users/edit",
@@ -132,7 +124,6 @@ function EditProfile(props) {
         .catch(({ response }) => {
           setMessage({ msg: "Some error occurred while saving data. Please, try again later." });
           setShow(true);
-           // console.log(response);
         });
     }
   };
@@ -156,26 +147,6 @@ function EditProfile(props) {
           ) : (
             <></>
           )}
-          {/* <Row className="">
-            <Image
-              src={user}
-              alt="Profile"
-              roundedCircle
-              className="upload-image"
-            />
-            <button
-              className="btn m-2 btn-warning"
-              onClick={() =>
-                showModal({
-                  title: "Great!",
-                  body: "Profile Picture has been changed!",
-                  show: true,
-                })
-              }
-            >
-              Upload
-            </button>
-          </Row> */}
           <Row className=" mt-3">
             <Form.Group controlId="formBasicName">
               <Form.Label>Name</Form.Label>
@@ -237,7 +208,6 @@ function EditProfile(props) {
           </Row>
         </Col>
       </Row>
-      {/* {show && <TestModal message={message} renderComponent={showModal} />} */}
     </Container>
   );
 }
