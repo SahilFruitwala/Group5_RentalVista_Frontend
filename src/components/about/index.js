@@ -40,7 +40,7 @@ function About() {
           <div className="col-12 col-lg-3">
             <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
-            <p className="mt-2">Gaurav Anand</p>
+            <p className="mt-2">Gaurav Anand<br/>Software Developer</p>
             <p className="mt-1"></p>
           </div>
           <div className="col-12 col-lg-3">
