@@ -44,7 +44,7 @@ function SuccessModal(props) {
         </Modal.Header>
         <Modal.Body>
           <p>
-            {props.message.body}
+            {props.message.body['message']}
           </p>
         </Modal.Body>
         <Modal.Footer>

@@ -12,10 +12,6 @@ import {
 } from "reactstrap";
 import axios from "axios";
 
-const regex = RegExp(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
-
 const ModalExample = (props) => {
   const { show, handleShowModal } = props;
 
@@ -40,11 +36,9 @@ const ModalExample = (props) => {
         }
       )
       .then((response) => {
-         // console.log(response.data["msg"]);
         setShowSuccess(true);
       })
       .catch((error) => {
-         // console.log(error);
         setShowSuccess(true);
       });
   };

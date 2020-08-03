@@ -25,7 +25,6 @@ function ResetPassword(props) {
   const [message, setMessage] = useState("");
 
   const handleOnChange = (data) => {
-     // console.log(data);
 
     setUserData({
       ...userData,
@@ -91,12 +90,10 @@ function ResetPassword(props) {
         }
       })
       .then((response) => {
-         // console.log("AXIOS", response.data)
         setUserData(initialData)
         setMessage("Password Changed!");
       })
       .catch(({response}) => {
-         // console.log(response['data']['msg']);
         setMessage(response['data']['msg']);
       });
   }

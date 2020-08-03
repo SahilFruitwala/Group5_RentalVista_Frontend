@@ -21,6 +21,16 @@
         margin: 0;
         background-color: #ffffffff;
     }
+    a {
+        color: red;
+        background-color: #F7A231
+    }
+    
+    a:hover {
+        color: blue;
+        background-color: #F7A231
+    }
+    
 }
 
 @media only screen and (min-width: 450px) {
@@ -48,5 +58,14 @@
     .input-group svg:hover{
         background-color: #F7A231;
         color: #ffffffff;
+    }
+    .a {
+        color: red;
+        background-color: #F7A231
+    }
+    
+    .a:hover {
+        color: blue;
+        background-color: #F7A231
     }
 }

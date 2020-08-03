@@ -43,6 +43,7 @@ class AddPost extends Component {
       selectedImages: [],
       todaysDate: "",
       displayModal: false,
+      isDisabled: false,
     };
     this.setTodaysDate();
   }
@@ -52,13 +53,18 @@ class AddPost extends Component {
   };
 
   goToHome = () => {
-    this.setState({ displayModal: !this.state.displayModal });
-    if (this.state.isPromoted) {
-      //If Advertise posting is checked then goto payments page
-      this.props.history.push("/payment");
-    } else {
-      // If Advertise posting is not checked go to list rooms page
-      this.props.history.push("/house");
+
+    console.log("in go to home")
+    this.setState({displayModal: !this.state.displayModal})
+    if(this.state.isPromoted){
+                                          //If Advertise posting is checked then goto payments page
+      console.log("in ispromoted go to")
+      this.props.history.push("/payment");        
+    }
+    else
+    {                                     // If Advertise posting is not checked go to list rooms page
+      this.props.history.push("/house");  
+
     }
   };
 
@@ -106,6 +112,9 @@ class AddPost extends Component {
           amenities: this.state.checkBoxArray,
           promoted: this.state.isPromoted,
           images: this.state.selectedImages,
+
+          disabled: this.state.isDisabled
+
         },
       })
       .then((response) => {
@@ -887,16 +896,33 @@ class AddPost extends Component {
             </div>
           </div>
         </div>
-        {this.state.displayModal && (
-          <SuccessModal
-            message={{
-              title: "Success!",
-              body: "Property has been added to your account!",
-              show: true,
-            }}
-            renderComponent={this.goToHome}
-          />
-        )}
+
+      </div>
+      {
+        this.state.displayModal && (!this.state.isPromoted) && (
+        <SuccessModal
+          message={{
+            title: "Success!",
+            body: {"message" : "Property has been added to your account!"},
+            show: true
+          }}
+
+          renderComponent={this.goToHome}
+        />
+      )}
+      {
+        this.state.displayModal && (this.state.isPromoted) && (
+        <SuccessModal
+          message={{
+            title: "Payment required!",
+            body: "Please complete payment of 10$ to advertise room posting",
+            show: true
+          }}
+
+          renderComponent={this.goToHome}
+        />
+      )}
+
       </>
     );
   }
