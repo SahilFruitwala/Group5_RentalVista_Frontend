@@ -34,6 +34,7 @@ class AddPost extends Component {
       bedValid: false,
       bath: "",
       bathValid: false,
+      imageValid: false,
       formValid: false,
       errorMsg: {},
       checkBoxArray: [],
@@ -173,7 +174,10 @@ class AddPost extends Component {
   };
 
   onImageChange = (imageList, files) => {
-    this.setState({ selectedImages: imageList });
+
+    this.setState({selectedImages: imageList})
+    this.validateImages(imageList);
+
     console.log(this.state.selectedImages);
   };
   onImageUploadError = (errors, files) => {
@@ -189,6 +193,7 @@ class AddPost extends Component {
       detailValid,
       bedValid,
       bathValid,
+      imageValid,
     } = this.state;
     this.setState({
       formValid:
@@ -198,7 +203,8 @@ class AddPost extends Component {
         dateValid &&
         detailValid &&
         bedValid &&
-        bathValid,
+        bathValid &&
+        imageValid,
     });
   };
 
@@ -216,6 +222,16 @@ class AddPost extends Component {
       errorMsg.headline = "Headline should be at least 10 characters long";
     }
     this.setState({ headlineValid, errorMsg }, this.validateForm);
+  };
+
+  validateImages = (images) => {
+    let imageValid = true;
+    let errorMsg = { ...this.state.errorMsg };
+    if(images.length == 0){
+      imageValid = false;
+      errorMsg.image = "Select at least one image";
+    }
+    this.setState({imageValid, errorMsg}, this.validateForm);
   };
 
   updateLocation = (location) => {
@@ -337,16 +353,9 @@ class AddPost extends Component {
                 >
                   {({ imageList, onImageUpload }) => (
                     <div>
-                      <button
-                        className="mb-3"
-                        type="button"
-                        onClick={onImageUpload}
-                      >
-                        Upload images
-                      </button>
-                      <label className="error-msg">
-                        Choose .jpg, .png or .gif files(Max 5MB)
-                      </label>
+
+                      <button className="mb-3" type="button" onClick={onImageUpload}>Upload images</button><label className="error-msg">Choose one or more images(.jpg, .png or .gif of max 5MB)</label>        
+
                       {imageList.map((image) => (
                         <div key={image.key} className="fadein">
                           <div onClick={image.onRemove} className="delete">
@@ -363,6 +372,10 @@ class AddPost extends Component {
                     </div>
                   )}
                 </ImageUploading>
+                <ValidationMessage
+                  valid={this.state.imageValid}
+                  message={this.state.errorMsg.image}
+                />
                 <label htmlFor="headline">Property Headline</label>
                 <div className="mb-3" style={{ width: "60%" }}>
                   <input
