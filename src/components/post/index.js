@@ -2,9 +2,9 @@
 import React, { Component } from "react";
 import ImageUploading from "react-images-uploading";
 import axios from "axios";
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import SuccessModal from './../../utilities/SuccessModal';
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SuccessModal from "./../../utilities/SuccessModal";
 
 function ValidationMessage(props) {
   if (!props.valid) {
@@ -50,10 +50,11 @@ class AddPost extends Component {
   }
 
   handleModal = (msg) => {
-    this.setState({displayModal: !this.state.displayModal})
+    this.setState({ displayModal: !this.state.displayModal });
   };
 
   goToHome = () => {
+
     console.log("in go to home")
     this.setState({displayModal: !this.state.displayModal})
     if(this.state.isPromoted){
@@ -64,40 +65,40 @@ class AddPost extends Component {
     else
     {                                     // If Advertise posting is not checked go to list rooms page
       this.props.history.push("/house");  
+
     }
-    
-  }
+  };
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
     } else {
-      this.props.history.push("/login")
+      this.props.history.push("/login");
     }
   }
 
   setTodaysDate = () => {
     var today = new Date();
     var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
+    var mm = today.getMonth() + 1; //January is 0!
     var yyyy = today.getFullYear();
-    if(dd<10){
-        dd='0'+dd
-    } 
-    if(mm<10){
-        mm='0'+mm
-    } 
+    if (dd < 10) {
+      dd = "0" + dd;
+    }
+    if (mm < 10) {
+      mm = "0" + mm;
+    }
 
-    today = yyyy+'-'+mm+'-'+dd;
-    this.setState({todaysDate: today})
-  }
+    today = yyyy + "-" + mm + "-" + dd;
+    this.setState({ todaysDate: today });
+  };
 
-  submitHandler = () => {    
+  submitHandler = () => {
     axios
       .post("https://rentalvista-api.herokuapp.com/post/add", {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Request-Method": "POST",
-          Authorization: localStorage.getItem("token")
+          Authorization: localStorage.getItem("token"),
         },
         data: {
           headline: this.state.headline,
@@ -112,12 +113,14 @@ class AddPost extends Component {
           amenities: this.state.checkBoxArray,
           promoted: this.state.isPromoted,
           images: this.state.selectedImages,
+
           disabled: this.state.isDisabled
+
         },
       })
       .then((response) => {
-        console.log(response)
-        this.handleModal()
+        console.log(response);
+        this.handleModal();
       })
       .catch((error) => {
         console.log(error);
@@ -126,39 +129,39 @@ class AddPost extends Component {
   };
 
   onFurnishingChange(e) {
-    this.setState({isFurnished: e.target.value})
+    this.setState({ isFurnished: e.target.value });
   }
 
   onPetFriendlyChange(e) {
-    this.setState({isPetFriendly: e.target.value})
+    this.setState({ isPetFriendly: e.target.value });
   }
 
   onCheckboxChange(e) {
-    const checkBoxArray = this.state.checkBoxArray
-    let index
+    const checkBoxArray = this.state.checkBoxArray;
+    let index;
 
     if (e.target.checked) {
-      checkBoxArray.push(e.target.value)
+      checkBoxArray.push(e.target.value);
     } else {
-      index = checkBoxArray.indexOf(e.target.value)
-      checkBoxArray.splice(index, 1)
+      index = checkBoxArray.indexOf(e.target.value);
+      checkBoxArray.splice(index, 1);
     }
 
-    this.setState({ checkBoxArray: checkBoxArray })
+    this.setState({ checkBoxArray: checkBoxArray });
   }
 
   onCheckboxChange2(e) {
-    let checkBox = false
-    console.log("Before if"+this.state.isPromoted)
+    let checkBox = false;
+    console.log("Before if" + this.state.isPromoted);
     if (e.target.checked) {
-      checkBox = true
-      console.log("In if"+checkBox)
+      checkBox = true;
+      console.log("In if" + checkBox);
     } else {
-      checkBox = false
-      console.log("In else"+checkBox)
+      checkBox = false;
+      console.log("In else" + checkBox);
     }
     this.setState({ isPromoted: checkBox }, () => {
-      console.log(this.state.isPromoted, 'promotedval');
+      console.log(this.state.isPromoted, "promotedval");
     });
   }
 
@@ -171,8 +174,10 @@ class AddPost extends Component {
   };
 
   onImageChange = (imageList, files) => {
+
     this.setState({selectedImages: imageList})
     this.validateImages(imageList);
+
     console.log(this.state.selectedImages);
   };
   onImageUploadError = (errors, files) => {
@@ -328,15 +333,15 @@ class AddPost extends Component {
   render() {
     return (
       <>
-      <div style={{ backgroundColor: "rgb(219, 219, 219)" }}>
-        <div
-          className="container mt-4 border rounded"
-          style={{ padding: "30px", backgroundColor: "white" }}
-        >
-          <div className="row">
-            <div className="col-md-8 mb-2 text-left">
-              <h2>Property Details</h2>
-              <hr />
+        <div style={{ backgroundColor: "rgb(219, 219, 219)" }}>
+          <div
+            className="container mt-4 border rounded"
+            style={{ padding: "30px", backgroundColor: "white" }}
+          >
+            <div className="row">
+              <div className="col-md-8 mb-2 text-left">
+                <h2>Property Details</h2>
+                <hr />
                 <ImageUploading
                   className="mb-3"
                   onChange={this.onImageChange}
@@ -346,18 +351,22 @@ class AddPost extends Component {
                   acceptType={["jpg", "gif", "png"]}
                   onError={this.onImageUploadError}
                 >
-                  {({ imageList, onImageUpload}) => (
+                  {({ imageList, onImageUpload }) => (
                     <div>
+
                       <button className="mb-3" type="button" onClick={onImageUpload}>Upload images</button><label className="error-msg">Choose one or more images(.jpg, .png or .gif of max 5MB)</label>        
+
                       {imageList.map((image) => (
-                        <div key={image.key} className='fadein'>
-                          <div 
-                            onClick={image.onRemove} 
-                            className='delete'
-                          >
-                            <FontAwesomeIcon icon={faTimesCircle} size='lg' />
+                        <div key={image.key} className="fadein">
+                          <div onClick={image.onRemove} className="delete">
+                            <FontAwesomeIcon icon={faTimesCircle} size="lg" />
                           </div>
-                          <img className="mb-3" src={image.dataURL} alt="" width="150"/>
+                          <img
+                            className="mb-3"
+                            src={image.dataURL}
+                            alt=""
+                            width="150"
+                          />
                         </div>
                       ))}
                     </div>
@@ -368,7 +377,7 @@ class AddPost extends Component {
                   message={this.state.errorMsg.image}
                 />
                 <label htmlFor="headline">Property Headline</label>
-                <div className="mb-3" style={{ width: "60%"}}>
+                <div className="mb-3" style={{ width: "60%" }}>
                   <input
                     id="headline"
                     name="headline"
@@ -549,7 +558,10 @@ class AddPost extends Component {
                     defaultChecked
                     onChange={this.onFurnishingChange.bind(this)}
                   />
-                  <label className="form-check-label" htmlFor="unfurnishedRadio">
+                  <label
+                    className="form-check-label"
+                    htmlFor="unfurnishedRadio"
+                  >
                     Unfurnished
                   </label>
                 </div>
@@ -565,7 +577,10 @@ class AddPost extends Component {
                     value="true"
                     onChange={this.onPetFriendlyChange.bind(this)}
                   />
-                  <label className="form-check-label" htmlFor="petFriendlyYesRadio">
+                  <label
+                    className="form-check-label"
+                    htmlFor="petFriendlyYesRadio"
+                  >
                     Yes
                   </label>
                 </div>
@@ -579,7 +594,10 @@ class AddPost extends Component {
                     defaultChecked
                     onChange={this.onPetFriendlyChange.bind(this)}
                   />
-                  <label className="form-check-label" htmlFor="petFriendlyNoRadio">
+                  <label
+                    className="form-check-label"
+                    htmlFor="petFriendlyNoRadio"
+                  >
                     No
                   </label>
                 </div>
@@ -596,7 +614,10 @@ class AddPost extends Component {
                         id="defaultCheck1"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck1">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck1"
+                      >
                         Elevator
                       </label>
                     </div>
@@ -608,7 +629,10 @@ class AddPost extends Component {
                         id="defaultCheck2"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck2">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck2"
+                      >
                         Low-rise
                       </label>
                     </div>
@@ -620,7 +644,10 @@ class AddPost extends Component {
                         id="defaultCheck3"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck3">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck3"
+                      >
                         Garage
                       </label>
                     </div>
@@ -632,7 +659,10 @@ class AddPost extends Component {
                         id="defaultCheck4"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck4">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck4"
+                      >
                         Security
                       </label>
                     </div>
@@ -644,7 +674,10 @@ class AddPost extends Component {
                         id="defaultCheck5"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck5">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck5"
+                      >
                         Internet
                       </label>
                     </div>
@@ -656,7 +689,10 @@ class AddPost extends Component {
                         id="defaultCheck6"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck6">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck6"
+                      >
                         Swimming Pool
                       </label>
                     </div>
@@ -668,7 +704,10 @@ class AddPost extends Component {
                         id="defaultCheck7"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck7">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck7"
+                      >
                         Near Bus Stop
                       </label>
                     </div>
@@ -680,7 +719,10 @@ class AddPost extends Component {
                         id="defaultCheck8"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck8">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck8"
+                      >
                         Covered Parking
                       </label>
                     </div>
@@ -694,7 +736,10 @@ class AddPost extends Component {
                         id="defaultCheck9"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck9">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck9"
+                      >
                         Health Club
                       </label>
                     </div>
@@ -706,7 +751,10 @@ class AddPost extends Component {
                         id="defaultCheck10"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck10">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck10"
+                      >
                         High-rise
                       </label>
                     </div>
@@ -718,7 +766,10 @@ class AddPost extends Component {
                         id="defaultCheck11"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck11">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck11"
+                      >
                         Disability Access
                       </label>
                     </div>
@@ -730,7 +781,10 @@ class AddPost extends Component {
                         id="defaultCheck12"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck12">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck12"
+                      >
                         Walkup
                       </label>
                     </div>
@@ -742,7 +796,10 @@ class AddPost extends Component {
                         id="defaultCheck13"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck13">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck13"
+                      >
                         Electronic Security
                       </label>
                     </div>
@@ -754,7 +811,10 @@ class AddPost extends Component {
                         id="defaultCheck14"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck14">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck14"
+                      >
                         Laundromat
                       </label>
                     </div>
@@ -766,7 +826,10 @@ class AddPost extends Component {
                         id="defaultCheck15"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck15">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck15"
+                      >
                         Street Parking
                       </label>
                     </div>
@@ -778,28 +841,41 @@ class AddPost extends Component {
                         id="defaultCheck16"
                         onChange={this.onCheckboxChange.bind(this)}
                       />
-                      <label className="form-check-label" htmlFor="defaultCheck16">
+                      <label
+                        className="form-check-label"
+                        htmlFor="defaultCheck16"
+                      >
                         Near Subway
                       </label>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <label className="control-label mt-3" style={{fontWeight: "bold"}}>Room Advertisement</label>
+                  <label
+                    className="control-label mt-3"
+                    style={{ fontWeight: "bold" }}
+                  >
+                    Room Advertisement
+                  </label>
                 </div>
                 <div className="form">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value="Advert room"
-                        id="defaultCheck17"
-                        onChange={this.onCheckboxChange2.bind(this)}
-                        style={{marginLeft: '20px'}}
-                      />
-                      <label className="form-check" htmlFor="defaultCheck17" style={{fontWeight: "bold",marginLeft: '20px'}}>
-                        Advertise Room? (10$ Payment Fee for prioritizing your room post)
-                      </label>
-                    </div>
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value="Advert room"
+                    id="defaultCheck17"
+                    onChange={this.onCheckboxChange2.bind(this)}
+                    style={{ marginLeft: "20px" }}
+                  />
+                  <label
+                    className="form-check"
+                    htmlFor="defaultCheck17"
+                    style={{ fontWeight: "bold", marginLeft: "20px" }}
+                  >
+                    Advertise Room? (10$ Payment Fee for prioritizing your room
+                    post)
+                  </label>
+                </div>
                 <div className="text-center">
                   <button
                     className="btn btn-info mt-5 mb-1 text-uppercase"
@@ -811,25 +887,29 @@ class AddPost extends Component {
                     Post Ad
                   </button>
                 </div>
-              {/* </form> */}
-              <div className="mt-2 text-center">{this.checkIfFormValid()}</div>
-            </div>
-            <div
-              className="col-md-4 mt-5 border rounded text-center align-self-start"
-              style={{ maxHeight: "500px" }}
-            >
-              <img
-                className="img-fluid rounded-circle mb-3 mt-4"
-                style={{ width: "200px", height: "200px" }}
-                src={require("./../../assets/images/user.svg")}
-                alt=""
-              />
-              <a className="btn btn-info mt-3 mb-1" href="/edit">
-                View My Profile
-              </a>
+                {/* </form> */}
+                <div className="mt-2 text-center">
+                  {this.checkIfFormValid()}
+                </div>
+              </div>
+              <div
+                className="col-md-4 mt-5 border rounded text-center align-self-start"
+                style={{ maxHeight: "500px" }}
+              >
+                <img
+                  className="img-fluid rounded-circle mb-3 mt-4"
+                  style={{ width: "200px", height: "200px" }}
+                  src={require("./../../assets/images/user.svg")}
+                  alt=""
+                />
+                <a className="btn btn-info mt-3 mb-1" href="/edit">
+                  View My Profile
+                </a>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
       {
         this.state.displayModal && (!this.state.isPromoted) && (
@@ -855,6 +935,7 @@ class AddPost extends Component {
           renderComponent={this.goToHome}
         />
       )}
+
       </>
     );
   }
