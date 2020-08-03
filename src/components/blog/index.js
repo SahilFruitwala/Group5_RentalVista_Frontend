@@ -336,13 +336,13 @@ class Form extends React.Component {
                                 newColor="bg-success text-light"; 
                                 break;
                             case 6:
-                                newColor="#a8cdff"; 
+                                newColor="bg-warning text-dark"; 
                                 break;
                             case 7:
                                 newColor="bg-dark text-light"; 
                                 break;
                             case 8:
-                                newColor="bg-warning text-dark"; 
+                                newColor="bg-gradient-light"; 
                                 break;
                             default:
                                 newColor="bg-light";
