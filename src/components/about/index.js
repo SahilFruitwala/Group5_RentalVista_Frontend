@@ -19,11 +19,7 @@ function About() {
           <div className="col-12 col-lg-6 about-information">
             <h3>Our Mission</h3>
             <span>
-              Enim et irure excepteur eu labore eiusmod deserunt esse amet. Ad
-              id sit esse minim veniam duis nostrud enim ullamco do ex laboris
-              consectetur. Aliquip voluptate aliquip elit id ipsum nostrud non
-              nostrud ipsum non sunt. Quis dolore sint non veniam veniam velit
-              esse. Irure non cupidatat Lorem ut reprehenderit in non.
+            We are RentalVista, we want to remove trouble people face when they try to find new place for rent. To find a place of our choice is difficult. We want to solve this problem, we want to help the people and wanted to give them a solution which get rid of <s style={{color: "#999999"}}>not all</s> some problems. We are trying daily our best to give you better solutions.
             </span>
           </div>
         </div>
@@ -34,22 +30,25 @@ function About() {
           <div className="col-12 col-lg-3">
             <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
-            <p className="mt-2">John Doe</p>
+            <p className="mt-2">Sahil Fruitwala<br/>Fullstack Developer</p>
           </div>
           <div className="col-12 col-lg-3">
             <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
             <p className="mt-2">Jane Doe</p>
+            <p className="mt-1"></p>
           </div>
           <div className="col-12 col-lg-3">
             <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
             <p className="mt-2">John Doe</p>
+            <p className="mt-1"></p>
           </div>
           <div className="col-12 col-lg-3">
             <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
             <p className="mt-2">Jane Doe</p>
+            <p className="mt-1"></p>
           </div>
         </div>
         <div className="row text-center">
@@ -57,11 +56,13 @@ function About() {
             <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
             <p className="mt-2">John Doe</p>
+            <p className="mt-1"></p>
           </div>
           <div className="col-12 col-lg-6">
             <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
             <p className="mt-2">Jane Doe</p>
+            <p className="mt-1"></p>
           </div>
         </div>
       </div>
