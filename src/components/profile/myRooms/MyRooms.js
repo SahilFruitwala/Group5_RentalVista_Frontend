@@ -35,12 +35,15 @@ function MyRooms() {
   const handleDisable = (roomID, disabled) => {
     const token = localStorage.getItem("token");
     axios
-      .put(
-        "https://rentalvista-api.herokuapp.com/post/update",{
+      .post(
+        "https://rentalvista-api.herokuapp.com/post/update",
+        {
+          roomID: roomID,
+          disabled: disabled,
+        },
+        {
           headers: {
-          }, data: {
-            roomID: roomID,
-            disabled: disabled,
+            Authorization: token,
           },
         }
       )
