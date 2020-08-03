@@ -43,6 +43,7 @@ function NavigationBar(props) {
          // console.log(error);
       });
   };
+  //<Nav.Link href="/payment">Payment</Nav.Link>
 
   return (
     <React.Fragment>
@@ -60,7 +61,7 @@ function NavigationBar(props) {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link href="/house">House</Nav.Link>
-            <Nav.Link href="/payment">Payment</Nav.Link>
+            
             <Nav.Link href="/myapps">My Appointment</Nav.Link>
     
           </Nav>
