@@ -6,22 +6,6 @@ import { Link } from "react-router-dom";
 
 import Modal from "./forgot";
 
-// import {
-//   FacebookLoginButton,
-//   GoogleLoginButton,
-// } from "react-social-login-buttons";
-
-const emailRegex = RegExp(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
-
-// useEffect(() => {
-//     localStorage.getItem('token') ?  // console.log('HEY') :  // console.log('HI')
-//     loginInstance.get({
-//         headers: {"Authorization": ""}
-//     })
-// }, [])
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +29,6 @@ class Login extends Component {
   }
 
   handleSubmit = () => {
-    // e.preventDefault();
 
     const { email, password } = this.state;
 
@@ -60,17 +43,14 @@ class Login extends Component {
             headers: {
               "Access-Control-Allow-Origin": "*",
               "Access-Control-Request-Method": "POST",
-              // 'Authorization':"HEY"
             },
           }
         )
         .then((response) => {
-           // console.log(response.data);
           localStorage.setItem("token", response.data["token"]);
           this.props.history.push("/house");
         })
         .catch(({ response }) => {
-           // console.log("Error:", response["data"]["msg"]);
           this.setState({ ...this.state, error: response["data"]["msg"] });
         });
     } else {
@@ -113,7 +93,6 @@ class Login extends Component {
         <h1 className="web-title">
           <span className="font-weight-bold">Login</span>
         </h1>
-        {/* <Form className="login-form" onSubmit={this.handleSubmit} noValidate> */}
         <div className="login-form">
           <div className="card container">
             <div className="card-body">
@@ -172,7 +151,6 @@ class Login extends Component {
             </div>
           </div>
         </div>
-        {/* </Form> */}
         {this.state.show && (
           <Modal
             show={this.state.show}
