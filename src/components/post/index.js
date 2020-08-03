@@ -15,6 +15,7 @@ function ValidationMessage(props) {
 
 const maxNumber = 10;
 const maxMbFileSize = 5 * 1024 * 1024;
+const mounted = false;
 
 class AddPost extends Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class AddPost extends Component {
       bedValid: false,
       bath: "",
       bathValid: false,
+      imageValid: false,
       formValid: false,
       errorMsg: {},
       checkBoxArray: [],
@@ -49,29 +51,34 @@ class AddPost extends Component {
   }
 
   handleModal = (msg) => {
-    this.setState({displayModal: !this.state.displayModal})
+    if(this.mounted){
+      this.setState({displayModal: !this.state.displayModal})
+    }
   };
 
   goToHome = () => {
-    console.log("in go to home")
     this.setState({displayModal: !this.state.displayModal})
     if(this.state.isPromoted){
                                           //If Advertise posting is checked then goto payments page
-      console.log("in ispromoted go to")
+      // console.log("in ispromoted go to")
       this.props.history.push("/payment");        
     }
     else
     {                                     // If Advertise posting is not checked go to list rooms page
       this.props.history.push("/house");  
     }
-    
   }
 
   componentDidMount() {
+    this.mounted = true;
     if (localStorage.getItem("token")) {
     } else {
       this.props.history.push("/login")
     }
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   setTodaysDate = () => {
@@ -87,7 +94,9 @@ class AddPost extends Component {
     } 
 
     today = yyyy+'-'+mm+'-'+dd;
-    this.setState({todaysDate: today})
+    if(this.mounted){
+      this.setState({todaysDate: today})
+    }
   }
 
   submitHandler = () => {    
@@ -115,11 +124,11 @@ class AddPost extends Component {
         },
       })
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         this.handleModal()
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         // res = false
       });
   };
@@ -148,16 +157,16 @@ class AddPost extends Component {
 
   onCheckboxChange2(e) {
     let checkBox = false
-    console.log("Before if"+this.state.isPromoted)
+    // console.log("Before if"+this.state.isPromoted)
     if (e.target.checked) {
       checkBox = true
-      console.log("In if"+checkBox)
+      // console.log("In if"+checkBox)
     } else {
       checkBox = false
-      console.log("In else"+checkBox)
+      // console.log("In else"+checkBox)
     }
     this.setState({ isPromoted: checkBox }, () => {
-      console.log(this.state.isPromoted, 'promotedval');
+      // console.log(this.state.isPromoted, 'promotedval');
     });
   }
 
@@ -171,10 +180,11 @@ class AddPost extends Component {
 
   onImageChange = (imageList, files) => {
     this.setState({selectedImages: imageList})
-    console.log(this.state.selectedImages);
+    this.validateImages(imageList);
+    // console.log(this.state.selectedImages);
   };
   onImageUploadError = (errors, files) => {
-    console.log(errors, files);
+    // console.log(errors, files);
   };
 
   validateForm = () => {
@@ -186,6 +196,7 @@ class AddPost extends Component {
       detailValid,
       bedValid,
       bathValid,
+      imageValid,
     } = this.state;
     this.setState({
       formValid:
@@ -195,7 +206,8 @@ class AddPost extends Component {
         dateValid &&
         detailValid &&
         bedValid &&
-        bathValid,
+        bathValid &&
+        imageValid,
     });
   };
 
@@ -213,6 +225,16 @@ class AddPost extends Component {
       errorMsg.headline = "Headline should be at least 10 characters long";
     }
     this.setState({ headlineValid, errorMsg }, this.validateForm);
+  };
+
+  validateImages = (images) => {
+    let imageValid = true;
+    let errorMsg = { ...this.state.errorMsg };
+    if(images.length == 0){
+      imageValid = false;
+      errorMsg.image = "Select at least one image";
+    }
+    this.setState({imageValid, errorMsg}, this.validateForm);
   };
 
   updateLocation = (location) => {
@@ -334,7 +356,7 @@ class AddPost extends Component {
                 >
                   {({ imageList, onImageUpload}) => (
                     <div>
-                      <button className="mb-3" type="button" onClick={onImageUpload}>Upload images</button><label className="error-msg">Choose .jpg, .png or .gif files(Max 5MB)</label>        
+                      <button className="mb-3" type="button" onClick={onImageUpload}>Upload images</button><label className="error-msg">Choose one or more images(.jpg, .png or .gif of max 5MB)</label>        
                       {imageList.map((image) => (
                         <div key={image.key} className='fadein'>
                           <div 
@@ -349,6 +371,10 @@ class AddPost extends Component {
                     </div>
                   )}
                 </ImageUploading>
+                <ValidationMessage
+                  valid={this.state.imageValid}
+                  message={this.state.errorMsg.image}
+                />
                 <label htmlFor="headline">Property Headline</label>
                 <div className="mb-3" style={{ width: "60%"}}>
                   <input

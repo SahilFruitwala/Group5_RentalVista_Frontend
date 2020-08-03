@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 function TestModal(props) {
-    console.log("TestModal -> props")
+    // console.log("TestModal -> props")
     return (
         <Modal
         show={props.message.show}

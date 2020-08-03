@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Row, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import SuccessModal from '../../../utilities/SuccessModal'
 import axios from "axios";
 import Loader from 'react-loader-spinner';
@@ -31,7 +30,7 @@ function MyRooms() {
         setRoomsFetched(true);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }, [show])
 
@@ -53,7 +52,7 @@ function MyRooms() {
         }
       )
       .then((response) => {
-        setMessage("Property status changed Successfully!");
+        setMessage("Property status changed successfully!");
         setShow(true);
       })
       .catch(({ response }) => {
@@ -75,7 +74,7 @@ function MyRooms() {
         },
       })
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         var array = [...rooms];
         let obj = array.find(x => x.roomID === roomID);
         let index = array.indexOf(obj);
@@ -87,7 +86,7 @@ function MyRooms() {
         setShow(true);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }
 

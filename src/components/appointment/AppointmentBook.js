@@ -33,10 +33,11 @@ export default class RentalForm extends Component {
   };
 
   handleSubmit = () => {
-    axios.post("https://rentalvista-api.herokuapp.com/appointment/book", {
+    axios.post("http://localhost:5000/appointment/book", {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Request-Method": "POST",
+        Authorization: localStorage.getItem("token"),
       },
       data: {
         email: this.state.email,
@@ -49,6 +50,12 @@ export default class RentalForm extends Component {
 
     this.props.history.push("/house");
   };
+
+  componentDidMount() {
+    if (localStorage.getItem("token") === null) {
+      this.history.push("/login");
+    }
+  }
 
   render() {
     return (
