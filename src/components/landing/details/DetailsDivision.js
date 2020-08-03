@@ -17,13 +17,10 @@ function DetailsDivision() {
         <div className="col-12 col-lg-6 information order-first order-sm-first">
           <h3>Moving to new place?</h3>
           <span>
-            Occaecat eu non culpa incididunt. Cupidatat excepteur cupidatat
-            dolor dolor in est enim officia. Non aliqua eu aliqua sint
-            consectetur. Occaecat eu non culpa incididunt. Cupidatat excepteur
-            cupidatat dolor dolor in est enim officia. Non aliqua eu aliqua sint
-            consectetur. Occaecat eu non culpa incididunt. Cupidatat excepteur
-            cupidatat dolor dolor in est enim officia. Non aliqua eu aliqua sint
-            consectetur.
+            RentalVista offers a variety of options to search your perfect new 
+            room to rent across locations in Canada. Start now by registering 
+            with us and posting your room for rent as an owner or viewing available 
+            rooms across Canada as a customer.
           </span>
         </div>
       </div>
@@ -34,13 +31,10 @@ function DetailsDivision() {
         <div className=" col-12 col-lg-6 information order-first order-sm-first order-md-first order-lg-first">
           <h3>Worried about budget?</h3>
           <span className="">
-            Occaecat eu non culpa incididunt. Cupidatat excepteur cupidatat
-            dolor dolor in est enim officia. Non aliqua eu aliqua sint
-            consectetur. Occaecat eu non culpa incididunt. Cupidatat excepteur
-            cupidatat dolor dolor in est enim officia. Non aliqua eu aliqua sint
-            consectetur. Occaecat eu non culpa incididunt. Cupidatat excepteur
-            cupidatat dolor dolor in est enim officia. Non aliqua eu aliqua sint
-            consectetur.
+            We offer a majority of free services at RentalVista for users to view available rooms,
+            post their own rooms, schedule appointments, create blogs, manage their postings and more.
+            We offer a low-cost premium service to advertise your posting and promote it at the top sections for 
+            viewers to see first. 
           </span>
         </div>
       </div>
@@ -51,13 +45,10 @@ function DetailsDivision() {
         <div className="col-12 col-lg-6 information order-first order-sm-first order-md-first order-lg-last">
           <h3>Confused between options?</h3>
           <span>
-            Occaecat eu non culpa incididunt. Cupidatat excepteur cupidatat
-            dolor dolor in est enim officia. Non aliqua eu aliqua sint
-            consectetur. Occaecat eu non culpa incididunt. Cupidatat excepteur
-            cupidatat dolor dolor in est enim officia. Non aliqua eu aliqua sint
-            consectetur. Occaecat eu non culpa incididunt. Cupidatat excepteur
-            cupidatat dolor dolor in est enim officia. Non aliqua eu aliqua sint
-            consectetur.
+            Our FAQ section will help you answer common questions and 
+            contact details for support team is present in the "Contact Us" 
+            section where you can submit your email, query and our support 
+            team will respond to you within 24 hrs.
           </span>
         </div>
       </div>
@@ -68,13 +59,10 @@ function DetailsDivision() {
         <div className="col-12 col-lg-6 information order-first order-sm-first order-md-first order-lg-first">
           <h3>Want to rent apartment/room?</h3>
           <span>
-            Occaecat eu non culpa incididunt. Cupidatat excepteur cupidatat
-            dolor dolor in est enim officia. Non aliqua eu aliqua sint
-            consectetur. Occaecat eu non culpa incididunt. Cupidatat excepteur
-            cupidatat dolor dolor in est enim officia. Non aliqua eu aliqua sint
-            consectetur. Occaecat eu non culpa incididunt. Cupidatat excepteur
-            cupidatat dolor dolor in est enim officia. Non aliqua eu aliqua sint
-            consectetur.
+            You can start the renting process by creating an account with us
+            and selecting the houses section to view available rooms. The room
+            details are available for your selection and an option to schedule
+            an appointment with the owner.
           </span>
         </div>
       </div>

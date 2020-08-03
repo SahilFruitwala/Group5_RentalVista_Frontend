@@ -152,8 +152,7 @@ class Form extends React.Component {
             event.preventDefault();           
             const { name, value } = event.target;
             
-            console.log("Submit working") 
-            console.log(this.state)
+            
             axios
               .post('https://rentalvista-api.herokuapp.com/addblog', this.state)
               .then(response => {
@@ -180,7 +179,7 @@ class Form extends React.Component {
             //event.preventDefault();           
             //const { name, value } = event.target;
             
-            console.log("Edit working") 
+            
             console.log(this.state)  
             if(this.state.title == 'Blog post 1' || param =='Blog post 1'){
                 this.play("Cannot Edit default Admin blog")
@@ -220,7 +219,7 @@ class Form extends React.Component {
             //event.preventDefault();           
             //const { name, value } = event.target;
             
-            console.log("Delete btn working") 
+             
             this.state.title = param
             console.log(this.state.title)
             if(this.state.title == 'Blog post 1' || param =='Blog post 1'){

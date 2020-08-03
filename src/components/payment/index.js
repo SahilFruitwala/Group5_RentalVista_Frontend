@@ -164,7 +164,7 @@ export default class Payment extends React.Component {
     }
   
     this.setState({errors, [name]: value}, ()=> {
-       // console.log(errors)
+       
   })
 }
 
