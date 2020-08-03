@@ -242,6 +242,8 @@ class Form extends React.Component {
                 console.log(response)
                 this.componentDidMount()
                 this.play("Blog deleted successfully!")
+                this.cancelCourse()
+                
               })
               .catch(error => 
                 {
@@ -256,6 +258,8 @@ class Form extends React.Component {
                         }
         cancelCourse = () => { 
             document.getElementById("create-course-form").reset();
+            this.setState({title: "", author: "", desc: ""});
+            console.log("Log" +this.state.title)
           }
 
           play(msg)  {
@@ -305,13 +309,13 @@ class Form extends React.Component {
             <div className="col-4 " style={{ width: '180px'}}  >
                 <br/>
                 <div>&nbsp;{errors.title.length > 0 && errors.title !== 'set' 
-                    &&  <span1 className='error1'>{errors.title}</span1>}</div>
+                    &&  <span className='error1' style={{color:"red"}}>{errors.title}</span>}</div>
                 <br/><br/>
                 <div>&nbsp;{errors.desc.length > 0 && errors.desc !== 'set' 
-                    &&  <span1 className='error1'>{errors.desc}</span1>}</div>
+                    &&  <span className='error1' style={{color:"red"}}>{errors.desc}</span>}</div>
                 <br/><br/><br/>
                 <div>&nbsp;{errors.author.length > 0 && errors.author !== 'set' 
-                    &&  <span1 className='error1'>{errors.author}</span1>}</div>
+                    &&  <span className='error1' style={{color:"red"}}>{errors.author}</span>}</div>
                 <br/>           
                     
 
