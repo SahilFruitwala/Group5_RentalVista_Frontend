@@ -157,11 +157,11 @@ function HouseList() {
                       <Button variant="warning" onClick={handleModal}>
                         Save Room
                       </Button>
-                      <a href="/view-room">
+                      <Link to={`/view-room/${room.rent},${room.date},${room.bedrooms},${room.bathrooms},${room.description}`}>
                         <Button variant="warning" style={{ marginLeft: "15px" }}>
                           View Room
                         </Button>
-                      </a>
+                      </Link>
                     </Card.Body>
                   </Card>
                 ) : (
