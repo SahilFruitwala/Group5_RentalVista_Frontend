@@ -20,7 +20,7 @@ function Page404() {
         className="col-12 offset-1 col-sm-3 col-md-3 col-lg-3 mt-5 mb-5 justify-content-center"
         style={{ height: "50vh"}}
       >
-        <h3 style={{marginTop:"20vh"}}>Sorry This page is not exists!</h3>
+        <h3 style={{marginTop:"20vh"}}>Sorry, this page does not exist!</h3>
         <span className="nav nav-pills nav-fill">
           <Link to="/house" class="nav-link active">
             Back to Home
