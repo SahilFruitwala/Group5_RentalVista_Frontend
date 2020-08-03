@@ -62,7 +62,8 @@ function App(props) {
             <Route path="/blog" exact component={BlogPage} />
             <Route path="/edit" exact component={EditProfile} />
             <Route path="/house" exact component={HousePage} />
-            <Route path="/view-room" exact component={ViewRoom} />
+            <Route exact path="/view-room/:rent,:date,:bedroom,:bathroom,:description" component={ViewRoom} />
+            {/* <Route path="/view-room" exact component={ViewRoom} /> */}
             <Route path="/comments" exact component={Comments} /> 
             <Route path="/aboutus" exact component={AboutUsPage} />
             <Route path="/contactus" exact component={ContactUs} />
