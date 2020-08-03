@@ -21,7 +21,9 @@ function HouseList() {
         //console.log(data);
         setRooms(data.Data);
       });
-  }, []);
+  }, []);  
+
+  
 
   //  console.log(rooms);
   return (
