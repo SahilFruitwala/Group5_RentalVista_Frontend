@@ -1,7 +1,7 @@
 //Author1: Krupa Patel - B00828120
 //Author2: Harshitha M.S. - B00838019
 import React from "react";
-import { Carousel, Col, Row, ListGroup} from "react-bootstrap";
+import { Carousel, Col, Row, ListGroup, Button } from "react-bootstrap";
 import room1 from "../../../assets/images/room-1.jpg";
 import room2 from "../../../assets/images/room-2.jpg";
 import room3 from "../../../assets/images/room-3.jpg";
@@ -28,6 +28,16 @@ function ViewRoom(props) {
             <img className="d-block w-100" src={room3} alt="Third slide" />
           </Carousel.Item>
         </Carousel>
+      </Row>
+      <Row style={{ marginTop: "2rem", marginBottom: "2rem" }}>
+        <Col sm={4}></Col>
+        <Col sm={8}>
+          <a href="/appointment-book">
+            <Button variant="warning" style={{ marginLeft: "35rem" }}>
+              Book Appointment
+            </Button>
+          </a>
+        </Col>
       </Row>
       <Row style={{ marginTop: "2rem", marginBottom: "2rem" }}>
         <Col sm={4}>
@@ -67,7 +77,7 @@ function ViewRoom(props) {
           fermentum velit massa a urna. Vestibulum pulvinar elit arcu.
         </Col>
       </Row>
-      <Comments/>
+      <Comments />
     </div>
   );
 }
