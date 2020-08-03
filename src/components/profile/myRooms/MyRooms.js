@@ -20,8 +20,6 @@ function MyRooms() {
       axios
       .get("https://rentalvista-api.herokuapp.com/post/get", {
         headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Request-Method": "GET",
           "Authorization": localStorage.getItem("token")
         },
       })
@@ -37,17 +35,12 @@ function MyRooms() {
   const handleDisable = (roomID, disabled) => {
     const token = localStorage.getItem("token");
     axios
-      .post(
-        "https://rentalvista-api.herokuapp.com/post/update",
-        {
-          roomID: roomID,
-          disabled: disabled,
-        },
-        {
+      .put(
+        "https://rentalvista-api.herokuapp.com/post/update",{
           headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Request-Method": "POST",
-            Authorization: token,
+          }, data: {
+            roomID: roomID,
+            disabled: disabled,
           },
         }
       )
@@ -65,8 +58,6 @@ function MyRooms() {
     axios
       .delete("https://rentalvista-api.herokuapp.com/post/delete", {
         headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Request-Method": "DELETE",
           "Authorization": localStorage.getItem("token")
         },
         data: {
