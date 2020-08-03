@@ -117,7 +117,7 @@ class Form extends React.Component {
                 }
                 else{
                     errors.desc = 
-                    value.length < 2  
+                    value.length <=1  
                     ? 'Enter some text!'
                     : 'set';
                     if (value.length>=2) {flag = 1;} else{ flag=0;}
@@ -151,9 +151,13 @@ class Form extends React.Component {
           
             event.preventDefault();           
             const { name, value } = event.target;
-            
-            
-            axios
+            if(this.state.desc==null|| this.state.author==null || this.state.title==null)
+            {
+                this.play("Empty Fields. Please Enter all details")
+            }
+            else{
+
+                axios
               .post('https://rentalvista-api.herokuapp.com/addblog', this.state)
               .then(response => {
                 console.log(response)
@@ -171,7 +175,10 @@ class Form extends React.Component {
               .catch(error => 
                 {
                 console.log(error)
-                })        
+                }) 
+            }
+            
+                   
           }
 
           handleEdit(param) {
