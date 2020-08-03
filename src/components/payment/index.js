@@ -118,7 +118,7 @@ export default class Payment extends React.Component {
         validateemail.test(value)
             ? 'set'
             : 'Email is not Valid!';
-        if(errors.email=='set'){ flag = 1} else{flag=0}
+        if(errors.email==='set'){ flag = 1} else{flag=0}
         break;
       
       case 'expmonth':         
@@ -164,7 +164,7 @@ export default class Payment extends React.Component {
     }
   
     this.setState({errors, [name]: value}, ()=> {
-       // console.log(errors)
+       
   })
 }
 
