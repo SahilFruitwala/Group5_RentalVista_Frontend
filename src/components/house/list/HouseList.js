@@ -33,7 +33,7 @@ function HouseList() {
             rooms.map((room) => {
               return (
                 <>
-                  {room.isPromoted ? (
+                  {room.isPromoted && !room.disabled ? (
                     <div class="card1--content">
                       <Card
                         key={room.roomID}
@@ -106,48 +106,54 @@ function HouseList() {
         {rooms.length !== 0 ? (
           rooms.map((room) => {
             return (
-              <Card
-                key={room.roomID}
-                className="col-lg-3 mb-5 ml-5 mr-auto"
-                style={{ border: "none" }}
-              >
-                <Card.Img
-                  variant="top"
-                  src={room.image}
-                  style={{ borderRadius: "10%" }}
-                />
-                <Card.Body>
-                  {room.isPromoted ? (
-                    <Card.Title>
-                      <Badge variant="danger">Promoted {room.isPromoted}</Badge>
-                    </Card.Title>
-                  ) : (
-                    <Badge>
-                      <strong></strong>
-                    </Badge>
-                  )}
-                  <Card.Subtitle className="pt-2" style={{ color: "#696969" }}>
-                    <Row>
-                      <FontAwesomeIcon icon="star" color="#F7A231" />
-                      {room.rating} / 5,
-                    </Row>
-                  </Card.Subtitle>
-                  <Card.Text className="justify-data pt-1">
-                    {room.description}
-                  </Card.Text>
-                  <Card.Text className="pt-1">
-                    <strong>${room.rent}</strong>/Month
-                  </Card.Text>
-                  <Button variant="warning" onClick={handleModal}>
-                    Save Room
-                  </Button>
-                  <a href="/view-room">
-                    <Button variant="warning" style={{ marginLeft: "15px" }}>
-                      View Room
-                    </Button>
-                  </a>
-                </Card.Body>
-              </Card>
+              <>
+                {!room.disabled ? (
+                  <Card
+                    key={room.roomID}
+                    className="col-lg-3 mb-5 ml-5 mr-auto"
+                    style={{ border: "none" }}
+                  >
+                    <Card.Img
+                      variant="top"
+                      src={room.image}
+                      style={{ borderRadius: "10%" }}
+                    />
+                    <Card.Body>
+                      {room.isPromoted ? (
+                        <Card.Title>
+                          <Badge variant="danger">Promoted {room.isPromoted}</Badge>
+                        </Card.Title>
+                      ) : (
+                        <Badge>
+                          <strong></strong>
+                        </Badge>
+                      )}
+                      <Card.Subtitle className="pt-2" style={{ color: "#696969" }}>
+                        <Row>
+                          <FontAwesomeIcon icon="star" color="#F7A231" />
+                          {room.rating} / 5,
+                        </Row>
+                      </Card.Subtitle>
+                      <Card.Text className="justify-data pt-1">
+                        {room.description}
+                      </Card.Text>
+                      <Card.Text className="pt-1">
+                        <strong>${room.rent}</strong>/Month
+                      </Card.Text>
+                      <Button variant="warning" onClick={handleModal}>
+                        Save Room
+                      </Button>
+                      <a href="/view-room">
+                        <Button variant="warning" style={{ marginLeft: "15px" }}>
+                          View Room
+                        </Button>
+                      </a>
+                    </Card.Body>
+                  </Card>
+                ) : (
+                  <></>
+                )}
+              </>
             );
           })
         ) : (

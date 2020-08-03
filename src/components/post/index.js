@@ -43,6 +43,7 @@ class AddPost extends Component {
       selectedImages: [],
       todaysDate: "",
       displayModal: false,
+      isDisabled: false,
     };
     this.setTodaysDate();
   }
@@ -107,7 +108,8 @@ class AddPost extends Component {
           petFriendly: this.state.isPetFriendly,
           amenities: this.state.checkBoxArray,
           promoted: this.state.isPromoted,
-          images: this.state.selectedImages
+          images: this.state.selectedImages,
+          disabled: this.state.isDisabled
         },
       })
       .then((response) => {
@@ -814,7 +816,7 @@ class AddPost extends Component {
         <SuccessModal
           message={{
             title: "Success!",
-            body: "Property has been added to your account!",
+            body: {"message" : "Property has been added to your account!"},
             show: true
           }}
 
