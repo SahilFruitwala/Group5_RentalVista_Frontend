@@ -2,7 +2,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import SerachDivision from "./search/SerachDivision";
+import SearchDivision from "./search/SearchDivision";
 import DetailsDivision from "./details/DetailsDivision";
 import "./index.css";
 
@@ -16,7 +16,7 @@ function LandingPage(props) {
   };
   return (
     <>
-      <SerachDivision />
+      <SearchDivision />
       <DetailsDivision />
       <div className="scrollToTop">
         <button onClick={scrollToTop}>

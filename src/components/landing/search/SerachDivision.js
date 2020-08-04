@@ -43,7 +43,7 @@ function SerachDivision() {
       <div className="row">
         <div className="col-12 col-lg-6 search-root">
           <img src={logo} alt="logo" />
-          <h4>Find house where and how you wish...</h4>
+          <h4>Find a house where and how you wish...</h4>
           <InputGroup>
             <FormControl
               value={city}
