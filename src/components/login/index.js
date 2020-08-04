@@ -136,7 +136,7 @@ class Login extends Component {
                 )}
               </FormGroup>
               <FormGroup>
-                <Link to="" onClick={() => this.handleShowModal()}>
+                <Link onClick={() => this.handleShowModal()}>
                   <FormText className="float-right">Forgot Password?</FormText>
                 </Link>
               </FormGroup>
