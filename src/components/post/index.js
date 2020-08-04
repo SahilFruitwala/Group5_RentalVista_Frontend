@@ -15,7 +15,6 @@ function ValidationMessage(props) {
 
 const maxNumber = 10;
 const maxMbFileSize = 5 * 1024 * 1024;
-const mounted = false;
 
 class AddPost extends Component {
   constructor(props) {
@@ -228,7 +227,7 @@ class AddPost extends Component {
   validateImages = (images) => {
     let imageValid = true;
     let errorMsg = { ...this.state.errorMsg };
-    if(images.length == 0){
+    if(images.length === 0){
       imageValid = false;
       errorMsg.image = "Select at least one image";
     }
