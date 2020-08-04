@@ -144,7 +144,6 @@ class Form extends React.Component {
             })
             this.setState({formValid: validateForm(this.state.errors)});
         }
-        break;
 
                 axios
               .post('https://rentalvista-api.herokuapp.com/addblog', this.state)
