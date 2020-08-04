@@ -11,7 +11,7 @@ function About() {
         <h3>
           We Are <strong>RentalVista</strong>
         </h3>
-        <p>Provide a solution to find a house of your desire.</p>
+        <p>Provide solutions to find houses of your desire.</p>
         <div className="row root-info">
           <div className="col-12 col-lg-6 about-illustration">
             <img src={CabinImage} alt="house" />
@@ -19,7 +19,10 @@ function About() {
           <div className="col-12 col-lg-6 about-information">
             <h3>Our Mission</h3>
             <span>
-            We are RentalVista, we want to remove trouble people face when they try to find new place for rent. To find a place of our choice is difficult. We want to solve this problem, we want to help the people and wanted to give them a solution which get rid of <s style={{color: "#999999"}}>not all</s> some problems. We are trying daily our best to give you better solutions.
+            We at RentalVista, want to make it easier for people to find new places to rent. 
+            Our mission is to continuously understand our user needs and grow individual profiles 
+            that will help them find the best places for them to rent, or grow their business by
+            allowing them to post rooms rentals for other users to join.
             </span>
           </div>
         </div>
@@ -35,13 +38,7 @@ function About() {
           <div className="col-12 col-lg-3">
             <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
-            <p className="mt-2">Amogh Adithya Bangalore<br/>Fullstack Developer</p>
-          </div>
-          <div className="col-12 col-lg-3">
-            <img src={UserImage} alt="Profile" className="custom-team-image" />
-            <br />
-            <p className="mt-2">Gaurav Anand<br/>Software Developer</p>
-            <p className="mt-1"></p>
+            <p className="mt-2">Amogh Adithya Bangalore<br/>Backend Developer</p>
           </div>
           <div className="col-12 col-lg-3">
             <img src={UserImage} alt="Profile" className="custom-team-image" />
@@ -49,12 +46,18 @@ function About() {
             <p className="mt-2">Naitik Prajapati<br/>Designer and Integrator</p>
             <p className="mt-1"></p>
           </div>
+          <div className="col-12 col-lg-3">
+            <img src={UserImage} alt="Profile" className="custom-team-image" />
+            <br />
+            <p className="mt-2">Gaurav Anand<br/>Software Developer</p>
+            <p className="mt-1"></p>
+          </div>
         </div>
         <div className="row text-center">
           <div className="col-12 col-lg-6">
             <img src={UserImage} alt="Profile" className="custom-team-image" />
             <br />
-            <p className="mt-2">John Doe</p>
+            <p className="mt-2">Harshitha M S<br/>Software Developer</p>
             <p className="mt-1"></p>
           </div>
           <div className="col-12 col-lg-6">

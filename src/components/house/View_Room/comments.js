@@ -5,12 +5,10 @@ import { Button } from "reactstrap";
 
 let flag = 0;
 
-const MAX_LENGTH = 25;
-
 const validateForm = (errors) => {
   let valid = false;
   Object.values(errors).forEach((val) => {
-    if (val == "set" && flag == 1) {
+    if (val === "set" && flag === 1) {
       valid = true;
     } else {
       valid = false;
@@ -34,15 +32,12 @@ export default class addComment extends Component {
   constructor(props) {
     super(props);
     this.inputRef = React.createRef();
-
     this.state = {
       formValid: false,
       errorCount: null,
       comment: "",
       id: null,
-
       posts: [],
-
       errors: {
         comment: "",
       },
@@ -50,46 +45,44 @@ export default class addComment extends Component {
   }
 
   componentDidMount() {
+    console.clear()
     axios
       .get("https://rentalvista-api.herokuapp.com/getcomment")
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         this.setState({ ...this.state, posts: response.data });
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
         this.setState({ ...this.state, errorMsg: "Error retrieving data" });
       });
   }
 
   handleChange = (event) => {
-    console.log("Hi");
     event.preventDefault();
     const { name, value } = event.target;
-    console.log(name, value);
+    //console.log(name, value);
     this.setState({ ...this.state, comment: value }, () => {
-      console.log(this.state);
+      //console.log(this.state);
     });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-
-    console.log("Submit working");
-    console.log(this.state);
+    //console.log("Submit working");
+    //console.log(this.state);
     axios
       .post("https://rentalvista-api.herokuapp.com/addcomment", this.state)
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         this.componentDidMount();
-
         this.play("Comment Added Successfully");
-        console.log(this.state);
+        //console.log(this.state);
         this.cancelCourse();
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
       });
   };
 

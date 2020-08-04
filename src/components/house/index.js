@@ -1,32 +1,40 @@
 //Author: Naitik Prajapati - B00856835
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Jumbotron, Row, Col, Form} from "react-bootstrap";
 
 import HouseList from "./list/HouseList";
-import HouseData from "./list/HouseData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const initialFilter = {
   min: 100,
   max: 2500,
   sorting: "Any",
-  pet: false,
+  isPetAllowed: false,
 };
 
 function HousePage() {
   const [tempData, setTempData] = useState(initialFilter);
-  const [houseData, setHouseData] = useState(HouseData);
+  //const [houseData, setHouseData] = useState(HouseData);
   const [error, setError] = useState({display: "none"});
-
+  const [rooms, setRooms] = useState([]);
+  useEffect(() => {
+    fetch("https://rentalvista-api.herokuapp.com/api/getrooms")
+      .then((response) => response.json())
+      .then((data) => {
+        //console.log(data);
+        setRooms(data.Data);
+      });
+  }, []);  
+  //console.log('Index.js:Room Data:',rooms);
   const handleFilter = () => {
     if(tempData.min > tempData.max || tempData.min < 0 || isNaN(tempData.min) || tempData.min === ""  || tempData.max === "" || tempData.max < 50 || tempData.max < 0 || isNaN(tempData.max))
      {
        setError({})
      }
      else {
-    let newData = HouseData.filter((house) => {
+    let newData = rooms.filter((house) => {
       if (house.rent >= tempData.min && house.rent <= tempData.max) {
-        if (house.pet === tempData.pet) {
+        if (house.isPetAllowed === tempData.isPetAllowed) {
           return true;
         }
       }
@@ -59,7 +67,8 @@ function HousePage() {
     }
 
     // console.lo
-    setHouseData(newData);
+    //setHouseData(newData);
+    setRooms(newData);
   }
   };
 
@@ -78,9 +87,9 @@ function HousePage() {
   return (
     <>
       <Jumbotron>
-        <h1 className="text-center pb-2">Available Apartments</h1>
+        <h1 className="text-center pb-2">Apartments in Halifax</h1>
         <Row className="drawer justify-content-center">
-          <Col sm={4} md={4} lg={3}>
+          {/* <Col sm={4} md={4} lg={3}>
             <Row>
               <Col>
                 <Form.Label>Min Price</Form.Label>
@@ -108,7 +117,7 @@ function HousePage() {
               </Col>
             </Row>
               
-          </Col>
+          </Col> */}
           <Col sm={4} md={4} lg={3}>
             <Form.Label>Sort by</Form.Label>
             <Form.Control
@@ -125,7 +134,7 @@ function HousePage() {
               <option value="four">Rating: Low to High</option>
             </Form.Control>
           </Col>
-          <Col md={2} sm={2} lg={1}>
+          {/* <Col md={2} sm={2} lg={1}>
             <Form.Label>Pet Allowed</Form.Label>
             <Form.Check
               type="switch"
@@ -133,11 +142,11 @@ function HousePage() {
               label="Yes"
               onChange={(e) => {
                 handleChnage({
-                  pet: e.target.value === "on" && !tempData.pet ? true : false,
+                  isPetAllowed: e.target.value === "on" && !tempData.isPetAllowed ? true : false,
                 });
               }}
             />
-          </Col>
+          </Col> */}
           <Col md={2} sm={2} lg={1}>
             <button className="btn btn-info" onClick={handleFilter}>
               Apply
@@ -146,7 +155,7 @@ function HousePage() {
         </Row>
         <Form.Text className="text-center" style={error}><FontAwesomeIcon icon="exclamation-circle" color="#ff0000" /> Enter Valid Amount!</Form.Text>
       </Jumbotron>
-      <HouseList houses={houseData} />
+      <HouseList houses={rooms} />
     </>
   );
 }

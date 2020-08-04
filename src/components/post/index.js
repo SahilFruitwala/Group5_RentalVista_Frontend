@@ -802,7 +802,7 @@ class AddPost extends Component {
                         style={{marginLeft: '20px'}}
                       />
                       <label className="form-check" htmlFor="defaultCheck17" style={{fontWeight: "bold",marginLeft: '20px'}}>
-                        Advertise Room? (10$ Payment Fee for prioritizing your room post)
+                        Advertise Room? ($10 Payment Fee for prioritizing your room post)
                       </label>
                     </div>
                 <div className="text-center">
@@ -820,15 +820,9 @@ class AddPost extends Component {
               <div className="mt-2 text-center">{this.checkIfFormValid()}</div>
             </div>
             <div
-              className="col-md-4 mt-5 border rounded text-center align-self-start"
+              className="col-md-4 mt-5 text-center align-self-start"
               style={{ maxHeight: "500px" }}
             >
-              <img
-                className="img-fluid rounded-circle mb-3 mt-4"
-                style={{ width: "200px", height: "200px" }}
-                src={require("./../../assets/images/user.svg")}
-                alt=""
-              />
               <a className="btn btn-info mt-3 mb-1" href="/edit">
                 View My Profile
               </a>
@@ -853,7 +847,7 @@ class AddPost extends Component {
         <SuccessModal
           message={{
             title: "Payment required!",
-            body: "Please complete payment of 10$ to advertise room posting",
+            body: {"message" :"Please complete payment of $10 to advertise room posting"},
             show: true
           }}
 
