@@ -80,11 +80,11 @@ class Form extends React.Component {
         axios
           .get('https://rentalvista-api.herokuapp.com/getblog')
           .then(response => {
-            console.log(response)
+            
             this.setState({ posts: response.data })
           })
           .catch(error => {
-            console.log(error)
+            
             this.setState({errorMsg: 'Error retrieving data'})
           })
       }
@@ -143,7 +143,7 @@ class Form extends React.Component {
 
             }
             this.setState({errors, [name]: value}, ()=> {
-                console.log(errors)
+                //console.log(errors)
             })
             this.setState({formValid: validateForm(this.state.errors)});
         }
@@ -160,7 +160,7 @@ class Form extends React.Component {
                 axios
               .post('https://rentalvista-api.herokuapp.com/addblog', this.state)
               .then(response => {
-                console.log(response)
+                //console.log(response)
                 this.componentDidMount()
                 
                 if(response.data=='Blog Title already present, cannot add'){
@@ -168,13 +168,13 @@ class Form extends React.Component {
                 }
                 else{
                   this.play("Blog Added Successfully")
-                  console.log(this.state)  
+                  //console.log(this.state)  
                   this.cancelCourse()
                 }
               })
               .catch(error => 
                 {
-                console.log(error)
+                //console.log(error)
                 }) 
             }
             
@@ -187,7 +187,7 @@ class Form extends React.Component {
             //const { name, value } = event.target;
             
             
-            console.log(this.state)  
+            //console.log(this.state)  
             if(this.state.title == 'Blog post 1' || param =='Blog post 1'){
                 this.play("Cannot Edit default Admin blog")
             }
@@ -198,7 +198,7 @@ class Form extends React.Component {
             axios
                 .put('https://rentalvista-api.herokuapp.com/editblog', this.state)
                 .then(response => {
-                    console.log(response)
+                    //console.log(response)
                     this.componentDidMount()
                     if(response.data=='Blog updated Successfully!'){
                         this.play("Blog Updated Successfully")                    
@@ -211,12 +211,12 @@ class Form extends React.Component {
                     }
                     else{
                         this.play("Blog Author not found, Enter Correct Author name")
-                        console.log(this.state)  
+                        //console.log(this.state)  
                     }
                 })
                 .catch(error => 
                     {
-                    console.log(error)
+                    //console.log(error)
                     })  
                 }    
           }
@@ -228,7 +228,7 @@ class Form extends React.Component {
             
              
             this.state.title = param
-            console.log(this.state.title)
+           // console.log(this.state.title)
             if(this.state.title == 'Blog post 1' || param =='Blog post 1'){
                 this.play("Cannot delete default Admin blog")
             }
@@ -239,7 +239,7 @@ class Form extends React.Component {
                 axios
               .post('https://rentalvista-api.herokuapp.com/deleteblog', this.state)
               .then(response => {
-                console.log(response)
+                //console.log(response)
                 this.componentDidMount()
                 this.play("Blog deleted successfully!")
                 this.cancelCourse()
@@ -259,7 +259,7 @@ class Form extends React.Component {
         cancelCourse = () => { 
             document.getElementById("create-course-form").reset();
             this.setState({title: "", author: "", desc: ""});
-            console.log("Log" +this.state.title)
+            //console.log("Log" +this.state.title)
           }
 
           play(msg)  {
