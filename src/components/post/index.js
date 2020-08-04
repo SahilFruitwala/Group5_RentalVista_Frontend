@@ -15,7 +15,6 @@ function ValidationMessage(props) {
 
 const maxNumber = 10;
 const maxMbFileSize = 5 * 1024 * 1024;
-const mounted = false;
 
 class AddPost extends Component {
   constructor(props) {
@@ -103,8 +102,6 @@ class AddPost extends Component {
     axios
       .post("https://rentalvista-api.herokuapp.com/post/add", {
         headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Request-Method": "POST",
           Authorization: localStorage.getItem("token")
         },
         data: {
@@ -120,7 +117,7 @@ class AddPost extends Component {
           amenities: this.state.checkBoxArray,
           promoted: this.state.isPromoted,
           images: this.state.selectedImages,
-          disabled: this.state.isDisabled
+          disabled: this.state.isDisabled,
         },
       })
       .then((response) => {
@@ -230,7 +227,7 @@ class AddPost extends Component {
   validateImages = (images) => {
     let imageValid = true;
     let errorMsg = { ...this.state.errorMsg };
-    if(images.length == 0){
+    if(images.length === 0){
       imageValid = false;
       errorMsg.image = "Select at least one image";
     }
@@ -805,7 +802,7 @@ class AddPost extends Component {
                         style={{marginLeft: '20px'}}
                       />
                       <label className="form-check" htmlFor="defaultCheck17" style={{fontWeight: "bold",marginLeft: '20px'}}>
-                        Advertise Room? (10$ Payment Fee for prioritizing your room post)
+                        Advertise Room? ($10 Payment Fee for prioritizing your room post)
                       </label>
                     </div>
                 <div className="text-center">
@@ -856,7 +853,7 @@ class AddPost extends Component {
         <SuccessModal
           message={{
             title: "Payment required!",
-            body: "Please complete payment of 10$ to advertise room posting",
+            body: {"message" :"Please complete payment of $10 to advertise room posting"},
             show: true
           }}
 
