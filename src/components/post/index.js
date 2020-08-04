@@ -802,7 +802,7 @@ class AddPost extends Component {
                         style={{marginLeft: '20px'}}
                       />
                       <label className="form-check" htmlFor="defaultCheck17" style={{fontWeight: "bold",marginLeft: '20px'}}>
-                        Advertise Room? (10$ Payment Fee for prioritizing your room post)
+                        Advertise Room? ($10 Payment Fee for prioritizing your room post)
                       </label>
                     </div>
                 <div className="text-center">
@@ -853,7 +853,7 @@ class AddPost extends Component {
         <SuccessModal
           message={{
             title: "Payment required!",
-            body: "Please complete payment of 10$ to advertise room posting",
+            body: {"message" :"Please complete payment of $10 to advertise room posting"},
             show: true
           }}
 
