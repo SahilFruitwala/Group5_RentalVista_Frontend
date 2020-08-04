@@ -856,7 +856,7 @@ class AddPost extends Component {
         <SuccessModal
           message={{
             title: "Payment required!",
-            body: "Please complete payment of 10$ to advertise room posting",
+            body: {"message" : "Please complete a payment of 10$ to advertise room posting"},
             show: true
           }}
 

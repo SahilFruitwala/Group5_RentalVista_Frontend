@@ -275,16 +275,22 @@ export default class Payment extends React.Component {
                           (<div className="validmsg" style={{display: 'flex', justifyContent: 'center'}}> 
                           {formValid ? 
                           <div style={{border:"0.2"}}>
-                          <div>Payment Completed Successfully! Redirecting to House Listings   </div>
-                          <hr/><br/>
+                          <div style={{display: 'flex', justifyContent: 'center', color: 'black'}} >Payment Completed Successfully! </div>
+                          <hr/>
+                          <div style={{display: 'flex', justifyContent: 'center', color: 'black'}}>Your Room listing has been posted in the promoted sections of RentalVista </div>
+                          <hr/>
+                          <br/>
+                          <div style={{display: 'flex', justifyContent: 'center', color: 'black'}}>
                               <button                        
                                 className="btn btn-success"
+                                
                                 onClick={() => {close();
                                     this.handleroute();                                                       
                                 }}
                             >
-                                Okay
-                            </button> 
+                                Take me to House Listings.
+                            </button>
+                            </div> 
                           </div>
                             : 
                           <div style={{border: '5px',borderRadius: '8px',borderColor: 'black'}}>
