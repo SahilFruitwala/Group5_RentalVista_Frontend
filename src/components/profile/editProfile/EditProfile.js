@@ -45,8 +45,6 @@ function EditProfile(props) {
       axios
         .get("https://rentalvista-api.herokuapp.com/users/user", {
           headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Request-Method": "POST",
             Authorization: token,
           },
         })
@@ -108,8 +106,6 @@ function EditProfile(props) {
           },
           {
             headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Request-Method": "POST",
               Authorization: token,
             },
           }

@@ -1,56 +1,42 @@
-//Author: Krupa Patel - B00828120
 import React, { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import axios from "axios";
 
-export default class RentalForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: null,
-      date: null,
-      time: null,
-      comments: null,
-      postid: this.props.match.params.id,
-    };
-  }
-  Email = (email) => {
-    this.setState({ email: email });
-  };
-  Date = (date) => {
-    this.setState({ date: date });
-  };
-  Time = (time) => {
-    this.setState({ time: time });
-  };
-  Postid = (postid) => {
-    this.setState({ postid: postid });
+export default class RescheduleAppointment extends Component {
+  state = {
+    date: null,
+    time: null,
+    id: null,
   };
 
   handleSubmit = () => {
-    axios.post("https://rentalvista-api.herokuapp.com/appointment/book", {
+    axios.post("https://rentalvista-api.herokuapp.com/appointment/reschedule", {
       headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Request-Method": "POST",
         Authorization: localStorage.getItem("token"),
       },
       data: {
-        email: this.state.email,
         date: this.state.date,
         time: this.state.time,
-        postid: this.state.postid,
+        id: this.props.match.params.id,
       },
     });
 
     this.props.history.push("/house");
   };
 
-  componentDidMount() {
-    if (localStorage.getItem("token") === null) {
-      this.history.push("/login");
-    }
-  }
-
+  Date = (date) => {
+    this.setState({ date: date });
+  };
+  Time = (time) => {
+    this.setState({ time: time });
+  };
+  Id = (id) => {
+    this.setState({ id: id });
+  };
   render() {
+    var id = this.props.match.params.id;
     return (
       <div>
         <div
@@ -61,26 +47,11 @@ export default class RentalForm extends Component {
             marginBottom: "2rem",
           }}
         >
-          <h1> Book Appointment </h1>
+          <h1> Reschedule Appointment </h1>
           <form>
-            <Form.Group controlId="postID">
-              <Form.Label>Post ID</Form.Label>
-              <Form.Control
-                type="text"
-                name="postid"
-                value={this.props.match.params.id}
-                readOnly
-              />
-            </Form.Group>
-
-            <Form.Group controlId="email">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                placeholder="your-email"
-                onChange={(e) => this.Email(e.target.value)}
-              />
+            <Form.Group controlId="id">
+              <Form.Label>Appointment ID</Form.Label>
+              <Form.Control type="text" name="id" value={id} readOnly />
             </Form.Group>
             <Form.Label>Date</Form.Label>
             <br></br>
@@ -90,11 +61,12 @@ export default class RentalForm extends Component {
                 as="select"
                 onChange={(e) => this.Date(e.target.value)}
               >
-                <option value="5">Aug 5</option>
+                <option selected>Select Date</option>
                 <option value="6">Aug 6</option>
                 <option value="7">Aug 7</option>
                 <option value="8">Aug 8</option>
                 <option value="9">Aug 9</option>
+                <option value="10">Aug 10</option>
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="time" name="time">
@@ -103,6 +75,7 @@ export default class RentalForm extends Component {
                 as="select"
                 onChange={(e) => this.Time(e.target.value)}
               >
+                <option selected>Select time</option>
                 <option value="1">1:00 PM</option>
                 <option value="2">2:00 PM</option>
                 <option value="3">3:00 PM</option>

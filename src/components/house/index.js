@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Jumbotron, Row, Col, Form} from "react-bootstrap";
 
 import HouseList from "./list/HouseList";
-import HouseData from "./list/HouseData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const initialFilter = {

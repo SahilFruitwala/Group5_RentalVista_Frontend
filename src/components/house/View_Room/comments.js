@@ -5,31 +5,6 @@ import { Button } from "reactstrap";
 
 let flag = 0;
 
-const MAX_LENGTH = 25;
-
-const validateForm = (errors) => {
-  let valid = false;
-  Object.values(errors).forEach((val) => {
-    if (val == "set" && flag == 1) {
-      valid = true;
-    } else {
-      valid = false;
-    }
-  });
-  return valid;
-};
-const countErrors = (errors) => {
-  let count = 0;
-  Object.values(errors).forEach((val) => {
-    if (val.length > 0) {
-      if (val !== "set") {
-        count = count + 1;
-      }
-    }
-  });
-  return count;
-};
-
 export default class addComment extends Component {
   constructor(props) {
     super(props);
@@ -47,6 +22,7 @@ export default class addComment extends Component {
   }
 
   componentDidMount() {
+    console.clear()
     axios
       .get("https://rentalvista-api.herokuapp.com/getcomment")
       .then((response) => {

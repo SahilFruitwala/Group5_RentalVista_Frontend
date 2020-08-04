@@ -9,7 +9,7 @@ function FAQ() {
   return (
     <>
       <div className="imageSet">
-        <img src={FAQImage} className="img-fluid" alt="FAQ Image" />
+        <img src={FAQImage} className="img-fluid" alt="FAQ" />
       </div>
       <Container className="position m-2">
         <h4>1. What is the pricing for RentalVista?</h4>
