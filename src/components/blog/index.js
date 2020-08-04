@@ -25,18 +25,7 @@ const validateForm = (errors) => {
     );
     return valid;
   }
-  const countErrors = (errors) => {
-    let count = 0;
-    Object.values(errors).forEach(
-      (val) => {if(val.length > 0)
-        {
-            if(val!=='set'){
-                (count = count+1);
-            }
-        } }
-    );
-    return count;
-  }
+  
 
 class Form extends React.Component {
 
@@ -150,7 +139,6 @@ class Form extends React.Component {
         handleSubmit = (event) => {
           
             event.preventDefault();           
-            const { name, value } = event.target;
             if(this.state.desc==null|| this.state.author==null || this.state.title==null)
             {
                 this.play("Empty Fields. Please Enter all details")
@@ -271,7 +259,7 @@ class Form extends React.Component {
   render() {
 
     
-    const {errors, formValid} = this.state;
+    const {errors} = this.state;
     const displayBlog = this.state.posts;
 
     return (
