@@ -5,6 +5,7 @@ import { Carousel, Col, Row, ListGroup, Button } from "react-bootstrap";
 import room1 from "../../../assets/images/room-1.jpg";
 import room2 from "../../../assets/images/room-2.jpg";
 import room3 from "../../../assets/images/room-3.jpg";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
@@ -39,13 +40,13 @@ class ViewRoom extends React.Component {
           </Carousel>
         </Row>
         <Row style={{ marginTop: "2rem", marginBottom: "2rem" }}>
-          <Col sm={4}></Col>
-          <Col sm={8}>
-            <a href="/appointment-book">
-              <Button variant="warning" style={{ marginLeft: "35rem" }}>
+          <Col sm={8}></Col>
+          <Col sm={4}>
+            <Link to={`/appointment-book/${id}`}>
+              <Button variant="warning" style={{ marginRight: "1rem" }}>
                 Book Appointment
               </Button>
-            </a>
+            </Link>
           </Col>
         </Row>
         <Row style={{ marginTop: "2rem", marginBottom: "2rem" }}>

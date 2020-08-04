@@ -12,8 +12,7 @@ export default class RentalForm extends Component {
       date: null,
       time: null,
       comments: null,
-      postid: "1",
-      owneremail: "krupa1711@gmail.com",
+      postid: this.props.match.params.id,
     };
   }
   Email = (email) => {
@@ -28,20 +27,14 @@ export default class RentalForm extends Component {
   Postid = (postid) => {
     this.setState({ postid: postid });
   };
-  Owneremail = (owneremail) => {
-    this.setState({ owneremail: owneremail });
-  };
 
   handleSubmit = () => {
     axios.post("https://rentalvista-api.herokuapp.com/appointment/book", {
       headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Request-Method": "POST",
         Authorization: localStorage.getItem("token"),
       },
       data: {
         email: this.state.email,
-        owneremail: this.state.owneremail,
         date: this.state.date,
         time: this.state.time,
         postid: this.state.postid,
@@ -70,23 +63,12 @@ export default class RentalForm extends Component {
         >
           <h1> Book Appointment </h1>
           <form>
-            <Form.Group controlId="owneremail">
-              <Form.Label>Owner Email address</Form.Label>
-              <Form.Control
-                type="email"
-                name="owneremail"
-                placeholder="user@gmail.com"
-                onLoad={(e) => this.Owneremail(e.target.value)}
-                readOnly
-              />
-            </Form.Group>
-            <Form.Group controlId="owneremail">
+            <Form.Group controlId="postID">
               <Form.Label>Post ID</Form.Label>
               <Form.Control
                 type="text"
                 name="postid"
-                value="1"
-                onLoad={(e) => this.Postid(e.target.value)}
+                value={this.props.match.params.id}
                 readOnly
               />
             </Form.Group>
@@ -96,7 +78,7 @@ export default class RentalForm extends Component {
               <Form.Control
                 type="email"
                 name="email"
-                placeholder="user@gmail.com"
+                placeholder="your-email"
                 onChange={(e) => this.Email(e.target.value)}
               />
             </Form.Group>
@@ -108,11 +90,11 @@ export default class RentalForm extends Component {
                 as="select"
                 onChange={(e) => this.Date(e.target.value)}
               >
-                <option value="1">Aug 1</option>
-                <option value="2">Aug 2</option>
-                <option value="3">Aug 3</option>
-                <option value="4">Aug 4</option>
                 <option value="5">Aug 5</option>
+                <option value="6">Aug 6</option>
+                <option value="7">Aug 7</option>
+                <option value="8">Aug 8</option>
+                <option value="9">Aug 9</option>
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="time" name="time">

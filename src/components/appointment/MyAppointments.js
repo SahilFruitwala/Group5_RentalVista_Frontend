@@ -67,63 +67,62 @@ function MyAppointment() {
         </div>
       ) : (
         <>
-          <Row className="container-fluid">
-            {appointments.map((appointment) => {
-              return (
-                <Card key={appointment.id} className="col-lg-4 mb-5 mr-auto">
-                  <Card.Body>
-                    <Card.Subtitle
-                      className="pt-2"
-                      style={{ color: "#000000" }}
-                    >
-                      <Row>
-                        <center>
-                          Date: &nbsp;
-                          <b>{appointment.date}</b>
-                        </center>
-                      </Row>
-                      <Row>
-                        <center>
-                          Time: &nbsp;
-                          <b>{appointment.time} PM</b>
-                        </center>
-                      </Row>
-                      <Row>
-                        <center>
-                          Your email: &nbsp;
-                          <b>{appointment.email} </b>
-                        </center>
-                      </Row>
-                      <Row>
-                        <center>
-                          Owner email: &nbsp;
-                          <b>{appointment.owneremail} </b>
-                        </center>
-                      </Row>
-                    </Card.Subtitle>
-                    <br></br>
-                    <Card.Text>
-                      <Link to={`/appointment-reschedule/${appointment.id}`}>
+          <div style={{ height: "27rem" }}>
+            <h1 style={{ textAlign: "center", marginBottom: "2rem" }}>
+              My appointments{" "}
+            </h1>
+            <Row className="container-fluid">
+              {appointments.map((appointment) => {
+                return (
+                  <Card key={appointment.id} className="col-lg-4 mb-5 mr-auto">
+                    <Card.Body>
+                      <Card.Subtitle
+                        className="pt-2"
+                        style={{ color: "#000000" }}
+                      >
+                        <Row>
+                          <center>
+                            Date: &nbsp;
+                            <b>{appointment.date}</b>
+                          </center>
+                        </Row>
+                        <Row>
+                          <center>
+                            Time: &nbsp;
+                            <b>{appointment.time} PM</b>
+                          </center>
+                        </Row>
+                        <Row>
+                          <center>
+                            Your email: &nbsp;
+                            <b>{appointment.email} </b>
+                          </center>
+                        </Row>
+                      </Card.Subtitle>
+                      <br></br>
+                      <Card.Text>
+                        <Link to={`/appointment-reschedule/${appointment.id}`}>
+                          <Button
+                            variant="warning"
+                            style={{ marginRight: "1rem" }}
+                          >
+                            Reschedule
+                          </Button>
+                        </Link>
+                        <span></span>
                         <Button
                           variant="warning"
-                          style={{ marginRight: "1rem" }}
+                          onClick={(e) => handleDelete(appointment.id)}
                         >
-                          Reschedule Appointment
+                          Delete
                         </Button>
-                      </Link>
-                      <span></span>
-                      <Button
-                        variant="warning"
-                        onClick={(e) => handleDelete(appointment.id)}
-                      >
-                        Delete Appointment
-                      </Button>
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              );
-            })}
-          </Row>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                );
+              })}
+            </Row>
+          </div>
           {display && (
             <SuccessModal
               message={{

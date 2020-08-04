@@ -77,7 +77,11 @@ function App(props) {
             <Route path="/signup" exact component={SignupPage} />
             <Route path="/payment" exact component={PaymentPage} />
             <Route path="/post" exact component={AddPost} />
-            <Route path="/appointment-book" exact component={AppointmentBook} />
+            <Route
+              path="/appointment-book/:id"
+              exact
+              component={AppointmentBook}
+            />
             <Route
               path="/appointment-reschedule/:id"
               exact
