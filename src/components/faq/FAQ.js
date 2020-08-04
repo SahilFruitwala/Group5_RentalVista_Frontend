@@ -1,3 +1,4 @@
+// Author1: Harshitha M S - B00838019
 // Author2: Sahil Fruitwala - B00844489import React from "react";
 import React from "react";
 import FAQImage from "../../assets/images/faq.svg";
