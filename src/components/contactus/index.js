@@ -38,11 +38,9 @@ function Contact() {
       }}
     )
     .then((response) => {
-        console.log("PASS",response);
         setShow(true)
     })
     .catch(({response}) => {
-        console.log("ERROR",response);
         setShow(false)
     });
   }

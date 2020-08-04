@@ -9,7 +9,7 @@ import Loader from 'react-loader-spinner';
 
 import "./HouseList.css";
 
-function HouseList() {
+function HouseList(props) {
   const [display, setDisplay] = useState(false);
   const [rooms, setRooms] = useState([]);
   const [roomsFetched, setRoomsFetched] = useState(false);
@@ -46,8 +46,8 @@ function HouseList() {
       <h3 style={{ marginLeft: "50px" }}>Promoted Postings:</h3>
       <Row className="container-fluid">
         <section class="card1">
-          {rooms.length !== 0 ? (
-            rooms.map((room) => {
+          {props.houses.length !== 0 ? (
+            props.houses.map((room) => {
               return (
                 <>
                   {room.isPromoted && !room.disabled ? (
@@ -117,8 +117,8 @@ function HouseList() {
         All Room Postings:
       </h3>
       <Row className="container-fluid">
-        {rooms.length !== 0 ? (
-          rooms.map((room) => {
+        {props.houses.length !== 0 ? (
+          props.houses.map((room) => {
             return (
               <>
                 {!room.disabled ? (
