@@ -15,7 +15,7 @@ const validateForm = (errors) => {
   Object.values(errors).forEach(
     // if we have an error string set valid to false
     (val) => {
-      if (val == "set" && flag == 1) {
+      if (val === "set" && flag === 1) {
         valid = true;
       } else {
         valid = false;
@@ -161,7 +161,7 @@ class Form extends React.Component {
           //console.log(response)
           this.componentDidMount();
 
-          if (response.data == "Blog Title already present, cannot add") {
+          if (response.data === "Blog Title already present, cannot add") {
             this.play("Blog title already present, enter a different title");
           } else {
             this.play("Blog Added Successfully");
@@ -180,14 +180,14 @@ class Form extends React.Component {
     //const { name, value } = event.target;
 
     //console.log(this.state)
-    if (this.state.title == "Blog post 1" || param == "Blog post 1") {
+    if (this.state.title === "Blog post 1" || param === "Blog post 1") {
       this.play("Cannot Edit default Admin blog");
     }
     if (
-      this.state.title == "Blog post 2" ||
-      param == "Blog post 2" ||
-      param == "Housing post 1" ||
-      param == "Housing post 2"
+      this.state.title === "Blog post 2" ||
+      param === "Blog post 2" ||
+      param === "Housing post 1" ||
+      param === "Housing post 2"
     ) {
       this.play(
         "Cannot Edit another user's blog, try editing a blog created by you."
@@ -198,11 +198,11 @@ class Form extends React.Component {
         .then((response) => {
           //console.log(response)
           this.componentDidMount();
-          if (response.data == "Blog updated Successfully!") {
+          if (response.data === "Blog updated Successfully!") {
             this.play("Blog Updated Successfully");
-          } else if (response.data == "Title missing") {
+          } else if (response.data === "Title missing") {
             this.play("Blog Title missing, try again!");
-          } else if (response.data == "Title missing") {
+          } else if (response.data === "Title missing") {
             this.play("Blog Description missing, try again!");
           } else {
             this.play("Blog Author not found, Enter Correct Author name");
@@ -221,14 +221,14 @@ class Form extends React.Component {
 
     this.state.title = param;
     // console.log(this.state.title)
-    if (this.state.title == "Blog post 1" || param == "Blog post 1") {
+    if (this.state.title === "Blog post 1" || param === "Blog post 1") {
       this.play("Cannot delete default Admin blog");
     } else if (
-      this.state.title == "Blog post 2" ||
-      param == "Blog post 2" ||
-      param == "Housing post 1" ||
-      param == "Housing post 2" ||
-      param == "Housing post 3"
+      this.state.title === "Blog post 2" ||
+      param === "Blog post 2" ||
+      param === "Housing post 1" ||
+      param === "Housing post 2" ||
+      param === "Housing post 3"
     ) {
       this.play(
         "Cannot delete another user's blog, try a blog created by you."

@@ -24,6 +24,7 @@ import PaymentPage from "./components/payment/index";
 import FAQPage from "./components/faq/FAQ";
 import AppointmentBook from "./components/appointment/AppointmentBook";
 import MyAppointment from "./components/appointment/MyAppointments";
+import RescheduleAppointment from "./components/appointment/RescheduleAppointment";
 import AddPost from "./components/post";
 import SignupPage from "./components/signup/index";
 import ViewRoom from "./components/house/View_Room/viewroom";
@@ -63,8 +64,12 @@ function App(props) {
             <Route path="/edit" exact component={EditProfile} />
             <Route path="/house" exact component={HousePage} />
             {/* <Route path="/view-room" exact component={ViewRoom} /> */}
-            <Route exact path="/view-room/:rent,:date,:bedroom,:bathroom,:description" component={ViewRoom} />
-            <Route path="/comments" exact component={Comments} /> 
+            <Route
+              exact
+              path="/view-room/:rent,:date,:bedroom,:bathroom,:description,:roomID"
+              component={ViewRoom}
+            />
+            <Route path="/comments" exact component={Comments} />
             <Route path="/aboutus" exact component={AboutUsPage} />
             <Route path="/contactus" exact component={ContactUs} />
             <Route path="/faq" exact component={FAQPage} />
@@ -72,9 +77,18 @@ function App(props) {
             <Route path="/signup" exact component={SignupPage} />
             <Route path="/payment" exact component={PaymentPage} />
             <Route path="/post" exact component={AddPost} />
-            <Route path="/appointment-book" exact component={AppointmentBook} />
+            <Route
+              path="/appointment-book/:id"
+              exact
+              component={AppointmentBook}
+            />
+            <Route
+              path="/appointment-reschedule/:id"
+              exact
+              component={RescheduleAppointment}
+            />
             <Route path="/myapps" exact component={MyAppointment} />
-            <Route path="/404"  component={Page404} />
+            <Route path="/404" component={Page404} />
             <Redirect from="*" to="/404" />
           </Switch>
         </ScrollToTop>
