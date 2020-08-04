@@ -35,7 +35,7 @@ function MyAppointment() {
 
   const handleDelete = (appointmentid) => {
     axios
-      .delete("http://127.0.0.1:5000/appointment/delete", {
+      .delete("https://rentalvista-api.herokuapp.com/appointment/delete", {
         headers: {
           Authorization: localStorage.getItem("token"),
         },

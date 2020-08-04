@@ -10,7 +10,7 @@ export default class RescheduleAppointment extends Component {
   };
 
   handleSubmit = () => {
-    axios.post("http://localhost:5000/appointment/reschedule", {
+    axios.post("https://rentalvista-api.herokuapp.com/appointment/reschedule", {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Request-Method": "POST",
