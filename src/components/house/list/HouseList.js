@@ -45,13 +45,13 @@ function HouseList(props) {
       <>
       <h3 style={{ marginLeft: "50px" }}>Promoted Postings:</h3>
       <Row className="container-fluid">
-        <section class="card1">
+        <section className="card1">
           {props.houses.length !== 0 ? (
             props.houses.map((room) => {
               return (
                 <>
                   {room.isPromoted && !room.disabled ? (
-                    <div class="card1--content">
+                    <div className="card1--content">
                       <Card
                         key={room.roomID}
                         className="card1"
