@@ -138,13 +138,46 @@ class Form extends React.Component {
     const { name, value } = event.target;
     let errors = this.state.errors;
 
+<<<<<<< HEAD
+    switch (name) {
+      case "title":
+        if (!event.target.value.match(/^[a-zA-Z0-9 ]+$/i)) {
+          event.target.value = event.target.value.replace(
+            /[^A-Za-z0-9 ]/gi,
+            ""
+          );
+        } else {
+          errors.title =
+            value.length < 5 ? "Min 5 alphabetic characters!" : "set";
+          if (value.length >= 5) {
+            flag = 1;
+          } else {
+            flag = 0;
+          }
+=======
             }
             this.setState({errors, [name]: value}, ()=> {
                 //console.log(errors)
             })
             this.setState({formValid: validateForm(this.state.errors)});
+>>>>>>> 5bfb1d96cf7009db73d88943e74ff988cd81ab95
         }
+        break;
 
+<<<<<<< HEAD
+      case "desc":
+        if (!event.target.value.match(/^[a-zA-Z0-9,! .]+$/i)) {
+          event.target.value = event.target.value.replace(
+            /[^A-Za-z0-9.,! ]/gi,
+            ""
+          );
+        } else {
+          errors.desc = value.length <= 1 ? "Enter some text!" : "set";
+          if (value.length >= 2) {
+            flag = 1;
+          } else {
+            flag = 0;
+=======
                 axios
               .post('https://rentalvista-api.herokuapp.com/addblog', this.state)
               .then(response => {
@@ -167,10 +200,23 @@ class Form extends React.Component {
             }
             
                    
+>>>>>>> 5bfb1d96cf7009db73d88943e74ff988cd81ab95
           }
         }
         break;
 
+<<<<<<< HEAD
+      case "author":
+        if (!event.target.value.match(/^[a-zA-Z .]+$/i)) {
+          event.target.value = event.target.value.replace(/[^A-Za-z. ]/gi, "");
+        } else {
+          errors.author =
+            value.length < 5 ? "Min 5 alphabetic characters!" : "set";
+          if (value.length >= 5) {
+            flag = 1;
+          } else {
+            flag = 0;
+=======
           handleEdit(param) {
           
             //event.preventDefault();           
@@ -209,10 +255,36 @@ class Form extends React.Component {
                     //console.log(error)
                     })  
                 }    
+>>>>>>> 5bfb1d96cf7009db73d88943e74ff988cd81ab95
           }
         }
         break;
 
+<<<<<<< HEAD
+      default:
+        break;
+    }
+    this.setState({ errors, [name]: value }, () => {
+      console.log(errors);
+    });
+    this.setState({ formValid: validateForm(this.state.errors) });
+  };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    if (
+      this.state.desc == null ||
+      this.state.author == null ||
+      this.state.title == null
+    ) {
+      this.play("Empty Fields. Please Enter all details");
+    } else {
+      axios
+        .post("https://rentalvista-api.herokuapp.com/addblog", this.state)
+        .then((response) => {
+          console.log(response);
+          this.componentDidMount();
+=======
           handledelete(param)  {
           
             //event.preventDefault();           
@@ -241,6 +313,7 @@ class Form extends React.Component {
                 {
                 console.log(error)
                 })
+>>>>>>> 5bfb1d96cf7009db73d88943e74ff988cd81ab95
 
           if (response.data == "Blog Title already present, cannot add") {
             this.play("Blog title already present, enter a different title");
@@ -256,6 +329,11 @@ class Form extends React.Component {
     }
   };
 
+<<<<<<< HEAD
+  handleEdit(param) {
+    //event.preventDefault();
+    //const { name, value } = event.target;
+=======
         resetForm = () => {
                           this.setState({title: "", author: "", desc: ""});
                         }
@@ -264,6 +342,7 @@ class Form extends React.Component {
             this.setState({title: "", author: "", desc: ""});
             //console.log("Log" +this.state.title)
           }
+>>>>>>> 5bfb1d96cf7009db73d88943e74ff988cd81ab95
 
     console.log(this.state);
     if (this.state.title == "Blog post 1" || param == "Blog post 1") {
