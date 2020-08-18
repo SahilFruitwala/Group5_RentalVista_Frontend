@@ -7,14 +7,14 @@
 
 ## Authors
 
-| Name               | Banner ID    | Email                   |
-|--------------------|--------------|-------------------------|
-| Amogh Bangalore    | B00833535    | am210633@dal.ca         |
-| Gaurav Anand       | B00832139    | gaurav.anand@dal.ca     |
-| Harshitha M S      | B00838019    | Harshitha.MS@dal.ca     |
-| Krupa Patel        | B00828120    | Krupa.Patel@dal.ca      |
-| Naitik Prajapati   | B00856835    | naitik.prajapati@dal.ca |
-| Sahil Fruitwala    | B00844489    | sahil.fruitwala@dal.ca  |
+| Name               | Email                   |
+|--------------------|-------------------------|
+| Sahil Fruitwala    | sahil.fruitwala@dal.ca  |
+| Amogh Bangalore    | am210633@dal.ca         |
+| Gaurav Anand       | gaurav.anand@dal.ca     |
+| Harshitha M S      | Harshitha.MS@dal.ca     |
+| Krupa Patel        | Krupa.Patel@dal.ca      |
+| Naitik Prajapati   | naitik.prajapati@dal.ca |
 
 ### Demo Website Link: https://rentalvista.herokuapp.com/
 
