@@ -16,7 +16,7 @@
 | Krupa Patel        | Krupa.Patel@dal.ca      |
 | Naitik Prajapati   | naitik.prajapati@dal.ca |
 
-### Demo Website Link: https://rentalvista.herokuapp.com/
+<!-- ### Demo Website Link: https://rentalvista.herokuapp.com/  -->
 
 ### Github Repository Link: https://github.com/SahilFruitwala/rental-vista
 
@@ -50,14 +50,14 @@ I have created five pages and those can be accessed by method given below:
 9. For Aboutus and FAQ click on **About** and **FAQ** buttons in the footer.
 5. If a user enters any wrong path or URL application will lead it to a **404 page**.
 
-### Link of Pages
+<!-- ### Link of Pages
 
 1. [Landing Page](https://rentalvista.herokuapp.com/)
 2. [Houses](https://rentalvista.herokuapp.com/house)
 3. [Blog](https://rentalvista.herokuapp.com/blog)
 4. [Edit Profile](https://rentalvista.herokuapp.com/edit)
 5. [404](https://rentalvista.herokuapp.com/404)
-
+-->
 ## Deployment
 
 For deployment, I tried deploying using the Heroku dashboard in the previous project but I could not do it. So, this time, I have used Heroku CLI for deployment using buildpack property as suggested by [Mark Hall](https://github.com/mars/create-react-app-buildpack)[1] in his Github repository which is also suggested method of the Heroku platform.
